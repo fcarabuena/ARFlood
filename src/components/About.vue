@@ -27,7 +27,7 @@ const SECTIONS = [
         url: 'https://operations.osmfoundation.org/policies/tiles/',
       },
       {
-        name: 'Overpass API (overpass-api.de, overpass.kumi.systems, overpass.private.coffee)',
+        name: 'Overpass API (overpass-api.de, overpass.private.coffee)',
         use: 'Searching OpenStreetMap for nearby evacuation places',
         licence: 'Data ODbL 1.0 (OpenStreetMap); Overpass software AGPL-3.0',
         attribution: '© OpenStreetMap contributors, via the Overpass API',

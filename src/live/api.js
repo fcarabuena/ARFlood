@@ -158,11 +158,14 @@ export async function fetchElevation({ lat, lon }) {
 
 export const OSM_SOURCE = { name: 'OpenStreetMap contributors (Overpass API)', url: 'https://www.openstreetmap.org/copyright' }
 
-// Public Overpass servers are often busy; try them in turn.
+// Public Overpass servers are often busy; try them in turn. overpass-api.de
+// asks clients to retry with backoff when it is "at capacity", so it gets one
+// more, later attempt. (Regional mirrors such as overpass.osm.ch only hold
+// their own country and would return an empty "success" for the Philippines.)
 const OVERPASS_ENDPOINTS = [
-  'https://overpass-api.de/api/interpreter',
-  'https://overpass.kumi.systems/api/interpreter',
-  'https://overpass.private.coffee/api/interpreter',
+  { url: 'https://overpass-api.de/api/interpreter', delay: 0 },
+  { url: 'https://overpass.private.coffee/api/interpreter', delay: 1000 },
+  { url: 'https://overpass-api.de/api/interpreter', delay: 5000 },
 ]
 
 // amenity=shelter is also used for bus stops, picnic huts etc. Drop those.
@@ -195,9 +198,9 @@ export async function fetchOsmCenters({ lat, lon }, radius = 5000) {
   const body = new URLSearchParams({ data: query })
 
   let lastError
-  for (const [i, endpoint] of OVERPASS_ENDPOINTS.entries()) {
+  for (const { url: endpoint, delay } of OVERPASS_ENDPOINTS) {
     try {
-      if (i) await new Promise((r) => setTimeout(r, 800 * i)) // back off between servers
+      if (delay) await new Promise((r) => setTimeout(r, delay)) // back off between attempts
       const j = await getJSON(endpoint, { method: 'POST', body, timeout: 25000 })
       return j.elements
         .map((e) => {
