@@ -5,7 +5,7 @@ import { DIFFICULTIES, DIFFICULTY_ORDER } from '../game/difficulty.js'
 import { loadProgress } from '../game/analytics.js'
 
 defineProps({ error: { type: String, default: '' } })
-defineEmits(['start-ar', 'start-3d', 'badges'])
+defineEmits(['start-ar', 'start-3d', 'badges', 'live'])
 
 const tips = [
   {
@@ -56,6 +56,14 @@ const suggestion = computed(() => {
           <p class="muted">Learn what to do in a flood, then practise it in augmented reality.</p>
         </div>
       </header>
+
+      <div class="live-cta">
+        <div>
+          <b>Flood happening now?</b>
+          <span>Live risk, nearby evacuation centers, directions and emergency numbers. Works offline after first use.</span>
+        </div>
+        <button class="btn live-btn" @click="$emit('live')">🚨 Live Mode</button>
+      </div>
 
       <h2>Flood safety tips</h2>
       <ul class="tip-list">
@@ -141,6 +149,32 @@ h1 {
 h2 {
   font-size: 1.05rem;
   margin: 18px 0 8px;
+}
+.live-cta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(200, 30, 34, 0.18);
+  border: 1px solid rgba(255, 90, 95, 0.6);
+}
+.live-cta div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.85rem;
+}
+.live-cta b {
+  font-size: 1rem;
+}
+.live-btn {
+  flex: none;
+  background: #c81e22;
+  border-color: #c81e22;
+  color: #fff;
+  white-space: nowrap;
 }
 .tip-list {
   list-style: none;

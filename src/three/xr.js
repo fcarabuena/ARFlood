@@ -1,23 +1,5 @@
 import * as THREE from 'three'
 
-/** Checks whether this browser can start an immersive AR session. */
-export async function checkARSupport() {
-  if (!window.isSecureContext) {
-    return { supported: false, reason: 'Page is not served over HTTPS, so WebXR is disabled.' }
-  }
-  if (!('xr' in navigator)) {
-    return { supported: false, reason: 'This browser has no WebXR support.' }
-  }
-  try {
-    const ok = await navigator.xr.isSessionSupported('immersive-ar')
-    return ok
-      ? { supported: true, reason: '' }
-      : { supported: false, reason: 'Immersive AR is not supported on this device.' }
-  } catch (err) {
-    return { supported: false, reason: `WebXR check failed: ${err.message}` }
-  }
-}
-
 function createReticle() {
   const reticle = new THREE.Group()
   const ring = new THREE.Mesh(

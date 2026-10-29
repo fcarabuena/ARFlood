@@ -1,8 +1,7 @@
 <script setup>
-import { ref, markRaw, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, markRaw, onMounted, onBeforeUnmount, watch, defineAsyncComponent } from 'vue'
 import { store } from './store.js'
-import { FloodEngine } from './three/engine.js'
-import { checkARSupport } from './three/xr.js'
+import { checkARSupport } from './three/support.js'
 import { fetchLiveWeather } from './services/weather.js'
 import { buildResults } from './game/analytics.js'
 import Tips from './components/Tips.vue'
@@ -11,21 +10,39 @@ import Quiz from './components/Quiz.vue'
 import Results from './components/Results.vue'
 import Badges from './components/Badges.vue'
 
+// Live Flood Mode is loaded on demand and never starts the 3D engine.
+const LiveMode = defineAsyncComponent(() => import('./live/LiveMode.vue'))
+
 const canvasHost = ref(null)
 const overlay = ref(null)
 const engine = ref(null)
 const startError = ref('')
 
+/** Creates the training 3D engine the first time it is needed (not in Live Mode). */
+async function ensureEngine() {
+  if (!engine.value) {
+    const { FloodEngine } = await import('./three/engine.js')
+    engine.value = markRaw(new FloodEngine(canvasHost.value))
+    // Handy for debugging from the browser console during development.
+    if (import.meta.env.DEV) window.__engine = engine.value
+  }
+  // Live Mode may have been opened while the engine was still loading.
+  engine.value.setPaused(store.screen === 'live')
+  return engine.value
+}
+
 onMounted(async () => {
+  const params = new URLSearchParams(location.search)
+  // `?live` (also the installed app's "Live Flood Mode" shortcut) opens Live Mode directly.
+  if (params.has('live')) store.screen = 'live'
+
   // Dev only: `?emulate` installs an emulated AR device (see src/dev/emulator.js).
-  if (import.meta.env.DEV && new URLSearchParams(location.search).has('emulate')) {
+  if (import.meta.env.DEV && params.has('emulate')) {
     const { installEmulator } = await import('./dev/emulator.js')
     await installEmulator()
   }
 
-  engine.value = markRaw(new FloodEngine(canvasHost.value))
-  // Handy for debugging from the browser console during development.
-  if (import.meta.env.DEV) window.__engine = engine.value
+  if (store.screen !== 'live') await ensureEngine()
 
   // In AR, taps on HUD buttons would also fire an XR "select" (and collect
   // whatever is behind the button). Cancel that for anything marked .ui.
@@ -73,6 +90,19 @@ async function startAR() {
   }
 }
 
+async function openLive() {
+  engine.value?.setPaused(true) // no 3D rendering or audio in Live Mode
+  store.screen = 'live'
+  history.replaceState(null, '', '?live')
+}
+
+async function exitLive() {
+  store.screen = 'tips'
+  history.replaceState(null, '', location.pathname)
+  const e = await ensureEngine()
+  e.setPaused(false)
+}
+
 function start3D() {
   engine.value.start3D()
 }
@@ -116,10 +146,13 @@ function leave(target) {
       @start-ar="startAR"
       @start-3d="start3D"
       @badges="openBadges('tips')"
+      @live="openLive"
     />
     <Hud v-else-if="store.screen === 'sim'" :engine="engine" @quiz="openQuiz" />
     <Quiz v-else-if="store.screen === 'quiz'" @done="finishQuiz" />
     <Results v-else-if="store.screen === 'results'" @leave="leave" @badges="openBadges('results')" />
     <Badges v-else-if="store.screen === 'badges'" @back="leave('back')" />
   </div>
+
+  <LiveMode v-if="store.screen === 'live'" @exit="exitLive" />
 </template>

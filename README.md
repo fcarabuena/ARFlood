@@ -1,8 +1,14 @@
 # Flood Ready AR: Web-based AR Flood Simulation
 
-A lightweight flood-awareness simulation that runs in the browser. On an ARCore-capable Android phone
-it places a flood scene on your floor using WebXR. On other devices (iPhone, laptop) it runs the same
-scene in normal 3D.
+A lightweight flood-awareness app that runs in the browser, with two parts:
+
+- **Training simulation.** On an ARCore-capable Android phone it places a flood scene on your floor using
+  WebXR. On other devices (iPhone, laptop) it runs the same scene in normal 3D.
+- **[Live Flood Mode](#live-flood-mode).** For use during a real flood: a local risk estimate, nearby
+  evacuation centers, walking directions with a camera-based guide arrow, emergency numbers, location
+  sharing and a preparedness checklist. It works offline after the first use (installable PWA).
+
+> ⚠️ **Live Flood Mode does not replace official warnings.** Always follow PAGASA, NDRRMC and your LGU.
 
 **Stack:** Vite + Vue 3 (JavaScript), Three.js, WebXR (`immersive-ar` with `hit-test`, `dom-overlay`
 and optional `anchors`), Web Audio API and the Web Speech API. No Unity, no native app. All sounds are
@@ -46,6 +52,7 @@ npm install
 npm run dev      # HTTPS dev server, reachable on your local network (--host)
 npm run build    # production build into dist/
 npm run preview  # serve the production build (also HTTPS + --host)
+npm run preview:local  # production build over plain HTTP on localhost:4173 (to test offline/PWA)
 ```
 
 `npm run dev` prints something like:
@@ -63,8 +70,92 @@ a certificate warning the first time. This is expected for local development, so
 
 | Flag | Effect |
 |---|---|
+| `?live` | Opens Live Flood Mode directly (also the installed app's shortcut). |
 | `?debug` | Shows an FPS counter under the HUD buttons. |
 | `?emulate` | *Dev server only.* Installs an emulated AR headset with a virtual room; see [Testing without a phone](#option-b-built-in-emulator-emulate). |
+
+## Live Flood Mode
+
+Open it with the red **🚨 Live Mode** button on the start screen, or with `?live`. It is a separate,
+lightweight part of the app. The 3D engine is not loaded (or is paused if it was already running), so it
+uses no 3D rendering and much less battery.
+
+| Tab | What it does |
+|---|---|
+| **Status** | Asks for your location, then shows current rain, the next 24 h of hourly rain, river flow and ground elevation. These are combined into a **Low / Moderate / High** risk card that says what to do at each level. Each data block shows its **source** and **last updated** time. |
+| **Centers** | A Leaflet map and list of evacuation centers. Your **verified local list** (`public/evac-centers.json`) comes first, then nearby OpenStreetMap shelters, assembly points and schools, all sorted by distance. Tap one to get a **walking route**, then **🧭 AR Guide**. Without GPS you can tap the map to set your location. |
+| **AR Guide** | Full screen: the back camera feed with a big arrow pointing along the route toward the center (compass + GPS bearing). The distance updates live, and there is a "never walk through floodwater" warning, arrival detection and off-route recalculation. GPS, camera, compass and the screen wake lock run **only while the guide is open**. |
+| **Emergency** | One-tap calls to **911**, the **Philippine Red Cross (143)** and your **local rescue number** (editable in the app or in `public/emergency-contacts.json`). **Share my location** by SMS, the Web Share sheet or copy, with a Google Maps link. Also covers what to do if you are trapped. |
+| **Checklist** | A go-bag checklist (saved on the device) and before / during / after flood steps adapted from FEMA (Ready.gov), NIDM, PAGASA and DOH guidance. |
+
+### Data sources
+
+| Data | Source | Notes |
+|---|---|---|
+| Current rain + 24 h hourly forecast | [Open-Meteo Forecast API](https://open-meteo.com/en/docs) | The current value is a 15-minute total, converted to mm/h. |
+| River discharge vs. usual level | [Open-Meteo Flood API](https://open-meteo.com/en/docs/flood-api) (GloFAS, ~5 km grid) | One request fetches 5 years of daily history plus a 7-day forecast. "Usual" is the median flow for the same time of year (±15 days) in past years, and the 3-day peak is compared to it. Rivers too small for the model count as "no major river". |
+| Elevation | [Open-Meteo Elevation API](https://open-meteo.com/en/docs/elevation-api) (Copernicus DEM 90 m) | Your point plus 8 points 500 m around you, to spot low-lying dips. |
+| Evacuation centers | `public/evac-centers.json` + [OpenStreetMap via Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API) | Tags: `emergency=assembly_point`, `amenity=shelter` (bus stops, picnic huts and similar are filtered out), `social_facility=shelter`, `amenity=school`. Several Overpass servers are tried in turn. |
+| Walking route | OSRM: the [FOSSGIS foot server](https://routing.openstreetmap.de/), then the [OSRM demo server](https://project-osrm.org/), then a straight line | The public OSRM demo server only has a **car** profile (it ignores `foot`), so the FOSSGIS-hosted OSRM foot server is tried first. If only the demo server answers, the walking time is estimated from the distance. |
+| Map tiles | [OpenStreetMap](https://www.openstreetmap.org/copyright) | Tiles you have viewed are cached for 7 days for offline use. |
+
+All of these are free and need no API key. The public Overpass servers are often overloaded, so the
+verified local list matters: it always works, including offline.
+
+### How the risk level is estimated
+
+Points are added for each factor. Rain thresholds follow PAGASA's rainfall warning levels for 1-hour
+rain: yellow 7.5–15 mm, orange 15–30 mm, red > 30 mm.
+
+| Factor | 1 point | 2 points | 3 points |
+|---|---|---|---|
+| Rain right now | ≥ 7.5 mm/h | ≥ 15 mm/h | ≥ 30 mm/h |
+| Next 24 h (higher of hourly peak / total) | ≥ 7.5 mm/h or ≥ 50 mm | ≥ 15 mm/h or ≥ 100 mm | ≥ 30 mm/h or ≥ 200 mm |
+| River (3-day peak vs. usual) | ≥ 1.5× | ≥ 2.5×, or above the usual 90th percentile | ≥ 4× |
+| Elevation (only when rain or river already score) | < 5 m above sea level, or ≥ 3 m lower than the area around you (1 point each) | | |
+
+**High** means a total of 4 or more, or any single factor at 3 points. **Moderate** means a total of 2 or
+more. Anything else is **Low**. If some data could not be loaded, the card says the real risk may be
+higher. The thresholds live in `src/live/risk.js`. This is a simple, transparent heuristic for
+awareness. It is **not a forecast model and not an official warning**.
+
+### Configure for your area
+
+- **`public/evac-centers.json`**: add your LGU-verified evacuation centers (name, lat, lon, and optionally
+  address, capacity, contact and notes). They are listed first and marked ✔ Verified. The file ships
+  **empty on purpose**: only add centers confirmed by your barangay / MDRRMO / CDRRMO.
+- **`public/emergency-contacts.json`**: set `localRescue.number` to your city/municipality rescue hotline,
+  and `lguAdvisory.url` to your LGU's official advisory page (it appears in the safety banner).
+- Rebuild/redeploy after editing so the offline copy updates.
+
+### Offline (PWA)
+
+`vite-plugin-pwa` generates a service worker that precaches the app, tips, quiz, checklist, models,
+`evac-centers.json` and `emergency-contacts.json`. Live data (risk inputs, OSM centers, your route, your
+location and contacts) is saved in `localStorage` every time it is fetched. With no signal, the app still
+opens and shows **"Offline: last updated <time>"** with the last saved data. Data that belongs to a place
+more than 2 km from where you are now is labelled as such.
+
+- On Android Chrome: menu → **Install app** / **Add to Home screen**. On iPhone Safari: Share →
+  **Add to Home Screen**. The installed app has a **Live Flood Mode** shortcut.
+- **Service workers need a trusted HTTPS certificate.** The self-signed dev certificate is not trusted, so
+  offline mode **does not activate over `https://<PC-IP>:5173`**. To try it:
+  - on a desktop, run `npm run preview:local` and open `http://localhost:4173` (localhost counts as secure), or
+  - on a phone, deploy `dist/` to any HTTPS static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages).
+- Open Live Mode once while online (after setting your location) so there is data to show offline.
+
+### Compass and the AR Guide
+
+- **iPhone (iOS 13+)**: tapping **AR Guide** asks for motion & orientation access (Apple only allows this
+  prompt from a tap). The guide then uses `webkitCompassHeading`.
+- **Android Chrome**: uses `deviceorientationabsolute` and converts it to the direction the back camera
+  points. Hold the phone upright in front of you.
+- If no compass is available, the arrow switches to **north-up** (top of the screen = north). Once you
+  start walking, the GPS direction of travel is used.
+- Compass readings can be off near metal, cars and power lines. Move the phone in a figure-8 to calibrate.
+  The heading is magnetic north; in the Philippines that differs from true north by about 1°.
+- The arrow follows the route's next point about 20 m ahead, or points straight at the center when only a
+  straight line is available. **It cannot see floodwater: always check the street ahead yourself.**
 
 ## Testing AR
 
@@ -235,6 +326,15 @@ src/
 │   ├── analytics.js     # mission tracking, results, tips, badges, best scores
 │   └── settings.js      # safe localStorage helpers
 ├── dev/emulator.js      # ?emulate (dev only)
+├── live/                # Live Flood Mode (loaded on demand, no 3D)
+│   ├── LiveMode.vue     # header, offline notice, tabs, guide launcher
+│   ├── liveStore.js     # Live Mode state and refresh actions
+│   ├── api.js           # Open-Meteo (forecast, flood, elevation), Overpass, OSRM, JSON files
+│   ├── risk.js          # Low/Moderate/High scoring + what to do
+│   ├── cache.js         # localStorage cache with "last updated"
+│   ├── geo.js           # distance, bearing, GPS helpers
+│   ├── compass.js       # iOS/Android compass heading + permission
+│   └── components/      # StatusTab, CentersTab (Leaflet), GuideView, SosTab, ChecklistTab, SafetyBanner, DataStamp
 └── components/
     ├── Tips.vue         # start screen: tips, difficulty, toggles, live weather
     ├── Hud.vue          # in-game HUD and result dialog
@@ -263,6 +363,16 @@ src/
 - Voice lines: `src/three/engine.js` (search for `voice.say`)
 - Badges and debrief tips: `src/game/analytics.js`
 
+## Live Mode checklist (needs a real phone)
+
+- [ ] iPhone: tapping **AR Guide** shows the motion permission prompt, and after "Allow" the arrow turns with the phone.
+- [ ] Android: the arrow points the right way when you hold the phone upright and turn around.
+- [ ] Distance counts down as you walk, and "You have arrived" appears within about 30 m.
+- [ ] The camera feed shows behind the arrow, and closing the guide turns off the camera and GPS.
+- [ ] Call buttons open the dialer with 911 / 143 / your local number.
+- [ ] **Send by SMS** opens the messaging app with the location text (iOS and Android handle `sms:` slightly differently).
+- [ ] The installed PWA opens in airplane mode and shows "Offline: last updated …" with your last data.
+
 ## Browser support
 
 | Device | Mode |
@@ -270,3 +380,5 @@ src/
 | Android + Chrome + ARCore | Full AR (hit-test, DOM overlay HUD, anchors) |
 | iPhone / iPad (Safari) | 3D fallback (iOS Safari has no WebXR AR) |
 | Desktop Chrome / Edge / Firefox | 3D fallback, or AR via the Immersive Web Emulator / `?emulate` |
+
+Live Flood Mode works on all of them, including iPhone (Safari 13+). The AR Guide needs a phone with a compass for the turning arrow.

@@ -1,0 +1,15 @@
+{
+  "_readme": "Verified evacuation centers for your area, shown first in Live Mode (above OpenStreetMap results). Only add centers confirmed by your LGU / MDRRMO / CDRRMO. Copy the example object into \"centers\". Fields other than name, lat and lon are optional. Rebuild/redeploy after editing so the offline copy updates.",
+  "updated": "",
+  "source": "",
+  "_example": {
+    "name": "Barangay San Isidro Covered Court",
+    "lat": 14.6000,
+    "lon": 121.0000,
+    "address": "Street, Barangay, City",
+    "capacity": 300,
+    "contact": "0917 000 0000",
+    "notes": "Ground floor floods above 0.5 m; use the 2nd-floor hall."
+  },
+  "centers": []
+}

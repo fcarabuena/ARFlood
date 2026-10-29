@@ -78,6 +78,14 @@ class FloodSound {
     this.setWater(this.waterTarget)
   }
 
+  suspend() {
+    if (this.ctx?.state === 'running') this.ctx.suspend()
+  }
+
+  resume() {
+    if (this.ctx?.state === 'suspended') this.ctx.resume()
+  }
+
   setMuted(muted) {
     this.muted = muted
     if (this.master) this.master.gain.setTargetAtTime(muted ? 0 : 1, this.ctx.currentTime, 0.05)

@@ -103,7 +103,8 @@ export class FloodEngine {
     window.addEventListener('resize', this._onResize)
 
     this.applySettings()
-    renderer.setAnimationLoop((t, frame) => this._loop(t, frame))
+    this._animate = (t, frame) => this._loop(t, frame)
+    renderer.setAnimationLoop(this._animate)
   }
 
   async _loadModels(slots) {
@@ -227,6 +228,19 @@ export class FloodEngine {
     sound.setWater(0)
     voice.reset()
     this._syncTasks()
+  }
+
+  /** Stops rendering and audio entirely (used while Live Flood Mode is open). */
+  setPaused(paused) {
+    if (paused) {
+      this.renderer.setAnimationLoop(null)
+      sound.suspend()
+      voice.stop()
+    } else {
+      this.timer.reset?.()
+      this.renderer.setAnimationLoop(this._animate)
+      sound.resume()
+    }
   }
 
   dispose() {
