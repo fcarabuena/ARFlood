@@ -1,0 +1,22 @@
+{
+  "name": "ar-flood-sim",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "three": "^0.186.1",
+    "vue": "^3.5.44"
+  },
+  "devDependencies": {
+    "@iwer/sem": "^2.7.0",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "iwer": "^2.7.0",
+    "vite": "^8.3.5"
+  }
+}

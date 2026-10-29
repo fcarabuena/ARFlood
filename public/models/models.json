@@ -1,0 +1,9 @@
+{
+  "_comment": "Maps scene slots to GLB files (paths relative to this folder). Slots without an entry, or whose file fails to load, use the built-in primitive. Models are auto-scaled to fit the slot. Optional supply slots: firstaid, bottle, flashlight, radio (e.g. \"firstaid\": \"supplies/firstaid.glb\").",
+  "houseRoof": "city/building-garage.glb",
+  "houseA": "city/building-small-a.glb",
+  "houseB": "city/building-small-c.glb",
+  "houseC": "city/building-small-d.glb",
+  "tree": "nature/tree.glb",
+  "person": "people/person.glb"
+}
