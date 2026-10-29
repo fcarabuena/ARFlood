@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { live, refreshConditions, refreshCenters, loadContacts } from './liveStore.js'
+import { live, refreshConditions, refreshCenters, loadContacts, checkConnection } from './liveStore.js'
 import { requestCompassPermission } from './compass.js'
 import { formatTime } from './cache.js'
 import SafetyBanner from './components/SafetyBanner.vue'
@@ -9,6 +9,7 @@ import CentersTab from './components/CentersTab.vue'
 import SosTab from './components/SosTab.vue'
 import ChecklistTab from './components/ChecklistTab.vue'
 import GuideView from './components/GuideView.vue'
+import About from '../components/About.vue'
 
 const emit = defineEmits(['exit'])
 
@@ -29,10 +30,10 @@ const lastUpdated = computed(() => {
   return times.length ? Math.min(...times) : null
 })
 
-onMounted(() => {
+onMounted(async () => {
   loadContacts()
-  // Refresh in the background when online; cached data shows immediately.
-  if (live.location && live.online) {
+  // Cached data shows immediately; refresh in the background if we have a connection.
+  if ((await checkConnection()) && live.location) {
     refreshConditions()
     refreshCenters()
   }
@@ -51,9 +52,10 @@ async function openGuide() {
       <button class="back" aria-label="Back to training" @click="emit('exit')">←</button>
       <div class="title">
         <b>Live Flood Mode</b>
-        <span v-if="!live.online" class="offline">● Offline: last updated {{ formatTime(lastUpdated) }}</span>
+        <span v-if="!live.online" class="offline">● Offline / no connection: last updated {{ formatTime(lastUpdated) }}</span>
         <span v-else class="online">● Online</span>
       </div>
+      <button class="info" :class="{ active: live.tab === 'about' }" aria-label="About and data sources" @click="live.tab = live.tab === 'about' ? 'status' : 'about'">ⓘ</button>
     </header>
     <SafetyBanner v-if="live.tab !== 'status'" compact />
 
@@ -62,6 +64,7 @@ async function openGuide() {
       <CentersTab v-else-if="live.tab === 'centers'" @guide="openGuide" />
       <SosTab v-else-if="live.tab === 'sos'" />
       <ChecklistTab v-else-if="live.tab === 'checklist'" />
+      <About v-else-if="live.tab === 'about'" embedded class="card" />
     </main>
 
     <nav class="tabs" aria-label="Live Mode sections">
@@ -107,6 +110,20 @@ async function openGuide() {
   color: inherit;
   font-size: 1.2rem;
   cursor: pointer;
+}
+.info {
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.info.active {
+  background: rgba(76, 201, 240, 0.25);
 }
 .title {
   display: flex;

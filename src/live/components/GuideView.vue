@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
 function recalculate() {
   if (!pos.value || !center.value) return
   setLocation({ ...pos.value, source: 'gps' })
-  chooseCenter(center.value)
+  chooseCenter(center.value, { recalculate: true })
 }
 </script>
 

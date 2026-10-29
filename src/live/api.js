@@ -1,4 +1,5 @@
 import { distance, offset } from './geo.js'
+import { parseJSON, validateCenters, validateContacts, reportIssues } from './validate.js'
 
 const BASE = import.meta.env?.BASE_URL ?? '/'
 
@@ -6,7 +7,9 @@ async function getJSON(url, { timeout = 15000, ...init } = {}) {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), timeout)
   try {
-    const res = await fetch(url, { ...init, signal: ctrl.signal })
+    // Browsers can't set a custom User-Agent, so public servers (Overpass,
+    // OSRM/FOSSGIS, OSM tiles) identify the app by its origin in the Referer.
+    const res = await fetch(url, { referrerPolicy: 'strict-origin-when-cross-origin', ...init, signal: ctrl.signal })
     if (!res.ok) throw new Error(`${new URL(url).host} answered ${res.status}`)
     return await res.json()
   } catch (err) {
@@ -220,14 +223,25 @@ export async function fetchOsmCenters({ lat, lon }, radius = 5000) {
   throw new Error(`OpenStreetMap servers are busy or unreachable (${lastError?.message ?? 'no answer'})`)
 }
 
+/** Fetches one of our own JSON files and validates it (typos are logged clearly). */
+async function getCheckedJSON(file, validate) {
+  const res = await fetch(`${BASE}${file}`, { cache: 'no-cache' })
+  if (!res.ok) throw new Error(`${file} could not be loaded (${res.status})`)
+  const { data, error } = parseJSON(await res.text(), file)
+  const issues = reportIssues(file, error ? { errors: [error], warnings: [] } : validate(data, file))
+  return { data: data ?? {}, issues: issues.errors }
+}
+
 /** The editable, verified list in public/evac-centers.json. */
 export async function fetchLocalCenters() {
-  const j = await getJSON(`${BASE}evac-centers.json`, { cache: 'no-cache' })
+  const { data: j, issues } = await getCheckedJSON('evac-centers.json', validateCenters)
   return {
     updated: j.updated || '',
     source: j.source || 'public/evac-centers.json',
-    centers: (j.centers || [])
-      .filter((c) => isFinite(c.lat) && isFinite(c.lon) && c.name)
+    issues,
+    // Entries with errors are skipped; the rest still work.
+    centers: (Array.isArray(j.centers) ? j.centers : [])
+      .filter((c) => c && typeof c.lat === 'number' && typeof c.lon === 'number' && isFinite(c.lat) && isFinite(c.lon) && c.name)
       .map((c, i) => ({ id: `local-${i}`, kind: 'verified', label: 'Verified evacuation center', verified: true, ...c })),
   }
 }
@@ -289,5 +303,6 @@ export async function fetchRoute(from, to) {
 // ---------------------------------------------------------------------------
 
 export async function fetchContacts() {
-  return getJSON(`${BASE}emergency-contacts.json`, { cache: 'no-cache' })
+  const { data, issues } = await getCheckedJSON('emergency-contacts.json', validateContacts)
+  return { ...data, issues }
 }

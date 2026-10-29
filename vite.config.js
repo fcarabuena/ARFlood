@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import basicSsl from '@vitejs/plugin-basic-ssl'
@@ -9,7 +10,39 @@ import { VitePWA } from 'vite-plugin-pwa'
 // `--mode http` (npm run preview:local) serves plain HTTP on localhost
 // instead: a self-signed certificate stops the service worker from
 // registering, so use that mode to test offline/PWA behaviour on a desktop.
+/**
+ * GitHub Pages serves a project site at https://<user>.github.io/<repo>/,
+ * so the build needs base "/<repo>/". It is read from the "origin" remote;
+ * set BASE_PATH to override (e.g. BASE_PATH=/ for a custom domain).
+ */
+function pagesBase() {
+  const override = process.env.BASE_PATH
+  if (override) {
+    // Git Bash rewrites "/repo/" into "C:/Program Files/Git/repo/" unless MSYS_NO_PATHCONV=1.
+    if (!override.startsWith('/') || override.includes(':') || /Program Files/i.test(override)) {
+      throw new Error(`BASE_PATH must look like "/repo/", got "${override}". In Git Bash run: MSYS_NO_PATHCONV=1 BASE_PATH=/repo/ npm run build:pages`)
+    }
+    return override.endsWith('/') ? override : `${override}/`
+  }
+  let url = ''
+  try {
+    url = execSync('git remote get-url origin', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+  } catch {
+    // no remote yet
+  }
+  const repo = /github\.com[:/][^/]+\/([^/]+?)(?:\.git)?$/.exec(url)?.[1]
+  if (!repo) {
+    throw new Error(
+      'GitHub Pages build: no GitHub "origin" remote found. Run\n' +
+        '  git remote add origin https://github.com/<your-username>/<repo>.git\n' +
+        'first (see "Deploy to GitHub Pages" in README.md), or set BASE_PATH.'
+    )
+  }
+  return repo.toLowerCase().endsWith('.github.io') ? '/' : `/${repo}/`
+}
+
 export default defineConfig(({ mode }) => ({
+  base: mode === 'pages' ? pagesBase() : '/',
   plugins: [
     vue(),
     mode !== 'http' && basicSsl(),
@@ -24,6 +57,7 @@ export default defineConfig(({ mode }) => ({
         background_color: '#08141d',
         display: 'standalone',
         start_url: '.',
+        scope: '.',
         icons: [
           { src: 'pwa-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'pwa-512.png', sizes: '512x512', type: 'image/png' },

@@ -77,17 +77,18 @@ const hovered = ref(null)
     </section>
     <section v-else-if="live.location" class="card">
       <p>{{ live.conditionsLoading ? 'Checking rain, river and elevation…' : 'No data yet.' }}</p>
-      <button v-if="!live.conditionsLoading" class="btn" @click="refreshConditions">Load conditions</button>
+      <button v-if="!live.conditionsLoading" class="btn" @click="refreshConditions()">Load conditions</button>
     </section>
 
     <!-- What the estimate is based on -->
     <section v-if="risk" class="card">
       <div class="row">
         <h2>What this is based on</h2>
-        <button class="btn small-btn" :disabled="live.conditionsLoading" @click="refreshConditions">
+        <button class="btn small-btn" :disabled="live.conditionsLoading" @click="refreshConditions({ force: true })">
           {{ live.conditionsLoading ? 'Refreshing…' : '↻ Refresh' }}
         </button>
       </div>
+      <p v-if="live.refreshNote" class="small muted">{{ live.refreshNote }}</p>
       <ul class="factors">
         <li v-for="f in risk.factors" :key="f.key">
           <div class="f-head">

@@ -1,9 +1,5 @@
 {
-  "_readme": "Emergency numbers shown in Live Mode. Set localRescue.number to your city/municipality rescue (MDRRMO/CDRRMO) hotline and lguAdvisory.url to your LGU's official advisory page. Users can also override the local rescue number in the app.",
-  "national": [
-    { "label": "Emergency Hotline", "number": "911", "note": "Police, fire, medical, rescue (nationwide)" },
-    { "label": "Philippine Red Cross", "number": "143", "note": "Rescue, ambulance, relief" }
-  ],
+  "national": [],
   "localRescue": { "label": "Local rescue (MDRRMO / CDRRMO)", "number": "" },
-  "lguAdvisory": { "label": "Your LGU advisories", "url": "" }
+  "lguAdvisory": { "label": "", "url": "" }
 }

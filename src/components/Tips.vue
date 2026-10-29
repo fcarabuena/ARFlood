@@ -5,7 +5,7 @@ import { DIFFICULTIES, DIFFICULTY_ORDER } from '../game/difficulty.js'
 import { loadProgress } from '../game/analytics.js'
 
 defineProps({ error: { type: String, default: '' } })
-defineEmits(['start-ar', 'start-3d', 'badges', 'live'])
+defineEmits(['start-ar', 'start-3d', 'badges', 'live', 'about'])
 
 const tips = [
   {
@@ -129,6 +129,9 @@ const suggestion = computed(() => {
       </p>
       <p v-else class="muted small">AR ready: you'll need about {{ store.settings.areaSize }} m × {{ store.settings.areaSize }} m of free floor.</p>
       <p v-if="error" class="error small">{{ error }}</p>
+      <p class="small about-link">
+        <button class="link" @click="$emit('about')">ⓘ About &amp; data sources</button>
+      </p>
     </div>
   </div>
 </template>
@@ -258,6 +261,18 @@ h2 {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.about-link {
+  margin: 12px 0 0;
+  text-align: center;
+}
+.link {
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .small-btn {
   padding: 6px 12px;

@@ -9,6 +9,7 @@ import Hud from './components/Hud.vue'
 import Quiz from './components/Quiz.vue'
 import Results from './components/Results.vue'
 import Badges from './components/Badges.vue'
+import About from './components/About.vue'
 
 // Live Flood Mode is loaded on demand and never starts the 3D engine.
 const LiveMode = defineAsyncComponent(() => import('./live/LiveMode.vue'))
@@ -147,11 +148,13 @@ function leave(target) {
       @start-3d="start3D"
       @badges="openBadges('tips')"
       @live="openLive"
+      @about="store.screen = 'about'"
     />
     <Hud v-else-if="store.screen === 'sim'" :engine="engine" @quiz="openQuiz" />
     <Quiz v-else-if="store.screen === 'quiz'" @done="finishQuiz" />
     <Results v-else-if="store.screen === 'results'" @leave="leave" @badges="openBadges('results')" />
     <Badges v-else-if="store.screen === 'badges'" @back="leave('back')" />
+    <About v-else-if="store.screen === 'about'" @back="store.screen = 'tips'" />
   </div>
 
   <LiveMode v-if="store.screen === 'live'" @exit="exitLive" />

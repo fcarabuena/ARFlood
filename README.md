@@ -49,10 +49,12 @@ Requirements: [Node.js](https://nodejs.org/) 20.19+ (or 22.12+).
 
 ```bash
 npm install
-npm run dev      # HTTPS dev server, reachable on your local network (--host)
-npm run build    # production build into dist/
-npm run preview  # serve the production build (also HTTPS + --host)
+npm run dev          # HTTPS dev server, reachable on your local network (--host)
+npm run build        # checks the data files, then builds into dist/
+npm run check-data   # only validate public/evac-centers.json and public/emergency-contacts.json
+npm run preview      # serve the production build (also HTTPS + --host)
 npm run preview:local  # production build over plain HTTP on localhost:4173 (to test offline/PWA)
+npm run deploy       # build for GitHub Pages and publish (see "Deploy to GitHub Pages")
 ```
 
 `npm run dev` prints something like:
@@ -121,12 +123,91 @@ awareness. It is **not a forecast model and not an official warning**.
 
 ### Configure for your area
 
-- **`public/evac-centers.json`**: add your LGU-verified evacuation centers (name, lat, lon, and optionally
-  address, capacity, contact and notes). They are listed first and marked ✔ Verified. The file ships
-  **empty on purpose**: only add centers confirmed by your barangay / MDRRMO / CDRRMO.
-- **`public/emergency-contacts.json`**: set `localRescue.number` to your city/municipality rescue hotline,
-  and `lguAdvisory.url` to your LGU's official advisory page (it appears in the safety banner).
-- Rebuild/redeploy after editing so the offline copy updates.
+Both files ship **empty on purpose**. Only add information confirmed by your barangay / MDRRMO / CDRRMO.
+After editing, rebuild and redeploy so the offline copy updates.
+
+**`public/evac-centers.json`**: verified evacuation centers, listed first and marked ✔ Verified. Example
+with one center (the shipped file has `"centers": []`):
+
+```json
+{
+  "updated": "2026-11-01",
+  "source": "City DRRMO evacuation center list (date received)",
+  "centers": [
+    {
+      "name": "Sample Barangay Covered Court",
+      "lat": 14.6512,
+      "lon": 121.1033,
+      "address": "Street, Barangay, City",
+      "capacity": 300,
+      "contact": "0917 123 4567",
+      "notes": "Use the 2nd-floor hall if the court floods."
+    }
+  ]
+}
+```
+
+| Field | Required | Format |
+|---|---|---|
+| `name` | yes | text |
+| `lat`, `lon` | yes | numbers **without quotes**, e.g. `14.6512` (Philippines: lat ≈ 5–21, lon ≈ 117–127). In Google Maps, right-click the spot and click the coordinates to copy them (the first number is lat). |
+| `address`, `contact`, `notes` | no | text |
+| `capacity` | no | number of people |
+| `updated`, `source` (top level) | no | text, shown as the source of the list |
+
+**`public/emergency-contacts.json`**: example (the shipped file has empty numbers and `"national": []`):
+
+```json
+{
+  "national": [],
+  "localRescue": { "label": "City Rescue (CDRRMO)", "number": "0917 123 4567" },
+  "lguAdvisory": { "label": "City advisories", "url": "https://www.example.gov.ph/advisories" }
+}
+```
+
+- `national`: leave it as `[]` to use the built-in **911** and **Philippine Red Cross 143**, or list your
+  own `{ "label": "...", "number": "..." }` entries to replace them.
+- `localRescue.number`: your city/municipality rescue hotline, as text in quotes. Users can also change it in the app.
+- `lguAdvisory.url`: a full `https://` link, shown in the safety banner.
+
+(The example names, numbers and links above only show the format. Use the official ones for your area.)
+
+**Validation.** Both files are checked for mistakes:
+
+- **On every build** (`npm run build`, `npm run deploy`, or on demand `npm run check-data`). A mistake stops
+  the build with a clear message, for example:
+
+  ```
+  ✖ public/evac-centers.json → centers[0]: unknown field "nmae". Did you mean "name"?
+  ✖ public/evac-centers.json → centers[0] ("Court"): "lat" must be a number without quotes, e.g. "lat": 14.6.
+  ✖ public/evac-centers.json: invalid JSON at line 3, column 40 (...). Common causes: a missing comma between
+    entries, a comma after the last entry, or quotes missing around a name.
+  ✖ public/emergency-contacts.json → lguAdvisory: "url" must be a full https:// address (got "facebook.com/mycity").
+  ```
+
+  It also catches swapped lat/lon, numbers in quotes, phone numbers with letters, and duplicate
+  coordinates (warning).
+- **In the app**: the same messages are logged with `console.error` (prefixed `[Flood Ready]`), and Live
+  Mode shows a short notice on the Centers / Emergency tab. Valid entries still work; broken ones are skipped.
+
+### Fair use of the free public services
+
+These services are run by volunteers and non-profits. Live Mode follows their usage policies:
+
+| Service | Policy (summary) | What the app does |
+|---|---|---|
+| Overpass API | Light use; avoid repeated identical queries | One query at a time, max 5 km radius and 120 results. Results cached **24 h** per place (~1 km). Manual refresh at most every **2 min**, and failures back off too. |
+| FOSSGIS routing (OSRM) | "Use a valid user agent and, if applicable, a correct referrer. No scraping, no heavy usage." | Routes cached **12 h** per center and start point (~100 m, last 20 routes). Requests spaced ≥ 1.5 s; "Recalculate" at most every **30 s**. |
+| OSRM demo server | Max 1 request/second, no heavy use | Only used as a fallback, with the same spacing as above. |
+| OSM tile server | Valid Referer from web pages, cache tiles ≥ 7 days, no bulk/prefetch | Only tiles you view are loaded; cached 7 days by the service worker; attribution shown on the map. |
+| Open-Meteo | Free for non-commercial use (< 10,000 calls/day), attribution (CC BY 4.0) | Weather reused for **10 min**, river for **3 h**, elevation for **30 days** per place. Refresh at most once a minute. Credited in About. |
+
+**App identification.** Browsers don't let web pages set a custom `User-Agent`. The app uses the browser's
+real User-Agent and sends its address as the `Referer` (`<meta name="referrer"
+content="strict-origin-when-cross-origin">` plus `referrerPolicy` on every request), which is what these
+policies ask web apps to do. Map taps that move your location are **debounced** (1.5 s), so several quick
+taps send one set of requests. Request times are remembered in `localStorage`, so reloading the page doesn't
+reset the limits. The numbers are in `POLICY` in `src/live/liveStore.js`.
 
 ### Offline (PWA)
 
@@ -136,6 +217,8 @@ location and contacts) is saved in `localStorage` every time it is fetched. With
 opens and shows **"Offline: last updated <time>"** with the last saved data. Data that belongs to a place
 more than 2 km from where you are now is labelled as such.
 
+- The "Offline / no connection" notice comes from a real connectivity check (a tiny uncached request to the
+  site), because `navigator.onLine` stays `true` on Wi-Fi without internet or with no mobile signal.
 - On Android Chrome: menu → **Install app** / **Add to Home screen**. On iPhone Safari: Share →
   **Add to Home Screen**. The installed app has a **Live Flood Mode** shortcut.
 - **Service workers need a trusted HTTPS certificate.** The self-signed dev certificate is not trusted, so
@@ -303,6 +386,7 @@ GLB files live in `public/models/` and are mapped to scene slots in **`public/mo
 ## Project structure
 
 ```
+scripts/check-data.mjs   # validates the data files before every build
 src/
 ├── main.js / App.vue    # app entry; App creates the engine and switches screens
 ├── store.js             # shared reactive state + persisted settings
@@ -326,6 +410,7 @@ src/
 │   ├── analytics.js     # mission tracking, results, tips, badges, best scores
 │   └── settings.js      # safe localStorage helpers
 ├── dev/emulator.js      # ?emulate (dev only)
+├── components/About.vue # About & data sources (licences, attribution; "Copy as text")
 ├── live/                # Live Flood Mode (loaded on demand, no 3D)
 │   ├── LiveMode.vue     # header, offline notice, tabs, guide launcher
 │   ├── liveStore.js     # Live Mode state and refresh actions
@@ -334,6 +419,7 @@ src/
 │   ├── cache.js         # localStorage cache with "last updated"
 │   ├── geo.js           # distance, bearing, GPS helpers
 │   ├── compass.js       # iOS/Android compass heading + permission
+│   ├── validate.js      # checks evac-centers.json / emergency-contacts.json for mistakes
 │   └── components/      # StatusTab, CentersTab (Leaflet), GuideView, SosTab, ChecklistTab, SafetyBanner, DataStamp
 └── components/
     ├── Tips.vue         # start screen: tips, difficulty, toggles, live weather
@@ -362,6 +448,58 @@ src/
 - Object positions: `DEFINITIONS` in `src/three/missions.js`
 - Voice lines: `src/three/engine.js` (search for `voice.say`)
 - Badges and debrief tips: `src/game/analytics.js`
+
+## Deploy to GitHub Pages
+
+The site is published as `https://<your-username>.github.io/<repo>/` over HTTPS, which gives you a working
+service worker (offline mode), camera, GPS and compass on any phone without certificate warnings.
+`npm run deploy` builds with the right base path (worked out from your `origin` remote) and pushes `dist/`
+to a `gh-pages` branch.
+
+**One-time setup**
+
+1. **GitHub account.** Sign up or sign in at [github.com](https://github.com/).
+2. **Create the repository.** Go to [github.com/new](https://github.com/new):
+   - Repository name: `ARFlood` (any name works; the site path follows it)
+   - Visibility: **Public** (GitHub Pages is free for public repositories)
+   - Leave "Add a README", ".gitignore" and "license" **unticked** (this project already has them)
+   - Click **Create repository**.
+3. **Connect this folder and push** (in the project folder, in PowerShell or Git Bash):
+
+   ```bash
+   git checkout master
+   git remote add origin https://github.com/<your-username>/ARFlood.git
+   git push -u origin master
+   git push origin live-flood-mode pages-deploy   # optional: also publish the feature branches
+   ```
+
+   On the first push, Git for Windows opens **Git Credential Manager**: choose **Sign in with your
+   browser**, log in to GitHub and click **Authorize**. Git remembers this.
+   (Optional: `git config user.email "<the email on your GitHub account>"` so commits link to your profile.)
+4. **Publish:**
+
+   ```bash
+   npm run deploy
+   ```
+
+   This validates the data files, builds with base `/ARFlood/`, and pushes the site to the `gh-pages` branch.
+5. **Turn on Pages.** On GitHub, open the repository → **Settings** → **Pages**. Under "Build and
+   deployment", set **Source: Deploy from a branch**, **Branch: `gh-pages`**, folder **`/ (root)`**, then
+   click **Save**. After about a minute, the page shows *"Your site is live at
+   https://<your-username>.github.io/ARFlood/"*. HTTPS is enabled automatically.
+
+**Updating the site later:** commit your changes, `git push`, then `npm run deploy` again. Visitors get the new
+version automatically on their next visit (the service worker updates itself).
+
+**Notes**
+
+- Repository named `<your-username>.github.io`? Then the site is served at the domain root and the base path
+  is `/` automatically.
+- Custom domain or another host? Override the base path: `BASE_PATH=/ npm run build:pages`. In Git Bash,
+  prefix it with `MSYS_NO_PATHCONV=1`, otherwise Git Bash rewrites `/` paths; the build stops with a
+  clear error if that happens.
+- Netlify alternative: drag the `dist/` folder from `npm run build` onto
+  [app.netlify.com/drop](https://app.netlify.com/drop). It is served at the domain root, so no base path is needed.
 
 ## Live Mode checklist (needs a real phone)
 

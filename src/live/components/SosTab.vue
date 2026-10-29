@@ -110,6 +110,9 @@ async function copy() {
           {{ localNumber ? 'Edit local rescue number' : '+ Add your local rescue number (MDRRMO / CDRRMO)' }}
         </button>
       </div>
+      <p v-if="contacts?.issues?.length" class="warn small">
+        ⚠ emergency-contacts.json: {{ contacts.issues[0] }}
+      </p>
       <p class="small muted">If calls don't go through, send a text: SMS often works when calls fail.</p>
     </section>
 

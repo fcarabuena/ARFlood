@@ -2,7 +2,7 @@
 import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { live, refreshCenters, centersList, chooseCenter, setLocation, refreshConditions } from '../liveStore.js'
+import { live, refreshCenters, centersList, chooseCenter, setLocation, refreshAllSoon } from '../liveStore.js'
 import { OSM_SOURCE } from '../api.js'
 import { formatDistance, formatDuration } from '../geo.js'
 import { formatTime } from '../cache.js'
@@ -79,12 +79,11 @@ onMounted(() => {
     if (live.location && !settingLocation.value) return
     setLocation({ lat: e.latlng.lat, lon: e.latlng.lng, accuracy: 50, time: Date.now(), source: 'map' })
     settingLocation.value = false
-    refreshCenters()
-    refreshConditions()
+    refreshAllSoon() // debounced: several quick taps send one set of requests
   })
   draw()
   fit()
-  if (!live.localCenters || (live.location && !live.osmCenters)) refreshCenters()
+  refreshCenters() // reuses cached results while fresh (see POLICY in liveStore.js)
 })
 
 onBeforeUnmount(() => {
@@ -155,11 +154,15 @@ function openGuide(c) {
     <section class="card">
       <div class="row">
         <h2>Nearby evacuation centers</h2>
-        <button class="btn small-btn" :disabled="live.centersLoading" @click="refreshCenters">
+        <button class="btn small-btn" :disabled="live.centersLoading" @click="refreshCenters({ force: true })">
           {{ live.centersLoading ? 'Loading…' : '↻ Refresh' }}
         </button>
       </div>
       <p v-if="!live.location" class="small muted">Set your location to see distances and nearby OpenStreetMap places.</p>
+      <p v-if="live.localCenters?.data?.issues?.length" class="warn small">
+        ⚠ evac-centers.json has {{ live.localCenters.data.issues.length }} problem(s):
+        {{ live.localCenters.data.issues[0] }} (details in the browser console)
+      </p>
       <p v-if="live.centersError" class="warn small">{{ live.centersError }}. Showing saved and verified centers only.</p>
       <p v-if="!verifiedCount" class="small muted">
         No verified centers configured yet. Ask your barangay/LGU for the official evacuation centers and add them to
