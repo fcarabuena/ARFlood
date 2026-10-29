@@ -29,6 +29,8 @@ export const store = reactive({
   domOverlay: true,
   // true while the AR reticle is on a floor surface
   reticleFound: false,
+  // Live AR diagnostics for the AR status panel (see emptyArStats in three/xr.js)
+  ar: null,
 
   // Persisted user settings
   settings: saved,

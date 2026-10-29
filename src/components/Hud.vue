@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch, onBeforeUnmount } from 'vue'
 import { store, currentDifficulty } from '../store.js'
+import ArStatus from './ArStatus.vue'
 
 const props = defineProps({ engine: { type: Object, required: true } })
 defineEmits(['quiz'])
@@ -14,12 +15,19 @@ const difficulty = computed(() => currentDifficulty())
 const showChecklist = ref(true)
 const sizes = [1, 1.5, 2]
 
+// AR coaching: tips after 10 s without a floor, fallback placement after 15 s.
+const searchSeconds = computed(() => store.ar?.searchSeconds ?? 0)
+const placing = computed(() => store.mode === 'ar' && store.phase === 'placing')
+const showTips = computed(() => placing.value && !store.reticleFound && searchSeconds.value >= 10)
+const showPlaceInFront = computed(() => placing.value && !store.reticleFound && (searchSeconds.value >= 15 || store.ar?.hitSource === 'failed'))
+
 const prompt = computed(() => {
   switch (store.phase) {
     case 'placing':
-      return store.reticleFound
-        ? 'Floor found. Tap the screen to place the flood area here.'
-        : 'Move your phone slowly over the floor until a white circle appears.'
+      if (store.reticleFound) return 'Floor found. Tap the screen to place the flood area here.'
+      if (store.ar?.hitSource === 'failed') return 'Floor detection is not available on this device. Use "Place in front of me".'
+      if (searchSeconds.value < 10) return 'Move your phone slowly side to side, pointing at the floor 1–2 m ahead…'
+      return 'Still looking for the floor…'
     case 'ready':
       return store.mode === 'ar'
         ? 'Walk around the area. Press Start when you are ready.'
@@ -68,6 +76,9 @@ function exit() {
       </div>
       <button class="btn small-btn" @click="exit">{{ store.mode === 'ar' ? 'Exit AR' : 'Menu' }}</button>
     </div>
+
+    <!-- AR diagnostics: always while placing, otherwise with ?debug -->
+    <ArStatus v-if="store.mode === 'ar' && (store.phase === 'placing' || store.debug)" />
 
     <!-- Mission checklist -->
     <div v-if="store.phase !== 'placing'" class="checklist ui" @click="showChecklist = !showChecklist">
@@ -125,6 +136,15 @@ function exit() {
         ⬆ Move to higher ground! Follow the green arrows.
       </div>
       <p v-if="prompt" class="prompt" :class="{ found: store.phase === 'placing' && store.reticleFound }">{{ prompt }}</p>
+      <ul v-if="showTips" class="coach-tips">
+        <li>💡 Turn on more lights or open the curtains.</li>
+        <li>🧶 Aim at a textured surface (patterned tiles, a rug, wood grain). Plain, shiny or white floors are hard to detect.</li>
+        <li>🐢 Move slowly and keep the floor in view, about 1–2 m in front of you.</li>
+        <li>📷 Make sure nothing covers the camera.</li>
+      </ul>
+      <button v-if="showPlaceInFront" class="btn primary ui place-front" @click="engine.placeInFront()">
+        📍 Place in front of me
+      </button>
       <div v-if="store.phase === 'placing'" class="sizes ui" role="radiogroup" aria-label="Area size">
         <span>Area size</span>
         <button
@@ -337,6 +357,23 @@ li.done .box {
   background: var(--accent);
   color: #062030;
   border-color: var(--accent);
+}
+.coach-tips {
+  margin: 0;
+  padding: 8px 12px 8px 14px;
+  list-style: none;
+  background: var(--panel);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  max-width: 520px;
+  display: grid;
+  gap: 4px;
+}
+.place-front {
+  pointer-events: auto;
+  font-size: 1rem;
+  padding: 10px 18px;
 }
 .prompt.found {
   background: rgba(47, 191, 90, 0.85);

@@ -102,3 +102,10 @@ body,
 .error {
   color: var(--danger);
 }
+
+/* While the WebXR DOM overlay is active, the browser shows #overlay full screen.
+   Keep it and its backdrop transparent so the camera feed and reticle stay visible. */
+#overlay:xr-overlay,
+#overlay:xr-overlay::backdrop {
+  background: transparent !important;
+}

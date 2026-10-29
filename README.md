@@ -437,7 +437,8 @@ This mode exists for quick checks and automated tests. It is never included in `
 
 **Phone checklist.** These are the things only a real device can confirm:
 
-- [ ] Reticle appears on the floor within a few seconds, and not on walls.
+- [ ] Reticle appears on the floor within a few seconds, and not on walls. The AR status panel shows hits/s > 0.
+- [ ] If you aim at the ceiling for 15 s, **Place in front of me** appears and places the scene ahead of you.
 - [ ] Tap places the scene where the reticle is, facing you.
 - [ ] HUD is visible over the camera (DOM overlay), and the buttons respond.
 - [ ] Tapping a HUD button does **not** also collect an object behind it (`.ui` + `beforexrselect`).
@@ -456,7 +457,22 @@ This mode exists for quick checks and automated tests. It is never included in `
 - *"Start AR" is disabled:* the page isn't on HTTPS, the device doesn't support ARCore, or Google Play
   Services for AR is missing. **Start 3D demo** still works.
 - *No reticle:* add more light, and aim at a textured floor (plain glossy floors are hard to track).
-  Move the phone slowly from side to side for a few seconds.
+  Move the phone slowly from side to side for a few seconds. After 10 s the app shows tips. After 15 s it offers
+  **📍 Place in front of me**, which puts the scene 1.5 m ahead: on the floor height if a floor was detected
+  earlier, otherwise 1.2 m below the camera. The demo always works.
+- *Reading the **AR status** panel* (top-left while placing; add `?debug` to keep it visible later). **Copy**
+  puts all of it on the clipboard so you can share it:
+
+  | Row | Healthy | If not |
+  |---|---|---|
+  | WebXR AR | supported | The browser/phone has no WebXR AR: check ARCore / Google Play Services for AR. |
+  | Session | started · HUD overlay on | "no HUD overlay": the browser refused `dom-overlay` (Chrome on Android normally grants it). |
+  | Reference space | `local-floor` | `local` also works (fallback); the floor height then comes from hit tests. |
+  | Hit-test source | created | "failed: …": hit testing isn't available; use *Place in front of me*. |
+  | Hit results / s | > 0, with floor-like > 0 | 0: ARCore hasn't found any surface yet (light, texture, motion). Hits but 0 floor-like: it sees walls/tilted surfaces only, so aim lower. |
+  | Tracking | normal | "limited": the camera can't see enough detail (move slowly, more light). "lost": no camera pose at all. |
+  | Reticle | visible | hidden while hits are 0 or not floor-like. |
+  | Errors | none | Any error message from the session, hit testing, anchors or the page. |
 - *Dev server exits with `Assertion failed: !current_write_` (TLSWrap):* this is a crash inside Node's
   TLS layer, which Vite 8 hits when serving HTTPS over HTTP/2 under load (seen on Node 26). Restart
   `npm run dev`. If it keeps happening, switch to Node 22 or 24 LTS.

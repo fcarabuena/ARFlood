@@ -99,6 +99,13 @@ export class FloodEngine {
       onReticle: (found) => (store.reticleFound = found),
     })
 
+    // Errors while in AR are shown in the AR status panel (not only the console).
+    const capture = (where) => (e) => {
+      if (this.renderer.xr.isPresenting) this.ar.logError(where, e.reason ?? e.error ?? e.message)
+    }
+    window.addEventListener('error', capture('page error'))
+    window.addEventListener('unhandledrejection', capture('unhandled promise'))
+
     this._onResize = () => this._resize()
     window.addEventListener('resize', this._onResize)
 
@@ -159,7 +166,8 @@ export class FloodEngine {
     this.controls.enabled = false
     this.world.visible = false
     this.setAreaSize(store.settings.areaSize)
-    this.ar.searching = true
+    this.ar.startSearching()
+    this._publishArStats()
     this.resetMission()
     this.resumePhase = null
     store.phase = 'placing'
@@ -193,8 +201,19 @@ export class FloodEngine {
     this.resumePhase = store.phase
     this.world.visible = false
     this.ar.clearAnchor()
-    this.ar.searching = true
+    this.ar.startSearching()
     store.phase = 'placing'
+  }
+
+  /**
+   * "Place in front of me": used when no floor is found. Puts the scene 1.5 m
+   * ahead (at the last detected floor height, or 1.2 m below the camera).
+   */
+  placeInFront() {
+    if (store.mode !== 'ar' || store.phase !== 'placing') return
+    const placement = this.ar.getPlacementInFront(this.renderer.xr.getCamera())
+    this._applyPlacement(placement)
+    if (placement.estimated) showMessage('Placed 1.5 m ahead. Floor height is estimated, so it may float a little.')
   }
 
   startMission() {
@@ -357,12 +376,16 @@ export class FloodEngine {
       showMessage('Move your phone slowly to find the floor first.')
       return
     }
+    this._applyPlacement(placement)
+  }
+
+  _applyPlacement(placement) {
     this.world.position.copy(placement.position)
     this.world.rotation.set(0, placement.yaw, 0)
     this.world.scale.setScalar(store.settings.areaSize / 2)
     this.world.visible = true
     this.ar.searching = false
-    this.ar.anchorAt(placement.hit, this.world, placement.yaw)
+    this.ar.anchorAt(placement.hit, this.world, placement.yaw, placement.position)
 
     if (this.resumePhase) {
       store.phase = this.resumePhase
@@ -391,6 +414,11 @@ export class FloodEngine {
     store.reticleFound = false
     if (store.screen !== 'quiz' && store.screen !== 'results' && store.screen !== 'badges') store.screen = 'tips'
     this._resize()
+  }
+
+  /** Copies AR diagnostics into the store for the HUD's AR status panel. */
+  _publishArStats() {
+    store.ar = { ...this.ar.stats, errors: [...this.ar.stats.errors], features: [...this.ar.stats.features] }
   }
 
   /** Dark stormy sky in 3D; in AR the camera feed is the background, so keep lights bright. */
@@ -467,7 +495,14 @@ export class FloodEngine {
     const dt = Math.min(this.timer.getDelta(), 0.1)
     this.elapsed += dt
 
-    if (this.renderer.xr.isPresenting) this.ar.update(frame)
+    if (this.renderer.xr.isPresenting) {
+      this.ar.update(frame)
+      this._arStatsTimer = (this._arStatsTimer ?? 0) + dt
+      if (this._arStatsTimer > 0.25) {
+        this._arStatsTimer = 0
+        this._publishArStats()
+      }
+    }
     else this.controls.update()
 
     if (store.phase === 'playing') {
