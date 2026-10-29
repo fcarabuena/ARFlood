@@ -1,0 +1,120 @@
+{
+ "generatedAt": "2026-10-29T15:25:58.240Z",
+ "windowHours": 24,
+ "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
+ "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
+ "sources": [
+  {
+   "id": "pagasa-cap",
+   "name": "PAGASA public alerts (CAP feed)",
+   "kind": "official",
+   "confidence": "high",
+   "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
+   "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
+   "status": "ok",
+   "found": 51,
+   "reports": 0,
+   "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
+   "ms": 1565
+  },
+  {
+   "id": "pagasa-basins",
+   "name": "PAGASA river basin flood status",
+   "kind": "official",
+   "confidence": "high",
+   "url": "https://www.pagasa.dost.gov.ph/flood",
+   "terms": "Public PAGASA page; no robots.txt (HTTP 404 = no restrictions)",
+   "status": "ok",
+   "found": 22,
+   "reports": 0,
+   "note": "22 basins, 0 not at \"Non-Flood Watch\"",
+   "ms": 1981
+  },
+  {
+   "id": "google-news",
+   "name": "Google News RSS search",
+   "kind": "news",
+   "confidence": "medium",
+   "url": "https://news.google.com/rss/search?q=flood%20Philippines%20when%3A1d&hl=en-PH&gl=PH&ceid=PH:en",
+   "terms": "robots.txt: \"Disallow: /\" for all agents, with no Allow for /rss",
+   "status": "skipped",
+   "reason": "disallowed by robots.txt (Disallow: /)",
+   "reports": 0
+  },
+  {
+   "id": "inquirer",
+   "name": "Inquirer.net news (RSS)",
+   "kind": "news",
+   "confidence": "medium",
+   "url": "https://newsinfo.inquirer.net/feed",
+   "terms": "robots.txt allows /feed; headline + excerpt + link only",
+   "status": "ok",
+   "found": 40,
+   "reports": 0,
+   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 1733
+  },
+  {
+   "id": "rappler",
+   "name": "Rappler (RSS)",
+   "kind": "news",
+   "confidence": "medium",
+   "url": "https://www.rappler.com/feed/",
+   "terms": "robots.txt allows /feed/ for general bots; headline + excerpt + link only",
+   "status": "ok",
+   "found": 10,
+   "reports": 0,
+   "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 1572
+  },
+  {
+   "id": "gma",
+   "name": "GMA News (RSS)",
+   "kind": "news",
+   "confidence": "medium",
+   "url": "https://data.gmanetwork.com/gno/rss/news/feed.xml",
+   "terms": "no robots.txt on data.gmanetwork.com (HTTP 404); headline + excerpt + link only",
+   "status": "ok",
+   "found": 15,
+   "reports": 1,
+   "note": "15 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1526
+  },
+  {
+   "id": "philstar",
+   "name": "Philstar Nation (RSS)",
+   "kind": "news",
+   "confidence": "medium",
+   "url": "https://www.philstar.com/rss/nation",
+   "terms": "robots.txt allows /rss/; headline + excerpt + link only",
+   "status": "ok",
+   "found": 10,
+   "reports": 0,
+   "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 2234
+  }
+ ],
+ "reports": [
+  {
+   "id": "4afaa6a89061",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "015518000",
+    "name": "Dagupan City",
+    "level": "city",
+    "province": "Pangasinan",
+    "region": "Ilocos Region",
+    "precision": "city"
+   },
+   "lat": 16.043,
+   "lon": 120.334,
+   "source": "GMA News",
+   "sourceUrl": "https://www.gmanetwork.com/news/topstories/regions/1007654/floodwaters-persist-in-dagupan-cemetery-as-undas-nears/story/",
+   "headline": "Floodwaters persist in Dagupan cemetery as Undas nears",
+   "excerpt": "A cemetery in Dagupan City remains flooded from the past Southwest Monsoon or Habagat season, with only a few days left before Undas.",
+   "publishedAt": "2026-10-29T13:26:44.000Z"
+  }
+ ],
+ "notices": []
+}
