@@ -7,11 +7,13 @@ import {
   fetchElevation,
   fetchOsmCenters,
   fetchLocalCenters,
+  fetchSnapshot,
   mergeCenters,
   fetchRoute,
   fetchContacts,
 } from './api.js'
 import { assessRisk } from './risk.js'
+import { inBbox } from './osm.js'
 
 // ---------------------------------------------------------------------------
 // Polite use of free public servers (Open-Meteo, Overpass, OSRM/FOSSGIS):
@@ -69,7 +71,9 @@ export const live = reactive({
   refreshNote: '',
 
   localCenters: loadCache('local-centers'),
-  osmCenters: loadCache('osm-centers'),
+  snapshot: loadCache('snapshot'), // bundled OpenStreetMap snapshot
+  osmCenters: loadCache('osm-centers'), // live Overpass results
+  liveSearchSkipped: false, // true when the snapshot already covers your location
   centersLoading: false,
   centersError: '',
 
@@ -179,11 +183,25 @@ export function dataDistance(entry) {
 
 let overpassInFlight = null
 
+/** True when the bundled snapshot's area includes your location. */
+export function snapshotCovers(loc = live.location) {
+  const area = live.snapshot?.data?.area
+  return !!(loc && live.snapshot?.data?.centers?.length && inBbox(area?.bbox, loc))
+}
+
+/**
+ * Loads centers in priority order: verified list, bundled snapshot (both are
+ * our own precached files), then live Overpass, which is only queried when
+ * the snapshot doesn't cover your location, or when you press Refresh.
+ */
 export async function refreshCenters({ force = false } = {}) {
   live.centersLoading = true
   live.centersError = ''
-  live.localCenters = await settle('local-centers', fetchLocalCenters)
-  if (live.location) {
+  const [local, snapshot] = await Promise.all([settle('local-centers', fetchLocalCenters), settle('snapshot', fetchSnapshot)])
+  live.localCenters = local
+  live.snapshot = snapshot
+  live.liveSearchSkipped = !force && snapshotCovers()
+  if (live.location && !live.liveSearchSkipped) {
     const at = live.location
     // Only one Overpass query at a time.
     overpassInFlight ??= refreshSource('osm-centers', async () => ({ at, list: await fetchOsmCenters(at) }), { force, at })
@@ -205,7 +223,12 @@ export function refreshAllSoon(delay = 1500) {
 }
 
 export function centersList() {
-  return mergeCenters(live.localCenters?.data?.centers ?? [], live.osmCenters?.data?.list ?? [], live.location)
+  return mergeCenters(
+    live.localCenters?.data?.centers ?? [],
+    live.snapshot?.data?.centers ?? [],
+    live.osmCenters?.data?.list ?? [],
+    live.location
+  )
 }
 
 // ---- Routes: cached per (center, start point rounded to ~100 m) --------------

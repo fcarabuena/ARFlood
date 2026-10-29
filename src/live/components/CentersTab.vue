@@ -3,7 +3,7 @@ import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { live, refreshCenters, centersList, chooseCenter, setLocation, refreshAllSoon } from '../liveStore.js'
-import { OSM_SOURCE } from '../api.js'
+import { OSM_SOURCE, SNAPSHOT_SOURCE } from '../api.js'
 import { formatDistance, formatDuration } from '../geo.js'
 import { formatTime } from '../cache.js'
 import DataStamp from './DataStamp.vue'
@@ -20,6 +20,18 @@ const routeIsForSelected = computed(
   () => route.value && live.selected && route.value.to.lat === live.selected.lat && route.value.to.lon === live.selected.lon
 )
 const LOCAL_SOURCE = { name: 'Verified local list (evac-centers.json)', url: `${import.meta.env.BASE_URL}evac-centers.json` }
+
+const snapshotInfo = computed(() => {
+  const s = live.snapshot?.data
+  if (!s?.centers?.length) return null
+  return {
+    date: s.fetchedAt ? new Date(s.fetchedAt).toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' }) : 'unknown date',
+    area: s.area?.name || 'bundled area',
+    count: s.centers.length,
+  }
+})
+const sourceLabel = (c) =>
+  c.verified ? '' : c.origin === 'snapshot' ? `OpenStreetMap snapshot, ${snapshotInfo.value?.date}` : 'OpenStreetMap (live)'
 
 const COLORS = { verified: '#2fbf5a', school: '#4cc9f0', shelter: '#f2a516', assembly: '#c084fc', other: '#9aa5b1' }
 
@@ -163,7 +175,13 @@ function openGuide(c) {
         ⚠ evac-centers.json has {{ live.localCenters.data.issues.length }} problem(s):
         {{ live.localCenters.data.issues[0] }} (details in the browser console)
       </p>
-      <p v-if="live.centersError" class="warn small">{{ live.centersError }}. Showing saved and verified centers only.</p>
+      <p v-if="live.liveSearchSkipped && snapshotInfo" class="small muted">
+        Using the bundled OpenStreetMap snapshot of {{ snapshotInfo.area }} ({{ snapshotInfo.date }}). Tap ↻ Refresh to also
+        search OpenStreetMap live.
+      </p>
+      <p v-if="live.centersError" class="warn small">
+        {{ live.centersError }}. Showing {{ snapshotInfo ? 'verified and snapshot' : 'saved and verified' }} centers only.
+      </p>
       <p v-if="!verifiedCount" class="small muted">
         No verified centers configured yet. Ask your barangay/LGU for the official evacuation centers and add them to
         <code>evac-centers.json</code>.
@@ -177,7 +195,7 @@ function openGuide(c) {
               <b>{{ c.name }}</b>
               <span class="small muted">
                 <span v-if="c.verified" class="badge">✔ Verified</span>
-                {{ c.verified ? '' : c.label }}
+                <template v-if="!c.verified">{{ c.label }} · <i>{{ sourceLabel(c) }}</i></template>
                 <template v-if="c.address"> · {{ c.address }}</template>
                 <template v-if="c.capacity"> · capacity {{ c.capacity }}</template>
               </span>
@@ -198,7 +216,11 @@ function openGuide(c) {
         check with your LGU.
       </p>
       <DataStamp :entry="live.localCenters" :source="LOCAL_SOURCE" />
-      <DataStamp :entry="live.osmCenters" :source="OSM_SOURCE" />
+      <p v-if="snapshotInfo" class="stamp small">
+        Source: <a :href="SNAPSHOT_SOURCE.url" target="_blank" rel="noopener">{{ SNAPSHOT_SOURCE.name }}</a> ·
+        {{ snapshotInfo.area }} · {{ snapshotInfo.count }} places · fetched {{ snapshotInfo.date }} · bundled, works offline
+      </p>
+      <DataStamp v-if="live.osmCenters?.data" :entry="live.osmCenters" :source="OSM_SOURCE" />
     </section>
   </div>
 </template>
@@ -335,6 +357,14 @@ h2 {
   gap: 8px;
   align-items: center;
   margin: 6px 0 0 22px;
+}
+.stamp {
+  margin: 6px 0 0;
+  opacity: 0.8;
+  font-size: 0.72rem;
+}
+.stamp a {
+  color: inherit;
 }
 .small-btn {
   padding: 5px 10px;

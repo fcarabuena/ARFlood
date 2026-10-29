@@ -52,6 +52,7 @@ npm install
 npm run dev          # HTTPS dev server, reachable on your local network (--host)
 npm run build        # checks the data files, then builds into dist/
 npm run check-data   # only validate public/evac-centers.json and public/emergency-contacts.json
+npm run fetch-centers -- --area "Marikina"   # bundle an OpenStreetMap snapshot of evacuation places
 npm run preview      # serve the production build (also HTTPS + --host)
 npm run preview:local  # production build over plain HTTP on localhost:4173 (to test offline/PWA)
 npm run deploy       # build for GitHub Pages and publish (see "Deploy to GitHub Pages")
@@ -97,7 +98,7 @@ uses no 3D rendering and much less battery.
 | Current rain + 24 h hourly forecast | [Open-Meteo Forecast API](https://open-meteo.com/en/docs) | The current value is a 15-minute total, converted to mm/h. |
 | River discharge vs. usual level | [Open-Meteo Flood API](https://open-meteo.com/en/docs/flood-api) (GloFAS, ~5 km grid) | One request fetches 5 years of daily history plus a 7-day forecast. "Usual" is the median flow for the same time of year (±15 days) in past years, and the 3-day peak is compared to it. Rivers too small for the model count as "no major river". |
 | Elevation | [Open-Meteo Elevation API](https://open-meteo.com/en/docs/elevation-api) (Copernicus DEM 90 m) | Your point plus 8 points 500 m around you, to spot low-lying dips. |
-| Evacuation centers | `public/evac-centers.json` + [OpenStreetMap via Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API) | Tags: `emergency=assembly_point`, `amenity=shelter` (bus stops, picnic huts and similar are filtered out), `social_facility=shelter`, `amenity=school`. Several Overpass servers are tried in turn. |
+| Evacuation centers | 1. `public/evac-centers.json` (verified), 2. `public/osm-centers-snapshot.json` (bundled [OpenStreetMap](https://www.openstreetmap.org/copyright) snapshot), 3. live [Overpass](https://wiki.openstreetmap.org/wiki/Overpass_API) results | Loaded in that order, and lower-priority duplicates (same OSM id, or within 60 m) are dropped. Verified centers are listed first, then OpenStreetMap places by distance, each labelled "OpenStreetMap snapshot, <date>" or "OpenStreetMap (live)". Tags: `emergency=assembly_point`, `amenity=shelter` (bus stops, picnic huts and similar are filtered out), `social_facility=shelter`, `amenity=school`. |
 | Walking route | OSRM: the [FOSSGIS foot server](https://routing.openstreetmap.de/), then the [OSRM demo server](https://project-osrm.org/), then a straight line | The public OSRM demo server only has a **car** profile (it ignores `foot`), so the FOSSGIS-hosted OSRM foot server is tried first. If only the demo server answers, the walking time is estimated from the distance. |
 | Map tiles | [OpenStreetMap](https://www.openstreetmap.org/copyright) | Tiles you have viewed are cached for 7 days for offline use. |
 
@@ -190,13 +191,54 @@ with one center (the shipped file has `"centers": []`):
 - **In the app**: the same messages are logged with `console.error` (prefixed `[Flood Ready]`), and Live
   Mode shows a short notice on the Centers / Emergency tab. Valid entries still work; broken ones are skipped.
 
+### OpenStreetMap snapshot (recommended)
+
+The public Overpass servers are often overloaded, so the app doesn't depend on them. Instead, fetch the
+OpenStreetMap places for your area **once**, and they ship with the app (and work offline):
+
+```bash
+npm run fetch-centers -- --area "Marikina"                        # a city/municipality boundary
+npm run fetch-centers -- --lat 14.6507 --lon 121.1029 --radius 5000   # or a circle (metres, max 25 km)
+npm run deploy                                                    # publish it
+```
+
+- `--area` looks up the boundary with [Nominatim](https://nominatim.openstreetmap.org/) (", Philippines" is
+  added unless you include a comma). It prints the matches it found; if it picked the wrong place, re-run
+  with `--relation <id>` from that list.
+- It queries Overpass once, **retrying patiently with backoff** (10 s, 20 s, 40 s, 60 s…, alternating two
+  servers) for up to 5 minutes (`--max-minutes 10` for longer). It writes
+  `public/osm-centers-snapshot.json` with the fetch date, the area, and the places.
+- The snapshot is precached by the service worker, so it is available offline after the first visit.
+- In the app: if the snapshot covers your location, **no live Overpass query is made**. Tap ↻ Refresh on
+  the Centers tab to add live results on top. Outside the snapshot area, the app searches live as before.
+- Snapshot places are still **not verified** evacuation centers. Verified ones belong in `evac-centers.json`.
+
+**If Overpass is still down**, the script stops without changing anything and prints the exact query. Then:
+
+1. Open [overpass-turbo.eu](https://overpass-turbo.eu/).
+2. Replace the query on the left with the one printed by the script. To print it without fetching, add
+   `--print-query`, e.g. `npm run fetch-centers -- --area "Marikina" --print-query`. For Marikina it is:
+
+   ```
+   [out:json][timeout:90];area(id:3600146949)->.a;(nwr(area.a)["emergency"="assembly_point"];nwr(area.a)["social_facility"="shelter"];nwr(area.a)["amenity"="shelter"];nwr(area.a)["amenity"="school"];);out center tags;
+   ```
+3. Click **Run**. If it reports that the server is busy, open **Settings → General → Overpass-API
+   server**, choose another server, and run again.
+4. Click **Export → Data → raw OSM data** (GeoJSON also works) and save the file.
+5. Convert it into the snapshot: `npm run fetch-centers -- --import path/to/export.json --area "Marikina"`
+
+**Refreshing later:** re-run the same `fetch-centers` command (it overwrites the snapshot), check the summary
+it prints, then `git commit` + `npm run deploy`. Once before the rainy season (around May) and again
+mid-season is plenty. Installed apps pick up the new snapshot on their next visit.
+
 ### Fair use of the free public services
 
 These services are run by volunteers and non-profits. Live Mode follows their usage policies:
 
 | Service | Policy (summary) | What the app does |
 |---|---|---|
-| Overpass API | Light use; avoid repeated identical queries | One query at a time, max 5 km radius and 120 results. Results cached **24 h** per place (~1 km). Manual refresh at most every **2 min**, and failures back off too. |
+| Overpass API | Light use; avoid repeated identical queries; retry with backoff when busy | The bundled snapshot replaces live queries wherever it covers you. Live: one query at a time, max 5 km radius and 120 results, cached **24 h** per place (~1 km), manual refresh at most every **2 min**, and failures back off too. `fetch-centers`: one query per run, with exponential backoff. |
+| Nominatim (script only) | Max 1 request/second, identifying User-Agent | One lookup per `fetch-centers` run, with a `FloodReadyAR/1.0 (…)` User-Agent. The app itself never calls Nominatim. |
 | FOSSGIS routing (OSRM) | "Use a valid user agent and, if applicable, a correct referrer. No scraping, no heavy usage." | Routes cached **12 h** per center and start point (~100 m, last 20 routes). Requests spaced ≥ 1.5 s; "Recalculate" at most every **30 s**. |
 | OSRM demo server | Max 1 request/second, no heavy use | Only used as a fallback, with the same spacing as above. |
 | OSM tile server | Valid Referer from web pages, cache tiles ≥ 7 days, no bulk/prefetch | Only tiles you view are loaded; cached 7 days by the service worker; attribution shown on the map. |
@@ -387,6 +429,7 @@ GLB files live in `public/models/` and are mapped to scene slots in **`public/mo
 
 ```
 scripts/check-data.mjs   # validates the data files before every build
+scripts/fetch-centers.mjs  # npm run fetch-centers: bundle an OpenStreetMap snapshot (or --import an overpass-turbo export)
 src/
 ├── main.js / App.vue    # app entry; App creates the engine and switches screens
 ├── store.js             # shared reactive state + persisted settings
@@ -420,6 +463,7 @@ src/
 │   ├── geo.js           # distance, bearing, GPS helpers
 │   ├── compass.js       # iOS/Android compass heading + permission
 │   ├── validate.js      # checks evac-centers.json / emergency-contacts.json for mistakes
+│   ├── osm.js           # OpenStreetMap query + parsing, shared with fetch-centers
 │   └── components/      # StatusTab, CentersTab (Leaflet), GuideView, SosTab, ChecklistTab, SafetyBanner, DataStamp
 └── components/
     ├── Tips.vue         # start screen: tips, difficulty, toggles, live weather

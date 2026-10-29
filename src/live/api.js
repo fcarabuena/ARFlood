@@ -1,5 +1,6 @@
 import { distance, offset } from './geo.js'
 import { parseJSON, validateCenters, validateContacts, reportIssues } from './validate.js'
+import { buildQuery, parseElements } from './osm.js'
 
 const BASE = import.meta.env?.BASE_URL ?? '/'
 
@@ -156,7 +157,8 @@ export async function fetchElevation({ lat, lon }) {
 // Evacuation centers: verified local list + OpenStreetMap (Overpass API)
 // ---------------------------------------------------------------------------
 
-export const OSM_SOURCE = { name: 'OpenStreetMap contributors (Overpass API)', url: 'https://www.openstreetmap.org/copyright' }
+export const OSM_SOURCE = { name: 'OpenStreetMap contributors (Overpass API, live)', url: 'https://www.openstreetmap.org/copyright' }
+export const SNAPSHOT_SOURCE = { name: 'OpenStreetMap snapshot (osm-centers-snapshot.json)', url: 'https://www.openstreetmap.org/copyright' }
 
 // Public Overpass servers are often busy; try them in turn. overpass-api.de
 // asks clients to retry with backoff when it is "at capacity", so it gets one
@@ -168,57 +170,16 @@ const OVERPASS_ENDPOINTS = [
   { url: 'https://overpass-api.de/api/interpreter', delay: 5000 },
 ]
 
-// amenity=shelter is also used for bus stops, picnic huts etc. Drop those.
-const NOT_EVACUATION = new Set([
-  'public_transport', 'picnic_shelter', 'weather_shelter', 'field_shelter', 'lean_to',
-  'rock_shelter', 'sun_shelter', 'basic_hut', 'gazebo', 'pavilion', 'changing_rooms',
-])
-
-function classify(tags) {
-  if (tags.emergency === 'assembly_point') return { kind: 'assembly', label: 'Assembly point' }
-  if (tags.social_facility === 'shelter') return { kind: 'shelter', label: 'Shelter (social facility)' }
-  if (tags.amenity === 'shelter') {
-    if (tags.shelter_type === 'emergency' || tags.emergency === 'yes') return { kind: 'shelter', label: 'Emergency shelter' }
-    return { kind: 'shelter', label: 'Shelter' }
-  }
-  if (tags.amenity === 'school') return { kind: 'school', label: 'School (often an evacuation center)' }
-  return { kind: 'other', label: 'Facility' }
-}
-
+/** Live Overpass search around a point (same query as scripts/fetch-centers.mjs). */
 export async function fetchOsmCenters({ lat, lon }, radius = 5000) {
-  const a = `around:${radius},${lat.toFixed(5)},${lon.toFixed(5)}`
-  const s = `around:${Math.min(radius, 3000)},${lat.toFixed(5)},${lon.toFixed(5)}`
-  const query =
-    `[out:json][timeout:25];(` +
-    `nwr(${a})["emergency"="assembly_point"];` +
-    `nwr(${a})["social_facility"="shelter"];` +
-    `nwr(${a})["amenity"="shelter"];` +
-    `nwr(${s})["amenity"="school"];` +
-    `);out center tags 120;`
-  const body = new URLSearchParams({ data: query })
+  const body = new URLSearchParams({ data: buildQuery({ around: { lat, lon, radius } }, { limit: 120 }) })
 
   let lastError
   for (const { url: endpoint, delay } of OVERPASS_ENDPOINTS) {
     try {
       if (delay) await new Promise((r) => setTimeout(r, delay)) // back off between attempts
       const j = await getJSON(endpoint, { method: 'POST', body, timeout: 25000 })
-      return j.elements
-        .map((e) => {
-          const tags = e.tags || {}
-          const p = { lat: e.lat ?? e.center?.lat, lon: e.lon ?? e.center?.lon }
-          if (p.lat == null || NOT_EVACUATION.has(tags.shelter_type)) return null
-          const c = classify(tags)
-          return {
-            id: `osm-${e.type}-${e.id}`,
-            name: tags.name || tags['name:en'] || c.label,
-            ...p,
-            ...c,
-            verified: false,
-            address: [tags['addr:street'], tags['addr:city']].filter(Boolean).join(', '),
-            osmUrl: `https://www.openstreetmap.org/${e.type}/${e.id}`,
-          }
-        })
-        .filter(Boolean)
+      return parseElements(j.elements).map((c) => ({ ...c, verified: false, origin: 'live' }))
     } catch (err) {
       lastError = err
     }
@@ -249,15 +210,48 @@ export async function fetchLocalCenters() {
   }
 }
 
-/** Verified first (nearest first), then OSM results by distance; drops OSM duplicates of verified ones. */
-export function mergeCenters(local, osm, from) {
+/**
+ * The OpenStreetMap snapshot bundled with the app (public/osm-centers-snapshot.json,
+ * made by "npm run fetch-centers"). Precached, so it works offline.
+ */
+export async function fetchSnapshot() {
+  const res = await fetch(`${BASE}osm-centers-snapshot.json`, { cache: 'no-cache' })
+  if (!res.ok) throw new Error(`osm-centers-snapshot.json could not be loaded (${res.status})`)
+  const j = await res.json()
+  if (!Array.isArray(j.centers)) throw new Error('osm-centers-snapshot.json has no "centers" list. Re-run npm run fetch-centers.')
+  return {
+    fetchedAt: j.fetchedAt ?? null,
+    area: j.area ?? null,
+    centers: j.centers
+      .filter((c) => c && isFinite(c.lat) && isFinite(c.lon) && c.id)
+      .map((c) => ({ ...c, verified: false, origin: 'snapshot' })),
+  }
+}
+
+const SNAPSHOT_RANGE = 25000 // m: snapshot places farther than this from you are not listed
+const SAME_PLACE = 60 // m: closer than this counts as the same center
+
+/**
+ * Loads in priority order: verified (evac-centers.json), then the bundled
+ * OpenStreetMap snapshot, then live Overpass results. Lower-priority entries
+ * that duplicate a higher one (same OSM id, or within 60 m) are dropped.
+ * Verified centers are listed first; OpenStreetMap places follow, nearest first.
+ */
+export function mergeCenters(local, snapshot, live, from) {
   const withDist = (c) => ({ ...c, distance: from ? distance(from, c) : null })
-  const verified = local.map(withDist)
-  const others = osm
-    .filter((o) => !verified.some((v) => distance(v, o) < 60))
-    .map(withDist)
+  const kept = []
+  const ids = new Set()
+  const add = (c) => {
+    if (ids.has(c.id) || kept.some((k) => distance(k, c) < SAME_PLACE)) return
+    ids.add(c.id)
+    kept.push(c)
+  }
+  local.forEach(add)
+  snapshot.filter((c) => !from || distance(from, c) <= SNAPSHOT_RANGE).forEach(add)
+  live.forEach(add)
   const byDist = (a, b) => (a.distance ?? 0) - (b.distance ?? 0)
-  return [...verified.sort(byDist), ...others.sort(byDist)]
+  const all = kept.map(withDist)
+  return [...all.filter((c) => c.verified).sort(byDist), ...all.filter((c) => !c.verified).sort(byDist)]
 }
 
 // ---------------------------------------------------------------------------

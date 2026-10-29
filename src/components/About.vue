@@ -27,6 +27,20 @@ const SECTIONS = [
         url: 'https://operations.osmfoundation.org/policies/tiles/',
       },
       {
+        name: 'OpenStreetMap snapshot (osm-centers-snapshot.json)',
+        use: 'Bundled list of shelters, assembly points and schools for one area, made with "npm run fetch-centers"; works offline',
+        licence: 'Open Database License (ODbL) 1.0',
+        attribution: '© OpenStreetMap contributors',
+        url: 'https://www.openstreetmap.org/copyright',
+      },
+      {
+        name: 'Nominatim (nominatim.openstreetmap.org), used by the fetch-centers script only',
+        use: 'Finding the boundary of the city/area to snapshot (one request per run, not from the app)',
+        licence: 'Data ODbL 1.0; Nominatim usage policy (max. 1 request/second, identifying User-Agent)',
+        attribution: '© OpenStreetMap contributors',
+        url: 'https://operations.osmfoundation.org/policies/nominatim/',
+      },
+      {
         name: 'Overpass API (overpass-api.de, overpass.private.coffee)',
         use: 'Searching OpenStreetMap for nearby evacuation places',
         licence: 'Data ODbL 1.0 (OpenStreetMap); Overpass software AGPL-3.0',

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "check-data": "node scripts/check-data.mjs",
+    "fetch-centers": "node scripts/fetch-centers.mjs",
     "prebuild": "node scripts/check-data.mjs",
     "build": "vite build",
     "build:pages": "node scripts/check-data.mjs && vite build --mode pages",
