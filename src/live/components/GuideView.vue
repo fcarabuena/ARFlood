@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
-import { live, setLocation, chooseCenter } from '../liveStore.js'
+import { live, setLocation, chooseCenter, effectiveRoute } from '../liveStore.js'
 import { watchPosition, distance, bearing, formatDistance, compassPoint } from '../geo.js'
 import { watchCompass } from '../compass.js'
 
@@ -20,8 +20,10 @@ let stopCompass = null
 let wakeLock = null
 
 const center = computed(() => live.selected)
+// Same route as on the map: the alternative that avoids reported flooding where possible.
+const route = computed(() => effectiveRoute())
 const routeCoords = computed(() => {
-  const r = live.route?.data
+  const r = route.value
   if (!r || r.straight || !center.value) return null
   if (r.to.lat !== center.value.lat || r.to.lon !== center.value.lon) return null
   return r.coords
@@ -180,6 +182,9 @@ function recalculate() {
         <span v-else-if="heading != null"> · Using walking direction</span>
         <span v-else> · No compass: arrow points relative to north (top = north)</span>
         <span v-if="!routeCoords"> · Straight-line direction</span>
+      </p>
+      <p v-if="route?.hazards?.length" class="warn">
+        ⚠ Flooding reported near this route: {{ route.hazards.map((h) => h.place.name).join(', ') }}. Turn back if the street is flooded.
       </p>
       <p v-if="guidance?.offRoute" class="warn">
         You are off the route.

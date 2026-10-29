@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { live, refreshConditions, refreshCenters, loadContacts, checkConnection } from './liveStore.js'
+import { live, refreshConditions, refreshCenters, loadContacts, checkConnection, refreshFloodReports } from './liveStore.js'
 import { requestCompassPermission } from './compass.js'
 import { formatTime } from './cache.js'
 import SafetyBanner from './components/SafetyBanner.vue'
@@ -9,6 +9,7 @@ import CentersTab from './components/CentersTab.vue'
 import SosTab from './components/SosTab.vue'
 import ChecklistTab from './components/ChecklistTab.vue'
 import GuideView from './components/GuideView.vue'
+import ReportsBanner from './components/ReportsBanner.vue'
 import About from '../components/About.vue'
 
 const emit = defineEmits(['exit'])
@@ -32,6 +33,7 @@ const lastUpdated = computed(() => {
 
 onMounted(async () => {
   loadContacts()
+  refreshFloodReports()
   // Cached data shows immediately; refresh in the background if we have a connection.
   if ((await checkConnection()) && live.location) {
     refreshConditions()
@@ -58,6 +60,7 @@ async function openGuide() {
       <button class="info" :class="{ active: live.tab === 'about' }" aria-label="About and data sources" @click="live.tab = live.tab === 'about' ? 'status' : 'about'">ⓘ</button>
     </header>
     <SafetyBanner v-if="live.tab !== 'status'" compact />
+    <ReportsBanner />
 
     <main class="content">
       <StatusTab v-if="live.tab === 'status'" />

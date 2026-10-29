@@ -93,6 +93,53 @@ const SECTIONS = [
     ],
   },
   {
+    title: 'Reported flooding (collected every 30 min by scripts/scrape-floods.js)',
+    items: [
+      {
+        name: 'PAGASA public alerts: CAP feed (publicalert.pagasa.dost.gov.ph)',
+        use: 'Official General Flood Advisories and rainfall warnings, with PSGC area codes and polygons (high confidence)',
+        licence: 'CC BY 4.0 (stated in the feed)',
+        attribution: 'Contains alerts from PAGASA-DOST, licensed under CC BY 4.0',
+        url: 'https://publicalert.pagasa.dost.gov.ph/feeds/',
+      },
+      {
+        name: 'PAGASA river basin flood status (pagasa.dost.gov.ph/flood)',
+        use: 'Basins above "Non-Flood Watch" (high confidence)',
+        licence: 'Public government information; no robots.txt restrictions',
+        attribution: 'Source: PAGASA-DOST',
+        url: 'https://www.pagasa.dost.gov.ph/flood',
+      },
+      {
+        name: 'News RSS feeds: Inquirer.net, Rappler, GMA News, Philstar',
+        use: 'Flood headlines (medium confidence). Only the headline, a short excerpt and a link to the article are kept',
+        licence: 'Content © each publisher; used as RSS headlines with links, as feeds are published for',
+        attribution: 'Each report names and links its publisher',
+        url: '',
+      },
+      {
+        name: 'Google News RSS search',
+        use: 'Not used: its robots.txt disallows /rss for all crawlers, so the scraper skips it every run',
+        licence: 'n/a',
+        attribution: '',
+        url: 'https://news.google.com/robots.txt',
+      },
+      {
+        name: 'PSGC: Philippine Standard Geographic Code (PSA), via psgc.gitlab.io',
+        use: 'Bundled list of regions, provinces, cities/municipalities and barangays used to recognise place names',
+        licence: 'Public government data (Philippine Statistics Authority)',
+        attribution: 'Philippine Statistics Authority, PSGC',
+        url: 'https://psa.gov.ph/classification/psgc',
+      },
+      {
+        name: 'Wikidata',
+        use: 'Coordinates for PSGC places (properties P988 and P625)',
+        licence: 'CC0 (public domain)',
+        attribution: '',
+        url: 'https://www.wikidata.org/wiki/Property:P988',
+      },
+    ],
+  },
+  {
     title: '3D assets and media (training simulation)',
     items: [
       {

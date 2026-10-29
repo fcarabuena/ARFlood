@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	 xmlns:media="http://search.yahoo.com/mrss/" >
+
+<channel>
+	<title>RAPPLER</title>
+	<atom:link href="https://www.rappler.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.rappler.com/</link>
+	<description>RAPPLER &#124; Philippine &#38; World News &#124; Investigative Journalism &#124; Data &#124; Civic Engagement &#124; Public Interest</description>
+	<lastBuildDate>Thu, 29 Oct 2026 23:23:34 +0800</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://www.altis-dxp.com/?v=6.8.6</generator>
+
+<image>
+	<url>https://www.rappler.com/tachyon/2022/11/cropped-Piano-Small.png?fit=32%2C32</url>
+	<title>RAPPLER</title>
+	<link>https://www.rappler.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Cybersecurity firm reports 68 GB of data from PH gov&#8217;t agency found publicly online</title>
+		<link>https://www.rappler.com/technology/philippine-government-agency-databases-files-found-hunt-intelligence-report/</link>
+					<comments>https://www.rappler.com/technology/philippine-government-agency-databases-files-found-hunt-intelligence-report/#respond</comments>
+		
+		<dc:creator><![CDATA[Victor Barreiro Jr.]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 23:13:43 +0800</pubDate>
+				<category><![CDATA[National News]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Technology]]></category>
+		<category><![CDATA[cyberattacks]]></category>
+		<category><![CDATA[cybersecurity]]></category>
+		<category><![CDATA[data security]]></category>
+		<category><![CDATA[Department of Migrant Workers]]></category>
+		<category><![CDATA[National Privacy Commission]]></category>
+		<category><![CDATA[overseas Filipinos]]></category>
+		<category><![CDATA[POEA]]></category>
+		<category><![CDATA[privacy]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Despite file names of the data taken indicating migrant worker organization files, the contents of the backups are not established as Hunt.io did not examine them]]></description>
+										<content:encoded><![CDATA[
+<p>MANILA, Philippines – Cybersecurity firm Hunt.io on Wednesday, October 28, reported that it found what appeared to be 68 gigabytes of data from databases of a Philippine government agency.</p>
+
+
+
+<p>In an email to Rappler on Thursday, October 29, the Hunt.io research team summarized the issue as follows: &#8220;A thief copied the data, kept a receipt of it, then left that receipt and their tools on a computer anyone online could open. That mistake is how it came to light, not a public dump of the data.&#8221;</p>
+
+
+
+<p>Hunt.io added it did not have the stolen data, but rather reverse-engineered the tools used and read the logs. The exact nature of the potentially stolen files have yet to be determined because the firm did not examine the data.</p>
+
+
+
+<p>The firm noted, however, that the file names discovered match case-management systems operated by agencies like the Philippine Overseas Employment Administration (POEA), and the Department of Migrant Workers’ Balik-Manggagawa Online Processing System, among others.</p>
+
+
+
+<p>Hunt.io also previously wrote about a reported hack involving the theft of sensitive files from the Philippines&#8217; nuclear research agency.</p>
+
+
+<div class="related-article ">
+			<div class="related-article__container">
+				<div class="related-article__text">
+					<div class="related-article__eyebrow">Must Read</div>
+					<div class="related-article__title">
+						<a class="related-article__title-link" href="https://www.rappler.com/newsbreak/inside-track/did-hackers-hit-ph-nuclear-agency-ship-company-ties-navy-hunt-io/">
+							<h1 class="related-article__title-text"> Did hackers hit PH nuclear agency, shipping firm with alleged Navy ties? </h1>
+						</a>
+					</div>
+				</div>
+				<div class="related-article__media-container">
+					<div class="related-article__media">
+						<a href="https://www.rappler.com/newsbreak/inside-track/did-hackers-hit-ph-nuclear-agency-ship-company-ties-navy-hunt-io/">
+					 		<img decoding="async" width="449" height="253" src="https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C449" class=" wp-image-3157292 wp-post-image" alt="Did hackers hit PH nuclear agency, shipping firm with alleged Navy ties?" loading="lazy" srcset="https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C253&amp;zoom=2 898w, https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C253&amp;zoom=1.5 674w, https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C253&amp;zoom=1 449w, https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C253&amp;zoom=0.5 225w, https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?fit=449%2C253&amp;zoom=0.25 112w" sizes="auto, (max-width: 449px) 100vw, 449px" />
+					 	</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<p>The National Privacy Commission (NPC), in a statement on Thursday, said it is &#8220;aware of the matter and is conducting an investigation to assess the facts and circumstances of the incident and determine whether any violations of the Data Privacy Act of 2012 have occurred.&#8221;</p>
+
+
+
+<h5 class="wp-block-heading" id="h-what-happened">What happened?</h5>
+
+
+
+<p>Hunt.io operates an automated threat intelligence platform which continuously crawls the internet to catalog web servers, exposed directories, and digital certificates used by malicious actors.</p>
+
+
+
+<p>According to <a href="https://hunt.io/blog/philippine-government-employment-agency-records-stolen">the blog post by</a><a href="http://hunt.io"> Hunt.io</a>, the platform detected an open Python web server while it was actively online on September 7. The server gave the operator&#8217;s working folder to anyone who asked.</p>
+
+
+
+<p>The data was said to be made up of &#8220;27 SQL Server backups.&#8221;</p>
+
+
+
+<p>The report said the file names of the copied SQL backups include POEA_EServices, POEA_HelpDesk, POEAHelpDeskDB, OFW and OfwDB, together with accreditation, repatriation, eContracts, Cashier and LandBank variants of the file names.</p>
+
+
+
+<p>Other file names cited include BMonline, BMDB and BMContracts, which match the Balik-Manggagawa Online Processing System; and OWMSDB, which matches the OFW Welfare Monitoring System.</p>
+
+
+
+<h5 class="wp-block-heading" id="h-no-attributable-operator">No attributable operator</h5>
+
+
+
+<p>The blog post added that it does not attribute the activity to a tracked actor.</p>
+
+
+
+<p>It said &#8220;details that could be mistaken for attribution signals are recorded… without supporting an inference.&#8221;</p>
+
+
+
+<p>The blog post concluded that the recovered material establishes &#8220;a completed theft, a delivery server and tooling rebuilt in place.&#8221;</p>
+
+
+
+<p>However, what it does not establish &#8220;is how the operator entered the agency network, what command ran under SYSTEM, or where the 68.837 GiB was sent.&#8221; The operation ended because the working directory was public rather than due to any detection.</p>
+
+
+
+<p>In its statement, the NPC said it is “coordinating closely with the Department of Migrant Workers to ensure that any data privacy concerns are appropriately addressed and that the rights and interests of data subjects are safeguarded in accordance with the law.&#8221;</p>
+
+
+
+<p>The Hunt.io research team meanwhile advised that until the NPC and adjacent agencies confirm the data theft, people should remain cautious. They added, &#8220;be wary of scams or messages that reference your OFW or employment records, and trust official notices over anyone else who reaches out.&#8221;</p>
+
+
+
+<p>Rappler has also reached out to the Department of Migrant Workers and the Philippine National Computer Emergency Response Team for further information.</p>
+
+
+
+<p>More technical information is available on<a href="https://hunt.io/blog/philippine-government-employment-agency-records-stolen"> Hunt.io&#8217;s blog post</a>. <strong>– Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/technology/philippine-government-agency-databases-files-found-hunt-intelligence-report/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+		<media:thumbnail url="https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?resize=75%2C75&amp;crop=259px%2C0px%2C675px%2C675px" />
+		<media:content url="https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg" medium="image">
+			<media:title type="html">telus-cybersecurity-hack</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/03/telus-cybersecurity-hack.jpg?resize=75%2C75&amp;crop=259px%2C0px%2C675px%2C675px" />
+		</media:content>
+<image>https://www.rappler.com/tachyon/2026/10/STOLEN-DATABASE-graphics.jpg</image>	</item>
+		<item>
+		<title>All 5 chief justice candidates pass JBC shortlist &#124; The wRap</title>
+		<link>https://www.rappler.com/video/daily-wrap/october-29-2026/</link>
+					<comments>https://www.rappler.com/video/daily-wrap/october-29-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Rappler.com]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 22:00:00 +0800</pubDate>
+				<category><![CDATA[Editors' Pick]]></category>
+		<category><![CDATA[National News]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Top 5 News Today]]></category>
+		<category><![CDATA[Video]]></category>
+		<category><![CDATA[Alex Eala]]></category>
+		<category><![CDATA[Department of Agriculture]]></category>
+		<category><![CDATA[Israel]]></category>
+		<category><![CDATA[Philippines-China relations]]></category>
+		<category><![CDATA[Supreme Court of the Philippines]]></category>
+		<category><![CDATA[Tennis]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Today’s headlines: Supreme Court, Gibo Teodoro, Alex Eala]]></description>
+										<content:encoded><![CDATA[
+<p>Here are today&#8217;s headlines – the latest news in the Philippines and around the world:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/philippines/chief-justice-candidates-jbc-shortlist-october-2026/"><strong>All 5 chief justice candidates make it to JBC shortlist</strong></a><strong>  </strong></li>
+</ul>
+
+
+
+<p>All five Supreme Court associate justices aspiring to become the country’s next chief justice make it to the Judicial and Bar Council’s shortlist.</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/newsbreak/inside-track/gibo-teodoro-china-defense-attache-asean-meeting-cebu/"><strong>Gibo snubs China at ADMM-Plus</strong></a><strong> </strong></li>
+</ul>
+
+
+
+<p>Philippines Defense Secretary Gibo Teodoro snubs the welcoming event of China’s defense attaché to Manila Senior Captain Yang Lei.</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/philippines/department-agriculture-weak-peso-push-up-imported-rice-fertilizer-prices/"><strong>DA: Weak peso to push up imported rice, fertilizer prices</strong></a><strong> </strong></li>
+</ul>
+
+
+
+<p>Department of Agriculture spokesman Arnel de Mesa says the weakening peso will push up prices of imports such as rice, fertilizer, and other farm goods.</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/world/middle-east/netanyahu-caretaker-inconclusive-israeli-election/"><strong>Netanyahu set to remain caretaker after inconclusive Israeli election</strong></a></li>
+</ul>
+
+
+
+<p>Benjamin Netanyahu will likely remain as Israel’s caretaker prime minister after unexpectedly strong backing among Jewish voters.</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/people/athletes/alex-eala-talia-gibson-tennis-toray-pan-pacific-open-october-28-2026/"><strong>Alex Eala advances to Toray Pan Pacific quarterfinals after besting Talia Gibson</strong></a></li>
+</ul>
+
+
+
+<p>Filipina tennis star Alex Eala pulled off a thrilling win over Australia’s Talia Gibson, 4-6, 6-2, 6-0, in the Toray Pan Pacific Open round of 16 match in Tokyo, Japan, on Wednesday, October 28. <strong>– Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/video/daily-wrap/october-29-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+<image>https://www.rappler.com/tachyon/2026/10/THE-WRAP-LS-MAIN-14.jpg</image>	</item>
+		<item>
+		<title>Hong Kong leader apologizes for deadly Tai Po fire, pledges reform</title>
+		<link>https://www.rappler.com/world/asia-pacific/hong-kong-leader-apologizes-tai-po-fire-pledges-reform-october-2026/</link>
+					<comments>https://www.rappler.com/world/asia-pacific/hong-kong-leader-apologizes-tai-po-fire-pledges-reform-october-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Reuters]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 21:02:56 +0800</pubDate>
+				<category><![CDATA[Asia Pacific]]></category>
+		<category><![CDATA[World]]></category>
+		<category><![CDATA[fire]]></category>
+		<category><![CDATA[Hong Kong]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[John Lee also announces the resignation of Hong Kong's Housing Secretary Winnie Ho — the first official to resign over the inferno]]></description>
+										<content:encoded><![CDATA[
+<p>HONG KONG – Hong Kong leader John Lee apologized on Thursday, October 29, for the deadly blaze that <a href="https://www.rappler.com/world/asia-pacific/hong-kong-fire-updates-november-29-2025/">killed 168 people</a> in the city last November, as he released an independent report that held four government departments partially responsible for a fire that erupted after more than a year of safety complaints.</p>
+
+
+
+<p>Lee promised swift but extensive reforms to the city&#8217;s building industry and regulatory system. The more than 1,000-page report by the judge-led panel detailed governance and supervisory failings, including widespread bid rigging.</p>
+
+
+
+<p>&#8220;The fire has been put out, but the reform has only just begun,&#8221; the report stated.</p>
+
+
+
+<p>&#8220;The Committee finds that no Government department took effective ownership of various fire safety issues and complaints about fire hazards fell into a vacuum.&#8221;</p>
+
+
+
+<p>The blaze ripped through seven 31-story tower blocks at the Wang Fuk Court residential complex, which was undergoing renovation work in the <a href="https://www.rappler.com/world/asia-pacific/tales-survival-hong-kong-fire-november-2025/">northern Tai Po district</a> and shrouded in dust netting and scaffolding.</p>
+
+
+
+<p>Residents had repeatedly raised safety concerns over the work for more than a year before the fire, which the report said was most likely started by a &#8220;glowing source…likely a cigarette.&#8221;</p>
+
+
+
+<p>It was the deadliest in the city since 1948. Thousands of residents were displaced after their homes became uninhabitable.</p>
+
+
+
+<p>&#8220;As chief executive and head of the government, I am deeply saddened,&#8221; Lee said before bowing with seven other officials in a rare show of official contrition.</p>
+
+
+
+<p>&#8220;On behalf of the SAR government, I offer my apologies to the victims and the public at large.&#8221;</p>
+
+
+
+<p>Lee also announced the resignation of Hong Kong&#8217;s Housing Secretary Winnie Ho — the first official to resign over the inferno.</p>
+
+
+
+<h5 class="wp-block-heading" id="h-disciplinary-action">Disciplinary action</h5>
+
+
+
+<p>Wang Fuk residents and other critics have in recent months expressed anger at a perceived lack of government accountability.</p>
+
+
+
+<p>The Hong Kong government has set up an independent team to investigate which officials should be held accountable and to outline disciplinary actions.</p>
+
+
+
+<p>Lee, whose five-year term ends next June, did not directly respond to press questions over whether he would seek another term, saying &#8220;implementing the reforms is the goal&#8221; rather than personal matters.</p>
+
+
+
+<p>Lee said Hong Kong&#8217;s Chief Secretary Eric Chan will now head a steering committee to oversee reforms advocated in the report, which will include laws to criminalise bid rigging across the construction industry with fines of up to HK$10 million and 10 years&#8217; imprisonment.</p>
+
+
+
+<p>The committee report said contractor Prestige Construction &amp; Engineering Co Ltd and project consultant Will Power Architects Co Ltd should bear primary responsibility.</p>
+
+
+
+<p>At least 25 criminal charges related to the Wang Fuk Court fire have been made against Prestige, Will Power and seven individuals, including manslaughter, conspiracy to defraud, money laundering and tax evasion.</p>
+
+
+
+<p>But the report also went further, outlining widespread unlawful and dubious construction practices as a &#8220;corrupt eco-system.&#8221;</p>
+
+
+
+<p>The rigging of bids in the industry involved many different parties, some linked to triad organized crime gangs, it said.</p>
+
+
+
+<p>The committee held 30 hearings this year with 80 witnesses, including residents, property management and renovation personnel, engineering and fire experts, government officials and regulators. It evaluated more than one million files and submissions as it investigated the cause of the fire and reviewed oversight of building renovations.</p>
+
+
+
+<p>Before the report&#8217;s release, critics had said the committee lacked the statutory powers of a full public inquiry, which could potentially limit its ability to establish the full facts and accountability.</p>
+
+
+
+<p>Some groups in the Asian business hub have called for more transparency and accountability, amid warnings from authorities that any attempts to politicise the disaster would be severely punished. – <strong>Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/world/asia-pacific/hong-kong-leader-apologizes-tai-po-fire-pledges-reform-october-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+<image>https://www.rappler.com/tachyon/2026/10/hong-kong-tai-po-fire-apology-october-29-2026-reuters.jpg</image>	</item>
+		<item>
+		<title>Rappler Live Jam: J2X</title>
+		<link>https://www.rappler.com/entertainment/live-jam/music-sessions-j2x-october-2026/</link>
+					<comments>https://www.rappler.com/entertainment/live-jam/music-sessions-j2x-october-2026/#comments</comments>
+		
+		<dc:creator><![CDATA[Rappler.com]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 20:00:00 +0800</pubDate>
+				<category><![CDATA[Entertainment]]></category>
+		<category><![CDATA[Live Jam]]></category>
+		<category><![CDATA[Filipino artists]]></category>
+		<category><![CDATA[music industry]]></category>
+		<category><![CDATA[music sessions]]></category>
+		<category><![CDATA[singers]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Choreographer-turned-recording artist J2X brings his hip-hop and electronic charm to Rappler Live Jam!]]></description>
+										<content:encoded><![CDATA[
+<p>MANILA, Philippines – J2X makes his Rappler Live Jam debut on Thursday, October 29!</p>
+
+
+
+<p>J2X, whose real name is Jay Joseph Roncesvales first made waves in the entertainment industry as a choreographer, working with acclaimed <a href="https://www.rappler.com/people/artists/sb19-senate-pace-act-global-paths-filipino-creatives/">P-pop act SB19</a> and dance group W3 to shape their movements on stage.</p>
+
+
+
+<p>Now, as a singer-songwriter, he blends the sounds of hip-hop and electronic music, shining best through songs like &#8220;EDEWUP&#8221; and &#8220;AKONGAPALASI.&#8221; </p>
+
+
+
+<p>Catch J2X on Rappler Live Jam on Thursday, 8 pm, by bookmarking this page or heading to Rappler&#8217;s <a href="https://www.youtube.com/@Rappler">YouTube</a>! <strong>– Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/entertainment/live-jam/music-sessions-j2x-october-2026/feed/</wfw:commentRss>
+			<slash:comments>7</slash:comments>
+		
+		
+		
+<image>https://www.rappler.com/tachyon/2026/10/j2x-LIVEJAM-landscape.jpg</image>	</item>
+		<item>
+		<title>LIST: November 2026 special non-working days in PH provinces, cities, towns</title>
+		<link>https://www.rappler.com/philippines/special-non-working-days-proclamations-provinces-cities-towns-november-2026/</link>
+					<comments>https://www.rappler.com/philippines/special-non-working-days-proclamations-provinces-cities-towns-november-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Rappler.com]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 19:52:38 +0800</pubDate>
+				<category><![CDATA[Luzon]]></category>
+		<category><![CDATA[Metro Manila]]></category>
+		<category><![CDATA[Mindanao]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Visayas]]></category>
+		<category><![CDATA[Batangas]]></category>
+		<category><![CDATA[Eastern Samar]]></category>
+		<category><![CDATA[LGUs in the Philippines]]></category>
+		<category><![CDATA[Negros Occidental]]></category>
+		<category><![CDATA[Philippine holidays]]></category>
+		<category><![CDATA[Surigao del Sur]]></category>
+		<category><![CDATA[Zamboanga del Sur]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Here are the November 2026 special non-working days in various localities, as proclaimed by the President
+]]></description>
+										<content:encoded><![CDATA[
+<p>MANILA, Philippines – This is a compilation of special non-working days in various localities in the Philippines for November 2026, as proclaimed by President Ferdinand Marcos Jr.</p>
+
+
+
+<ul class="wp-block-list">
+<li>November 4 &#8211; Quezon Province, via <a href="https://www.officialgazette.gov.ph/2026/10/12/proclamation-no-1481-s-2026/">Proclamation No. 1481 s. 2026</a></li>
+
+
+
+<li>November 4 &#8211; San Carlos City, Negros Occidental, via <a href="https://www.officialgazette.gov.ph/2026/10/12/proclamation-no-1482-s-2026/">Proclamation No. 1482 s. 2026</a></li>
+
+
+
+<li>November 7 &#8211; Cuenca, Batangas, via <a href="https://www.officialgazette.gov.ph/2026/10/13/proclamation-no-1483-s-2026/">Proclamation No. 1483 s. 2026</a></li>
+
+
+
+<li>November 9 &#8211; Eastern Samar, via <a href="https://www.officialgazette.gov.ph/2026/10/26/proclamation-no-1490-s-2026/">Proclamation No. 1490 s. 2026</a></li>
+
+
+
+<li>November 10 &#8211; Dinas, Zamboanga del Sur, via <a href="https://www.officialgazette.gov.ph/2026/10/19/proclamation-no-1485-s-2026/">Proclamation No. 1485 s. 2026</a></li>
+
+
+
+<li>November 12 &#8211; Gumaca, Quezon, via <a href="https://www.officialgazette.gov.ph/2026/10/19/proclamation-no-1486-s-2026/">Proclamation No. 1486 s. 2026</a></li>
+
+
+
+<li>November 17 &#8211; Carmen, Surigao del Sur, via <a href="https://www.officialgazette.gov.ph/2026/10/19/proclamation-no-1487-s-2026/">Proclamation No. 1487 s. 2026</a></li>
+</ul>
+
+
+
+<p>Bookmark this page for possible additional announcements from Malacañang.&nbsp;<strong>– Rappler.com </strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/philippines/special-non-working-days-proclamations-provinces-cities-towns-november-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+<image>https://www.rappler.com/tachyon/2026/10/special-non-working-2026-november-02.jpg</image>	</item>
+		<item>
+		<title>ECB President Lagarde resigns at time of mounting challenges for Europe</title>
+		<link>https://www.rappler.com/business/ecb-president-christine-lagarde-resigns-october-2026/</link>
+					<comments>https://www.rappler.com/business/ecb-president-christine-lagarde-resigns-october-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Reuters]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 19:13:44 +0800</pubDate>
+				<category><![CDATA[Business]]></category>
+		<category><![CDATA[Europe]]></category>
+		<category><![CDATA[World]]></category>
+		<category><![CDATA[European Union]]></category>
+		<category><![CDATA[France]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[A source with direct knowledge of the matter says Christine Lagarde resigned so she could weigh in on political matters in her native France and globally]]></description>
+										<content:encoded><![CDATA[
+<p>FRANKFURT, Germany – European Central Bank President Christine Lagarde announced her resignation on Thursday, October 29, ending months of speculation about her future just as <a href="https://www.rappler.com/topic/european-union/">Europe</a> enters a period of rising economic volatility and divisive electoral politics.</p>
+
+
+
+<p>Lagarde will step down on February 7, giving current European Union leaders time to pick a successor well before a French presidential election that polls show far-right candidate Marine Le Pen is favored to win.</p>
+
+
+
+<p>The move comes as the ECB battles inflation risks from an Iran-driven oil shock while a sharp rise in bond yields, especially in <a href="https://www.rappler.com/topic/france">France</a>, threatens to dampen growth.</p>
+
+
+
+<p>&#8220;I leave this institution with a sense of good work done and an ECB that is fit for the future,&#8221; Lagarde said in a short video shared on social media.</p>
+
+
+
+<p>A source with direct knowledge of the matter said Lagarde had resigned so she could weigh in on political matters in her native France and globally. As ECB president, she was expected to remain neutral to safeguard the institution&#8217;s independence.</p>
+
+
+
+<p>European Council President Antonio Costa said in a statement the process to find a successor for Lagarde would begin immediately. The former central bank governors of the Netherlands and Spain, Klaas Knot and Pablo Hernandez de Cos, are widely seen as frontrunners.</p>
+
+
+
+<p>&#8220;The rumored successors are both very competent, well-established central bankers, so for markets, it won’t matter too much,&#8221; Piet Haines Christiansen, an economist at Danske Bank, said.</p>
+
+
+
+<p>Financial markets did not move much after the announcement, with some analysts noting the ECB had by now built a reputation that outlived any of its leaders.</p>
+
+
+
+<p>&#8220;The ECB is now quite well-established, the market is familiar with the way it operates,&#8221; Goldman Sachs&#8217; head of Fixed Income Macro Investing Simon Dangoor said. &#8220;Our view is that institutional behavior is likely to outlast Lagarde, and be quite similar, whoever takes over.&#8221;</p>
+
+
+
+<p>Lagarde&#8217;s term was scheduled to run until the end of October 2027, but speculation about an early departure had been mounting for months, with the World Economic Forum seen as a likely destination.</p>
+
+
+
+<h5 class="wp-block-heading" id="h-rate-hikes-and-bond-turmoil">Rate hikes and bond turmoil</h5>
+
+
+
+<p>The ECB is in the middle of a rate-hiking cycle aimed at preventing an oil-price shock linked to the Iran war from feeding into other prices and wages.</p>
+
+
+
+<p>But it must also contend with a surge in government bond yields — especially in debt-laden France — that has pushed up borrowing costs for households and businesses and which Lagarde has said will curb growth and inflation.</p>
+
+
+
+<p>Caught between persistent inflation fueled by a renewed surge in energy costs and deteriorating financing conditions, the ECB is widely expected to keep its deposit rate at 2.5% on Thursday while signaling that another increase, potentially as soon as December, remains likely.</p>
+
+
+
+<p>&#8220;There is likely a low bar to another hike in December, given the likelihood of another upward revision of the ECB&#8217;s inflation forecast due to higher energy prices,&#8221; Oliver Rakau at Oxford Economics said.</p>
+
+
+
+<p>The ECB is due to announce its interest rate decision at 1315 GMT on Thursday, followed by Lagarde&#8217;s regular press conference at 1345 GMT.</p>
+
+
+
+<p>Money markets are currently pricing another three rate increases from the ECB by the end of next year, which would take the deposit rate to 3.25%, a level that is widely seen as restricting economic growth.</p>
+
+
+
+<h5 class="wp-block-heading" id="h-french-turmoil-in-focus-but-no-action">French turmoil in focus but no action</h5>
+
+
+
+<p>The more immediate challenge for policymakers may be turmoil in bond markets.</p>
+
+
+
+<p>A global rise in yields, fueled by stronger growth expectations, higher debt issuance and massive investment linked to artificial intelligence, is pushing up borrowing costs for governments, households and businesses alike.</p>
+
+
+
+<p>In France, investors have become increasingly uneasy about the country&#8217;s growing debt burden and uncertain fiscal outlook following this year&#8217;s elections. Concerns have been amplified by suggestions from parts of the political left that debt held by the ECB could be written off.</p>
+
+
+
+<p>The result has been a sharp increase in French borrowing costs. France is now paying some of the highest yields in a quarter-century to raise money on bond markets, while the premium investors demand to hold French debt over benchmark German bonds is larger than for any other euro zone country.</p>
+
+
+
+<p>That has fueled speculation that the ECB might be forced to respond, if only verbally for now.</p>
+
+
+
+<p>&#8220;They&#8217;ve typically come up with a new tool that&#8217;s customised for that specific set of circumstances,&#8221; said Dangoor at Goldman Sachs.</p>
+
+
+
+<p>The ECB&#8217;s first line of defence would probably be flexible reinvestment of proceeds from bonds acquired during its vast asset-purchase programs of the previous decade.</p>
+
+
+
+<p>Beyond that, it could activate its never-used Transmission Protection Instrument, a scheme designed to counter what policymakers deem unjustified market pressure. – <strong>Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/business/ecb-president-christine-lagarde-resigns-october-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+<image>https://www.rappler.com/tachyon/2026/10/ecb-christine-lagarde-february-5-2026-reuters.jpg</image>	</item>
+		<item>
+		<title>FACT CHECK: No report of Indonesian President confronting, scolding Marcos</title>
+		<link>https://www.rappler.com/newsbreak/fact-check/no-report-indonesian-president-confronting-scolding-ferdinand-marcos-jr/</link>
+					<comments>https://www.rappler.com/newsbreak/fact-check/no-report-indonesian-president-confronting-scolding-ferdinand-marcos-jr/#respond</comments>
+		
+		<dc:creator><![CDATA[Rappler.com]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 19:07:04 +0800</pubDate>
+				<category><![CDATA[Fact Check]]></category>
+		<category><![CDATA[Newsbreak]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Ferdinand Marcos Jr.]]></category>
+		<category><![CDATA[Indonesia]]></category>
+		<category><![CDATA[Marcos Fact Checks]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[The video contains no footage, audio, or documentation of the alleged confrontation. Instead, the content features an unidentified male commentator reacting to a third-party social media post unrelated to the claim.]]></description>
+										<content:encoded><![CDATA[
+<p><strong>Claim:</strong> Indonesia’s president publicly confronted and scolded President Ferdinand Marcos Jr., telling him to &#8220;fix yourself and your country.&#8221;</p>
+
+
+
+<h5 class="wp-block-heading" id="h-rating-false"><strong>Rating:</strong> FALSE</h5>
+
+
+
+<p><strong>Why we fact-checked this:</strong> The YouTube channel &#8220;PINAS BALITA TV&#8221; with 175,000 subscribers published a video bearing the title: <em>&#8220;GRABE NA! NAKAKAH1YA TO! IND0NESIAN PRESIDENT HARAPANG SINUP4L-P4L at NA-REALTALK si BEBE EM?&#8221;</em> (This is too much! How embarrassing! Indonesian President confronted and engaged BBM in real talk?)</p>
+
+
+
+<p>The video’s thumbnail, posted on October 17, 2026, shows an enraged Indonesian President Prabowo Subianto pointing directly at the President&#8217;s face before press microphones and cameras. </p>
+
+
+
+<p>In the video&#8217;s original thumbnail, the uploader claimed that the Indonesian leader told Marcos to <em>“</em>fix your country and yourself,<em>”</em> though this line has since been edited out as of writing.<br><br>As of writing, the video has garnered 3,100 views and 234 likes.</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" width="817" height="1024" decoding="async" src="https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?fit=1024%2C1024" alt="" class="wp-image-3258074" srcset="https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?fit=817%2C1024&amp;zoom=1 817w, https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?fit=817%2C1024&amp;zoom=0.5 409w, https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?fit=817%2C1024&amp;zoom=0.25 204w" sizes="(max-width: 817px) 100vw, 817px" /></figure>
+
+
+
+<p><strong>The facts:</strong> No credible news reports or official footage confirm that Indonesia’s Subianto confronted or publicly engaged Marcos in real talk before the press.<br><br>AI image detectors <a href="https://isthisai.com/scan/8c1102a3-8cbc-4f4f-9327-2f63d640006f" target="_blank" rel="noreferrer noopener">IsThisAI</a> reveal that the thumbnail of the video is 99% likely to be AI-generated. Meanwhile, <a href="https://sightengine.com" target="_blank" rel="noreferrer noopener">SightEngine</a> flagged it as 87% likely to have used generative AI, and <a href="https://truthscan.com" target="_blank" rel="noreferrer noopener">TruthScan</a> estimated an 85% edit probability with high confidence.<br><br>“The background crowd appears to be cloned or manipulated, showing unnatural repetition patterns. Shadows on the subjects&#8217; faces and clothing are inconsistent, further suggesting digital editing,” the TruthScan findings said.</p>
+
+
+
+<p><strong>Lack of evidence: </strong>The video contains no footage, audio, or documentation of any confrontation. Instead, the content features an unidentified male commentator reacting to a third-party social media post.</p>
+
+
+
+<p>The commentator compares how both governments address climate challenges — particularly <a href="https://www.pna.gov.ph/article/pbbm-serious-in-el-nino-response-palace-says-amid-balde-remarks-criticism" target="_blank" rel="noreferrer noopener">El Niño</a> — contrasting Indonesia&#8217;s reported distribution of water pumps with the Philippine government&#8217;s recommendation to <a href="https://www.pna.gov.ph/article/pbbm-serious-in-el-nino-response-palace-says-amid-balde-remarks-criticism">collect rainwater using buckets</a>. The commentator heavily criticized the administration’s suggested solution.<em><br><br></em><strong>Existing ties: </strong>Diplomatic ties between the Philippines and Indonesia remain stable as of writing. Both countries held <a href="https://pco.gov.ph/news_releases/ph-indonesia-agree-to-work-together-to-tackle-regional-challenges-pbbm/" target="_blank" rel="noreferrer noopener">bilateral meetings</a> in 2024, and Marcos, along with First Lady Liza Araneta Marcos, formally <a href="https://youtu.be/zGjmwbXEjVU?si=ykxWmOp-N58qvQlw" target="_blank" rel="noreferrer noopener">welcomed</a> President Subianto during the opening ceremony of the 48th ASEAN Summit held in Cebu in May 2026.</p>
+
+
+
+<p>Marcos also traveled to Jakarta to attend Subianto&#8217;s presidential inauguration in 2024.</p>
+
+
+
+<p><strong>Debunked:</strong> Marcos has been a frequent subject of <a href="https://www.rappler.com/topic/marcos-fact-checks/">false claims</a>, particularly controversies:</p>
+
+
+
+<ul class="wp-block-list">
+<li><a href="https://www.rappler.com/newsbreak/fact-check/no-official-statement-ferdinand-marcos-jr-intent-declare-war/">FACT CHECK: No official statement implies Marcos’ intent to declare war, martial law</a></li>
+
+
+
+<li><a href="https://www.rappler.com/newsbreak/fact-check/marcos-statement-cancel-2028-election-false-context/">FACT CHECK: Marcos statement claiming to cancel 2028 election is taken out of context</a></li>
+
+
+
+<li><a href="https://www.rappler.com/newsbreak/fact-check/marcos-fake-quote-protecting-sara-duterte-corruption/">FACT CHECK: Marcos Jr. did not say protecting VP Duterte from her case is ‘corruption’</a></li>
+
+
+
+<li><a href="https://www.rappler.com/newsbreak/fact-check/marcos-fake-quote-six-year-extension-presidential-term/">FACT CHECK: Marcos did not say he wants another 6-year presidential term</a></li>
+</ul>
+
+
+
+<p>&nbsp;<strong>&#8211; Lyndee Buenagua/Rappler.com</strong></p>
+
+
+
+<p><em>Lyndee Buenagua is a Metro Manila-based journalist who primarily covers Bicol and Baguio. She is also an alumna of </em><a href="https://www.rappler.com/philippines/journalism-nation-building-foundation-awards-aries-rufo-factsmatterph-fellowships-2024/"><em>Aries Rufo Journalism Fellowship</em></a><em> of Rappler for 2024.</em></p>
+
+
+
+<p>Keep us aware of suspicious Facebook pages, groups, accounts, websites, articles, or photos in your network by contacting us at factcheck@rappler.com. Let us battle disinformation one <a href="https://rappler.com/newsbreak/fact-check">Fact Check</a> at a time.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/newsbreak/fact-check/no-report-indonesian-president-confronting-scolding-ferdinand-marcos-jr/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+		<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?resize=75%2C75&amp;crop_strategy=attention" />
+		<media:content url="https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg" medium="image">
+			<media:title type="html">fact-check-full-post-indonesian-president-scolding-marcos</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/fact-check-full-post-indonesian-president-scolding-marcos.jpg?resize=75%2C75&amp;crop_strategy=attention" />
+		</media:content>
+<image>https://www.rappler.com/tachyon/2026/10/fact-check-carousel-indonesian-president-scolding-marcos.jpg</image>	</item>
+		<item>
+		<title>LIST: Evidence submitted by prosecution to impeach court vs Sara Duterte</title>
+		<link>https://www.rappler.com/philippines/list-evidence-submitted-prosecution-impeachment-court-sara-duterte/</link>
+					<comments>https://www.rappler.com/philippines/list-evidence-submitted-prosecution-impeachment-court-sara-duterte/#respond</comments>
+		
+		<dc:creator><![CDATA[Dwight de Leon]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 18:12:15 +0800</pubDate>
+				<category><![CDATA[National News]]></category>
+		<category><![CDATA[Newsbreak]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Rappler IQ]]></category>
+		<category><![CDATA[Anti-Money Laundering Council]]></category>
+		<category><![CDATA[Bureau of Internal Revenue]]></category>
+		<category><![CDATA[House of Representatives]]></category>
+		<category><![CDATA[Office of the Ombudsman]]></category>
+		<category><![CDATA[Philippine National Police]]></category>
+		<category><![CDATA[Sara Duterte]]></category>
+		<category><![CDATA[Sara Duterte impeachment]]></category>
+		<category><![CDATA[Securities and Exchange Commission (SEC)]]></category>
+		<category><![CDATA[Senate of the Philippines]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Rappler obtained a copy of the prosecution's formal offer of evidence. Here are key documents that are part of the submission.]]></description>
+										<content:encoded><![CDATA[
+<p class="has-drop-cap">After the prosecution wrapped up the presentation of its case in the impeachment trial of Vice President Sara Duterte, it submitted its formal offer of evidence to the court. </p>
+
+
+
+<p>It&#8217;s a mandatory submission that allows the prosecution to state the specific purpose of each piece of evidence, although the defense may still contest it.</p>
+
+
+
+<p>Rappler obtained a copy of the formal offer of evidence. Below are key documents that are part of the submission.</p>
+
+
+
+<h5 class="wp-block-heading" id="h-1-her-statements-of-assets-liabilities-and-net-worth-salns-from-2007-to-2025-from-the-office-of-the-ombudsman">1. Her Statements of Assets, Liabilities, and Net Worth (SALNs) from 2007 to 2025, from the Office of the Ombudsman</h5>
+
+
+
+<ul class="wp-block-list">
+<li>Her SALNs show her or her husband&#8217;s continued stake with Gencorp, Metro City Chow Foods Corporation, and Cale88 Foods Corporation, while she is already a sitting vice president, apparently in violation of Article VII, Section 13 of the Constitution.</li>
+
+
+
+<li>Her SALNs supposedly prove she did not declare her 51 firearms, her properties in Matina and Kembali, her cash on hand and in bank from 2019 to 2025, and various insurance policies and investments.</li>
+
+
+
+<li>Prosecutors say her ending bank balances from 2022 to 2025 do not match her declared total personal assets for those years.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-2-corporate-records-of-companies-tied-to-her-and-her-husband-mans-carpio">2. Corporate records of companies tied to her and her husband Mans Carpio</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The prosecutors submitted SEC records of the following entities to prove that she and/or her husband are either an incorporator, shareholder, or member of the board of directors.
+<ul class="wp-block-list">
+<li>City Hall King Chow Foods Corporation</li>
+
+
+
+<li>Metro City Chow Foods Corporation</li>
+
+
+
+<li>Gencorp Industries</li>
+
+
+
+<li>Cale88 Foods Corporation</li>
+
+
+
+<li>Mati City Ice Plant and Cold Storage</li>
+
+
+
+<li>Geometry Security and Investigation Agency</li>
+
+
+
+<li>Great Jolly Times Food Corp</li>
+
+
+
+<li>Timesquare Bee Foods Corp</li>
+
+
+
+<li>Davao New Royal Taipan Foods Corporation</li>
+
+
+
+<li>Davao Emerging Taipans Corporation</li>
+
+
+
+<li>3Kids Trucking Services</li>
+
+
+
+<li>CYK&amp;T Davao Corporation</li>
+
+
+
+<li>SGT Fortune Horse Corporation</li>
+
+
+
+<li>Davao Bounty Times Foods Corporation</li>
+
+
+
+<li>Madayaw Fisheries</li>
+
+
+
+<li>Amianan Shores</li>
+
+
+
+<li>Cabletow 88 Shipping and Marine Services</li>
+
+
+
+<li>Carpio Lawyers</li>
+
+
+
+<li>Pikimong Pikimong Philippines Corporation</li>
+
+
+
+<li>JTC Group of Companies Philippines</li>
+</ul>
+</li>
+
+
+
+<li>The general information sheets and/or audited financial statements of many of these companies supposedly prove Duterte and/or her husband did not receive dividend income from the firms.</li>
+
+
+
+<li>The SEC records of some of these companies also show that Duterte and/or her husband subscribed a paid-up capital to the firms, yet the shareholdings were not declared in the SALN.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-3-philippine-statistics-authority-records">3. Philippine Statistics Authority records</h5>
+
+
+
+<ul class="wp-block-list">
+<li>Their marriage certificate establishes that there is no prenuptial agreement between them.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-4-philippine-government-electronic-procurement-system-philggeps-records-of-contracts-won-by-their-supposed-companies">4. Philippine Government Electronic Procurement System (PhilgGEPS) records of contracts won by their supposed companies</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The procurement records between Gencorp and either Davao City LGU, PhilHealth Region 10, and the Overseas Workers Welfre Administration Region 11 supposedly prove she violated the constitutional prohibition on government officials being financially interested in government contracts.
+<ul class="wp-block-list">
+<li>Most notably, Gencorp <a href="https://www.rappler.com/philippines/more-gencorp-contracts-davao-city-hall-confirmed-impeachment-trial-september-22-2026/">bagged 19 contracts</a> worth at least P34 million with the Davao City LGU led by her brother Mayor Sebastian Duterte from 2022 to 2026.</li>
+</ul>
+</li>
+</ul>
+
+
+	<div class="shortcode shortcode--youtube">
+		<div class="youtube-video" data-youtube-id="CcQSyB4t6mM" data-title="">
+	<button class="youtube-video__load-button">
+				<span class="screen-reader-text">Play  Video</span>
+	</button>
+	<img
+	src="https://img.youtube.com/vi/CcQSyB4t6mM/hqdefault.jpg"
+	data-srcset="https://img.youtube.com/vi/CcQSyB4t6mM/default.jpg 120w, https://img.youtube.com/vi/CcQSyB4t6mM/mqdefault.jpg 320w, https://img.youtube.com/vi/CcQSyB4t6mM/hqdefault.jpg 480w, https://img.youtube.com/vi/CcQSyB4t6mM/sddefault.jpg 640w"
+	data-sizes=""
+	data-src="https://img.youtube.com/vi/CcQSyB4t6mM/hqdefault.jpg"
+	class="youtube-video__image-overlay"
+	alt="LIST: Evidence submitted by prosecution to impeach court vs Sara Duterte"
+	loading="lazy"
+>
+	<div class="youtube-video__iframe"></div>
+</div>
+	</div>
+	
+
+
+<h5 class="wp-block-heading" id="h-5-records-of-her-firearms-with-the-philippine-national-police">5. Records of her firearms with the Philippine National Police</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The certifications issued by the PNP Firearms and Explosives Office (FEO) to Duterte and her husband document their combined total of 51 guns worth P7.2 million, assets not declared in her SALN.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-6-land-registration-authority-lra-records-of-relevant-properties">6. Land Registration Authority (LRA) records of relevant properties</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The transfer certificates of title, among other LRA documents, detail Duterte and her husband&#8217;s properties in Kembali and Matina, which are absent from her SALNs.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-7-anti-money-laundering-council-amlc-reports">7. Anti-Money Laundering Council (AMLC) reports</h5>
+
+
+
+<ul class="wp-block-list">
+<li>AMLC records detail covered transaction reports (CTRs) and suspicious transaction reports (STRs) involving Duterte and her husband worth P4.4 billion from 2007 to 2025.
+<ul class="wp-block-list">
+<li>The amount includes P424 million during her stint as vice president.</li>
+</ul>
+</li>
+
+
+
+<li>.The AMLC reports cover large US dollar cash withdrawals, time deposit renewals, single-day multi-million peso transfers, and significant over-the-counter cash withdrawals/check encashments.</li>
+
+
+
+<li>One of their companies, Cale88, supposedly received P368.8 million in foreign remittances, including P319.3 million from senders in China.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-8-bank-records">8. Bank records</h5>
+
+
+
+<ul class="wp-block-list">
+<li>Prosecutors submitted records from the following banks:
+<ul class="wp-block-list">
+<li>BDO Unibank (seven accounts)</li>
+
+
+
+<li>BPI (six accounts)</li>
+
+
+
+<li>Landbank (one account)</li>
+
+
+
+<li>Metrobank (three accounts)</li>
+
+
+
+<li>Philippine Savings Bank (two accounts)</li>
+
+
+
+<li>Security Bank (one account)</li>
+
+
+
+<li>PNB (four accounts)</li>
+
+
+
+<li>Unionbank (one account)</li>
+
+
+
+<li>Asia United Bank (two accounts)</li>
+</ul>
+</li>
+
+
+
+<li>Prosecutors say the 27 bank accounts show total year-end balances of P207.6 million from 2022 to 2025, which were not declared in her SALNs for those years.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-9-insurance-and-investment-company-records">9. Insurance and investment company records</h5>
+
+
+
+<ul class="wp-block-list">
+<li>Duterte and her husband have active insurance policies across seven companies from 2022 to 2025, none of which were declared in her SALN.</li>
+
+
+
+<li>These companies are:
+<ul class="wp-block-list">
+<li>BDO Life (two insurance investments)</li>
+
+
+
+<li>BDO Securities (seven securities/ other investments)</li>
+
+
+
+<li>BPI AIA<strong> </strong>(one insurance investment)</li>
+
+
+
+<li>FWD Life (one insurance investment)</li>
+
+
+
+<li>Manulife (six insurance investments)</li>
+
+
+
+<li>Allianz (two insurance investments)</li>
+
+
+
+<li>Prulife<strong> </strong>(five insurance investments)</li>
+</ul>
+</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-10-tax-records-with-the-bureau-and-internal-revenue-bir">10. Tax records with the Bureau and Internal Revenue (BIR)</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The BIR records of the couple show their combined income of P85.3 million from 2027 to 2025, which prosecutors assert is vastly disproportionate to their declared net worth and calculated unexplained wealth.</li>
+
+
+
+<li>Some of the documents also show that Duterte earned income from practicing law and received funds from Davao City Hall while she is vice president.</li>
+</ul>
+
+
+
+<h5 class="wp-block-heading" id="h-11-forensic-examination-report">11. Forensic examination report</h5>
+
+
+
+<ul class="wp-block-list">
+<li>The forensic report of veteran Certified Public Accountant or CPA lawyer Alexander Cabrera found that Duterte and her husband have an unexplained wealth of at least P817.8 million from 2022 to 2025.</li>
+</ul>
+
+
+	<div class="shortcode shortcode--youtube">
+		<div class="youtube-video" data-youtube-id="OHIFFsknKzU" data-title="">
+	<button class="youtube-video__load-button">
+				<span class="screen-reader-text">Play  Video</span>
+	</button>
+	<img
+	src="https://img.youtube.com/vi/OHIFFsknKzU/hqdefault.jpg"
+	data-srcset="https://img.youtube.com/vi/OHIFFsknKzU/default.jpg 120w, https://img.youtube.com/vi/OHIFFsknKzU/mqdefault.jpg 320w, https://img.youtube.com/vi/OHIFFsknKzU/hqdefault.jpg 480w, https://img.youtube.com/vi/OHIFFsknKzU/sddefault.jpg 640w"
+	data-sizes=""
+	data-src="https://img.youtube.com/vi/OHIFFsknKzU/hqdefault.jpg"
+	class="youtube-video__image-overlay"
+	alt="LIST: Evidence submitted by prosecution to impeach court vs Sara Duterte"
+	loading="lazy"
+>
+	<div class="youtube-video__iframe"></div>
+</div>
+	</div>
+	
+
+
+<p><strong>– Rappler.com </strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/philippines/list-evidence-submitted-prosecution-impeachment-court-sara-duterte/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+		<media:content url="https://www.youtube.com/embed/CcQSyB4t6mM" duration="231">
+			<media:player url="https://www.youtube.com/embed/CcQSyB4t6mM" />
+			<media:title type="html">LIST: Evidence submitted by prosecution to impeach court vs Sara Duterte</media:title>
+			<media:description type="html">Rappler obtained a copy of the prosecution&#039;s formal offer of evidence. Here are key documents that are part of the submission.</media:description>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/ccqsyb4t6mm.jpg" />
+			<media:keywords>Anti-Money Laundering Council,Bureau of Internal Revenue,House of Representatives,Office of the Ombudsman,Philippine National Police,Sara Duterte,Sara Duterte impeachment,Securities and Exchange Commission (SEC),Senate of the Philippines</media:keywords>
+		</media:content>
+<image>https://www.rappler.com/tachyon/2026/09/prosecution-team-sara-duterte-impeachment-september-7-2026-001-scaled.jpg</image>	</item>
+		<item>
+		<title>[READOUT] How can businesses win back customers amid a weak peso and high inflation?</title>
+		<link>https://www.rappler.com/voices/newsletters/readout-business-regain-customer-inflation-weak-philippine-peso/</link>
+					<comments>https://www.rappler.com/voices/newsletters/readout-business-regain-customer-inflation-weak-philippine-peso/#respond</comments>
+		
+		<dc:creator><![CDATA[Lance Spencer Yu]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 18:00:00 +0800</pubDate>
+				<category><![CDATA[Editors' Pick]]></category>
+		<category><![CDATA[Newsletters]]></category>
+		<category><![CDATA[Voices]]></category>
+		<category><![CDATA[Bangko Sentral ng Pilipinas]]></category>
+		<category><![CDATA[business finance]]></category>
+		<category><![CDATA[business management]]></category>
+		<category><![CDATA[Decoded]]></category>
+		<category><![CDATA[Philippine economy]]></category>
+		<category><![CDATA[Philippine inflation rate]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Businesses must balance rising costs against the dwindling purchasing power and growing frustration of cash-strapped consumers]]></description>
+										<content:encoded><![CDATA[
+<p>What can businesses do to win over customers already struggling with high prices? An October study by Organic Intelligence suggests a concrete response some brands could consider.&nbsp;</p>
+
+
+
+<p>Asked what would make a brand feel genuinely on their side, the top response was a price freeze (27%), ahead of smaller <em>tingi</em> sizes (16%), free shipping (14%), and promotional bundles (12%). The study’s researchers later told Rappler that a <a href="https://www.rappler.com/philippines/urban-filipino-resilience-study-2026/">price freeze campaign</a> would be highly effective in building customer loyalty with value-conscious customers.</p>
+
+
+
+<p>The findings reflect how financially stretched consumers have become. The survey of 800 urban Filipinos, conducted in May, also found that 42% had borrowed for essentials such as food and transportation, while 45% said inflation had drained their motivation to get ahead.</p>
+
+
+
+<p>And the pressure is unlikely to ease in the near-term. <a href="https://www.rappler.com/business/inflation-rate-philippines-september-2026/">September inflation reached 7.2%</a>, with further acceleration expected when October figures come out on November 5.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="576" decoding="async" src="https://www.rappler.com/tachyon/2026/10/image-43.png?fit=1024%2C1024" alt="" class="wp-image-3258040" srcset="https://www.rappler.com/tachyon/2026/10/image-43.png?fit=1024%2C576&amp;zoom=1.5 1536w, https://www.rappler.com/tachyon/2026/10/image-43.png?fit=1024%2C576&amp;zoom=1 1024w, https://www.rappler.com/tachyon/2026/10/image-43.png?fit=1024%2C576&amp;zoom=0.5 512w, https://www.rappler.com/tachyon/2026/10/image-43.png?fit=1024%2C576&amp;zoom=0.25 256w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="has-text-align-center"><strong>READ: <a href="https://www.rappler.com/philippines/urban-filipino-resilience-study-2026/">The urban Filipino is tired, cash-strapped, and sick of the ‘resilience’ excuse</a></strong></p>
+
+
+
+<p>Meanwhile, businesses must weigh consumer sentiment against how much of their rising costs they can realistically pass on to consumers.</p>
+
+
+
+<p>The peso <a href="https://www.rappler.com/business/philippine-peso-dollar-exchange-rate-record-low-october-27-2026/">closed at another historic low</a> of P64.17 to the dollar on Tuesday, October 27, despite the Bangko Sentral ng Pilipinas (BSP) delivering a larger-than-expected 50 basis point rate hike just five days earlier. That brought its <a href="https://www.rappler.com/business/bangko-sentral-pilipinas-monetary-policy-interest-rates-october-2026/">policy rate to 5.50%</a>, following four consecutive increases this year.</p>
+
+
+
+<p>After the same Monetary Board meeting, the BSP raised its 2027 inflation forecast from 5.4% to 6%, signaling that businesses may have to contend with higher costs and weaker consumer purchasing power for longer.</p>
+
+
+
+<p>The BSP, however, is in no hurry to defend the peso at any particular exchange rate. Governor Eli Remolona Jr. said the central bank would largely let the currency find its own level, intervening only to cushion excessive movements that could worsen inflation.&nbsp;</p>
+
+
+
+<p>Former BSP deputy governor Diwa Guinigundo <a href="https://www.rappler.com/business/philippine-peso-dollar-exchange-rate-record-low-october-27-2026/">pointed to deeper problems</a> behind the peso&#8217;s slide, including weak capital flows, the country&#8217;s balance of payments deficit, low foreign investment, and <a href="https://www.rappler.com/business/world-bank-philippines-economic-update-midyear-2026-edition/">investor uncertainty surrounding corruption allegations</a> and the ongoing messy <a href="https://www.rappler.com/philippines/n96109353-sara-duterte-impeachment/">impeachment trial</a>.</p>
+
+
+
+<p>Consider the numbers:</p>
+
+
+
+<ul class="wp-block-list">
+<li>The Philippines recorded a $9.1-billion balance of payments deficit in the first nine months of 2026, compared with $5.3 billion a year earlier. Foreign portfolio investments registered<a href="https://www.bsp.gov.ph/Statistics/External/fxflows.aspx"> $4.25 billion in net outflows</a> from January to August, reversing $4.58 billion in inflows a year earlier.</li>
+
+
+
+<li>The country&#8217;s hefty import bill also creates enormous demand for dollars. Consider that imports of mineral fuels and related products alone<a href="https://www.rappler.com/voices/thought-leaders/vantage-point-peso-depreciation-fortunes-hidden-energy-bill-dollar-exchange-october-2026/"> increased by $2.56 billion</a> year on year in the first half of 2026.</li>
+
+
+
+<li>And the pressure could persist. The BSP forecasts another $8.5-billion balance of payments deficit in 2027, alongside a $19.4-billion current account deficit.</li>
+
+
+
+<li>Foreign exchange reserves, meanwhile, fell from $104.8 billion in August to $99.5 billion in September, partly due to BSP foreign exchange operations, valuation adjustments, and government withdrawals. Still, those reserves are enough to cover 6.2 months of import.</li>
+</ul>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="576" decoding="async" src="https://www.rappler.com/tachyon/2026/10/image-44.png?fit=1024%2C1024" alt="" class="wp-image-3258041" srcset="https://www.rappler.com/tachyon/2026/10/image-44.png?fit=1024%2C576&amp;zoom=1.5 1536w, https://www.rappler.com/tachyon/2026/10/image-44.png?fit=1024%2C576&amp;zoom=1 1024w, https://www.rappler.com/tachyon/2026/10/image-44.png?fit=1024%2C576&amp;zoom=0.5 512w, https://www.rappler.com/tachyon/2026/10/image-44.png?fit=1024%2C576&amp;zoom=0.25 256w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="has-text-align-center"><strong>READ: <a href="https://www.rappler.com/voices/newsletters/readout-inflation-impact-business/">[READOUT] What a stickier inflation wave could mean for businesses</a></strong></p>
+
+
+
+<p>How this affects businesses depends on which side of the dollar they sit.</p>
+
+
+
+<p>Import-dependent manufacturers, retailers, airlines, and companies with unhedged dollar debt face higher costs. Exporters and business process outsourcing firms earning dollars while paying expenses in pesos could benefit from the exchange rate. Higher interest rates, meanwhile, make new borrowing and refinancing costlier, adding pressure to firms already struggling with input costs.</p>
+
+
+
+<p>Bank of the Philippine Islands lead economist Emilio Neri Jr. says prolonged inflation may pose a greater threat to economic growth than higher interest rates, especially with household consumption accounting for around 70% of the economy.</p>
+
+
+
+<p>Looking ahead, the November 9 third quarter 2026 GDP release will be the next measure to watch after economic growth slowed to a <a href="https://www.rappler.com/business/gross-domestic-product-philippines-q2-2026/">disappointing 2.3% in the second quarter of 2026</a>.</p>
+
+
+
+<p>Yet difficult economic conditions have not stopped companies from raising capital.</p>
+
+
+
+<p>GCash parent Mynt completed the <a href="https://www.rappler.com/business/gcash-mynt-stock-market-debut-pse-listing-october-20-2026/">largest IPO in Philippine history</a> on October 20, with the Philippine Stock Exchange reporting a P60.9-billion offering, including the overallotment. Meanwhile, Cebu-based <a href="https://www.rappler.com/newsbreak/inside-track/aznar-shipping-ipo-growth-third-generation/">Aznar Shipping</a> is set to launch a smaller IPO of up to P737 million, targeting a December 18 listing to finance fleet and shipyard expansion.</p>
+
+
+
+<p>We hope this readout helps inform your next strategy or boardroom decision. And as always, feel free to tell us what to tackle next, dear business leader. <strong>– Rappler.com</strong></p>
+
+
+
+<p><em><strong>Readout</strong> is a new content series from data consultancy <a href="https://www.thenerve.co/" target="_blank" rel="noreferrer noopener">The Nerve</a>, bringing you insights that bridge the gap between quick news headlines and dense technical reports. Readout tracks and explains business shifts in different Philippine industries. Crafted from on-the-ground reporting and data-driven analyses, Readout provides a clear read on where market and consumption are headed, what’s shaping demand across different sectors, who the key players are, and why it all matters.</em></p>
+
+
+
+<p class="has-text-align-center"><a href="https://www.thenerve.co/thought-leadership"><strong><em>Subscribe to the Readout newsletter here.</em></strong></a></p>
+
+
+
+<p></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/voices/newsletters/readout-business-regain-customer-inflation-weak-philippine-peso/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+		<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/image-43.png?resize=75%2C75&amp;crop_strategy=attention" />
+		<media:content url="https://www.rappler.com/tachyon/2026/10/image-43.png" medium="image">
+			<media:title type="html">image</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/image-43.png?resize=75%2C75&amp;crop_strategy=attention" />
+		</media:content>
+		<media:content url="https://www.rappler.com/tachyon/2026/10/image-44.png" medium="image">
+			<media:title type="html">image</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/image-44.png?resize=75%2C75&amp;crop_strategy=attention" />
+		</media:content>
+<image>https://www.rappler.com/tachyon/2026/10/BUSINESSES-AMID-WEAK-PESO-OCT-29-2026.jpg</image>	</item>
+		<item>
+		<title>Who are the candidates short-listed for SC associate justice?</title>
+		<link>https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-jbc-shortlist-october-2026/</link>
+					<comments>https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-jbc-shortlist-october-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Jairo Bolledo]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2026 17:39:03 +0800</pubDate>
+				<category><![CDATA[National News]]></category>
+		<category><![CDATA[Philippine News]]></category>
+		<category><![CDATA[Ferdinand Marcos Jr.]]></category>
+		<category><![CDATA[Judicial and Bar Council]]></category>
+		<category><![CDATA[Philippine judiciary]]></category>
+		<category><![CDATA[Supreme Court of the Philippines]]></category>
+		<guid isPermaLink="false"></guid>
+
+					<description><![CDATA[Marcos will pick his next SC associate justice appointee in place of retiring Associate Justice Amy Lazaro Javier]]></description>
+										<content:encoded><![CDATA[
+<p>MANILA, Philippines – A total of 11 candidates have been short-listed by the <a href="https://www.rappler.com/philippines/list-candidates-supreme-court-associate-justice-judicial-bar-council-october-2026/">Judicial and Bar Council (JBC) for the position of Supreme Court (SC)</a> associate justice vice Associate Justice Amy Lazaro Javier, who will retire on November 16. </p>
+
+
+
+<p>Here are the short-listed candidates in alphabetical order: </p>
+
+
+
+<ul class="wp-block-list">
+<li>Court of Appeals (CA) Associate Justice Ramon M. Bato Jr.</li>
+
+
+
+<li>Solicitor General Darlene Marie B. Berberabe</li>
+
+
+
+<li>Commission on Audit Chairperson Gamaliel A. Cordoba</li>
+
+
+
+<li>CA Associate Justice Ramon A. Cruz</li>
+
+
+
+<li>CA Associate Justice Maria Elisa Sempio Diy</li>
+
+
+
+<li>CA Associate Justice Myra V. Garcia-Fernandez</li>
+
+
+
+<li>CA Presiding Justice Fernanda Lampas Peralta</li>
+
+
+
+<li>Commission on Elections Commissioner Ernesto P. Maceda, Jr.</li>
+
+
+
+<li>CA Associate Justice Ronaldo Roberto B. Martin</li>
+
+
+
+<li>CA Associate Justice Walter S. Ong</li>
+
+
+
+<li>Court of Tax Appeals Associate Justice Maria Rowena M. San Pedro</li>
+</ul>
+
+
+
+<p>Under the <a href="http://www.officialgazette.gov.ph/constitutions/1987-constitution/">1987 Constitution</a>, the JBC is mandated to screen applicants for the judiciary and the Office of the Ombudsman. After the screening, the JBC will conduct public interviews of the qualified candidates. A deliberation will follow, then the council will submit a short list to the president who will then make the appointment. </p>
+
+
+
+<p>In this case, the JBC held the public interviews for the new candidates on October 13 and 15. It no longer interviewed bets who already went through the process since their interviews were still valid. </p>
+
+
+
+<p>The judiciary is independent, but it is the president who is constitutionally mandated to make appointments to the courts. In this case, President Ferdinand Marcos Jr. will appoint his next justice to the High Court after Lazaro Javier reaches the mandatory age of 70 next month.</p>
+
+
+
+<p>According to the SC, the short list has already been transmitted to Malacañang.</p>
+
+
+
+<p>An SC justice must be a natural-born citizen, at least 40 years old, and have been a judge or law practitioner in the Philippines for at least 15 years or more. This is found under Section 7(1), Article VIII of the 1987 Constitution. </p>
+
+
+<div class="related-article ">
+			<div class="related-article__container">
+				<div class="related-article__text">
+					<div class="related-article__eyebrow">Must Read</div>
+					<div class="related-article__title">
+						<a class="related-article__title-link" href="https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-marcos-pick-2026-part-1/">
+							<h1 class="related-article__title-text"> Part 1: New candidates in the running to be Marcos&#8217; 2nd SC justice </h1>
+						</a>
+					</div>
+				</div>
+				<div class="related-article__media-container">
+					<div class="related-article__media">
+						<a href="https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-marcos-pick-2026-part-1/">
+					 		<img decoding="async" width="449" height="253" src="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C449" class=" wp-image-3255041 wp-post-image" alt="Part 1: New candidates in the running to be Marcos&#8217; 2nd SC justice" loading="lazy" srcset="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C253&amp;zoom=2 898w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C253&amp;zoom=1.5 674w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C253&amp;zoom=1 449w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C253&amp;zoom=0.5 225w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?fit=449%2C253&amp;zoom=0.25 112w" sizes="auto, (max-width: 449px) 100vw, 449px" />
+					 	</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class="related-article ">
+			<div class="related-article__container">
+				<div class="related-article__text">
+					<div class="related-article__eyebrow">Must Read</div>
+					<div class="related-article__title">
+						<a class="related-article__title-link" href="https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-marcos-pick-2026-part-2/">
+							<h1 class="related-article__title-text"> Part 2: Old-timer bets in the running to be Marcos&#8217; 2nd SC justice </h1>
+						</a>
+					</div>
+				</div>
+				<div class="related-article__media-container">
+					<div class="related-article__media">
+						<a href="https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-marcos-pick-2026-part-2/">
+					 		<img decoding="async" width="449" height="253" src="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C449" class=" wp-image-3255160 wp-post-image" alt="Part 2: Old-timer bets in the running to be Marcos&#8217; 2nd SC justice" loading="lazy" srcset="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C253&amp;zoom=2 898w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C253&amp;zoom=1.5 674w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C253&amp;zoom=1 449w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C253&amp;zoom=0.5 225w, https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?fit=449%2C253&amp;zoom=0.25 112w" sizes="auto, (max-width: 449px) 100vw, 449px" />
+					 	</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<p>On top of this, a <a href="https://www.rappler.com/philippines/261850-jbc-2020-rules-minimum-years-stint-supreme-court-philippines/">JBC 2020 rule</a> states that an SC justice must serve a minimum of 2.5 years. This means that the eldest age of a candidate should be 67.5 years old, since the mandatory retirement age for justices is 70 years old.</p>
+
+
+
+<p>On Thursday, the JBC also published the <a href="https://www.rappler.com/philippines/chief-justice-candidates-jbc-shortlist-october-2026/">short list of chief justice nominees</a>. These are the five candidates seeking to succeed <a href="https://www.rappler.com/newsbreak/in-depth/chief-justice-alexander-gesmundo-supreme-court-stabilizing-force/">Chief Justice Alexander Gesmundo</a>:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Senior Associate Justice Marvic Leonen</li>
+
+
+
+<li>Associate Justice Alfredo Benjamin Caguioa</li>
+
+
+
+<li>Associate Justice Rodil Zalameda</li>
+
+
+
+<li>Associate Justice Japar Dimaampao</li>
+
+
+
+<li>Associate Justice Jose Midas Marquez</li>
+</ul>
+
+
+
+<p>The chief justice and associate justice posts will be Marcos’ second and third appointee to the SC, which is currently dominated by appointees of former president Rodrigo Duterte. –<strong> Rappler.com</strong></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://www.rappler.com/philippines/supreme-court-associate-justice-candidates-jbc-shortlist-october-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+		
+		<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?resize=75%2C75&amp;crop_strategy=attention" />
+		<media:content url="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg" medium="image">
+			<media:title type="html">SJ CANDIDATES 01</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-01.jpg?resize=75%2C75&amp;crop_strategy=attention" />
+		</media:content>
+		<media:content url="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg" medium="image">
+			<media:title type="html">SJ CANDIDATES 02</media:title>
+			<media:thumbnail url="https://www.rappler.com/tachyon/2026/10/SJ-CANDIDATES-02.jpg?resize=75%2C75&amp;crop_strategy=attention" />
+		</media:content>
+<image>https://www.rappler.com/tachyon/2026/08/supreme-court.jpeg</image>	</item>
+	</channel>
+</rss>

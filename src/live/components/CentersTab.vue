@@ -2,10 +2,11 @@
 import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { live, refreshCenters, centersList, chooseCenter, setLocation, refreshAllSoon } from '../liveStore.js'
+import { live, refreshCenters, centersList, chooseCenter, setLocation, refreshAllSoon, effectiveRoute, currentReports, refreshFloodReports } from '../liveStore.js'
+import { reportRadius } from '../reports.js'
 import { OSM_SOURCE, SNAPSHOT_SOURCE } from '../api.js'
 import { formatDistance, formatDuration } from '../geo.js'
-import { formatTime } from '../cache.js'
+import { formatTime, formatAge } from '../cache.js'
 import DataStamp from './DataStamp.vue'
 
 const emit = defineEmits(['guide'])
@@ -13,9 +14,49 @@ const emit = defineEmits(['guide'])
 const mapEl = ref(null)
 let map = null
 let layers = null
+let reportsLayer = null
 const centers = computed(() => centersList())
 const verifiedCount = computed(() => centers.value.filter((c) => c.verified).length)
-const route = computed(() => live.route?.data ?? null)
+// The route actually followed: the OSRM alternative crossing the fewest reported flood areas.
+const route = computed(() => effectiveRoute())
+const reports = computed(() => currentReports())
+
+const REPORT_COLORS = { high: '#e63946', medium: '#f4a261' }
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
+const safeUrl = (u) => (/^https?:\/\//.test(u ?? '') ? u : '#')
+const LEVEL_NOTE = {
+  barangay: 'barangay-level location',
+  city: 'city/municipality-level location: the exact streets are unknown',
+  province: 'province-level location only',
+  region: 'region-level location only',
+}
+
+function reportPopup(r) {
+  const who = r.confidence === 'high' ? 'Official advisory (high confidence)' : 'News report (medium confidence)'
+  return `<div class="report-popup">
+    <b>${esc(r.place?.name)}</b><br>
+    <span>${esc(who)} · reported ${esc(formatAge(Date.parse(r.publishedAt)))}</span>
+    <p>${esc(r.headline)}</p>
+    ${r.excerpt ? `<p class="ex">${esc(r.excerpt)}</p>` : ''}
+    <a href="${esc(safeUrl(r.sourceUrl))}" target="_blank" rel="noopener">Source: ${esc(r.source)}</a>
+    <p class="ex">${esc(LEVEL_NOTE[r.polygon ? 'province' : r.place?.precision] ?? '')}. May be incomplete or outdated. Follow official advisories.</p>
+  </div>`
+}
+
+function drawReports() {
+  if (!reportsLayer) return
+  reportsLayer.clearLayers()
+  for (const r of reports.value) {
+    const color = REPORT_COLORS[r.confidence] ?? REPORT_COLORS.medium
+    const popup = reportPopup(r)
+    const opts = { color, weight: 1.5, fillColor: color, fillOpacity: 0.12, bubblingMouseEvents: false }
+    if (r.polygon?.length > 2) L.polygon(r.polygon, opts).bindPopup(popup).addTo(reportsLayer)
+    else if (reportRadius(r)) L.circle([r.lat, r.lon], { ...opts, radius: reportRadius(r) }).bindPopup(popup).addTo(reportsLayer)
+    L.circleMarker([r.lat, r.lon], { radius: 7, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1, bubblingMouseEvents: false })
+      .bindPopup(popup)
+      .addTo(reportsLayer)
+  }
+}
 const routeIsForSelected = computed(
   () => route.value && live.selected && route.value.to.lat === live.selected.lat && route.value.to.lon === live.selected.lon
 )
@@ -61,7 +102,7 @@ function draw() {
   }
   if (routeIsForSelected.value) {
     L.polyline(route.value.coords.map((p) => [p.lat, p.lon]), {
-      color: route.value.straight ? '#f2a516' : '#2fbf5a',
+      color: route.value.hazards.length ? '#e63946' : route.value.straight ? '#f2a516' : '#2fbf5a',
       weight: 5,
       opacity: 0.9,
       dashArray: route.value.straight ? '8 8' : null,
@@ -86,6 +127,12 @@ onMounted(() => {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map)
   layers = L.layerGroup().addTo(map)
+  reportsLayer = L.layerGroup()
+  if (live.showReports) reportsLayer.addTo(map)
+  L.control.layers(null, { 'Reported flooding': reportsLayer }, { collapsed: false, position: 'topright' }).addTo(map)
+  map.on('overlayadd overlayremove', (e) => {
+    if (e.layer === reportsLayer) live.showReports = e.type === 'overlayadd'
+  })
   // Without GPS, the user can tap the map to set their location.
   map.on('click', (e) => {
     if (live.location && !settingLocation.value) return
@@ -94,16 +141,20 @@ onMounted(() => {
     refreshAllSoon() // debounced: several quick taps send one set of requests
   })
   draw()
+  drawReports()
   fit()
   refreshCenters() // reuses cached results while fresh (see POLICY in liveStore.js)
+  refreshFloodReports()
 })
 
 onBeforeUnmount(() => {
   map?.remove()
   map = null
+  reportsLayer = null
 })
 
 watch([centers, () => live.selected, route], () => draw())
+watch(reports, () => drawReports())
 watch(() => live.location, () => { draw(); fit() })
 watch(route, () => fit())
 
@@ -132,6 +183,8 @@ function openGuide(c) {
       <span><i :style="{ background: COLORS.school }"></i>School</span>
       <span><i :style="{ background: COLORS.shelter }"></i>Shelter</span>
       <span><i :style="{ background: COLORS.assembly }"></i>Assembly point</span>
+      <span><i class="ring" :style="{ background: REPORT_COLORS.high }"></i>Flood: official</span>
+      <span><i class="ring" :style="{ background: REPORT_COLORS.medium }"></i>Flood: news</span>
       <button class="link" @click="settingLocation = !settingLocation">{{ settingLocation ? 'Cancel' : 'Set location on map' }}</button>
     </div>
 
@@ -155,6 +208,15 @@ function openGuide(c) {
         </p>
         <p v-if="route.straight" class="warn small">
           Straight line only: the real path is longer. Follow roads on high ground.
+        </p>
+        <p v-if="route.avoided" class="ok small">
+          ✔ A longer route was chosen to avoid reported flooding ({{ route.options }} routes compared).
+        </p>
+        <p v-if="route.hazards.length" class="danger small">
+          ⚠ This route passes near reported flooding:
+          {{ route.hazards.map((h) => h.place.name).join(', ') }}.
+          {{ route.options > 1 ? 'No alternative avoids it.' : 'No alternative route was available.' }}
+          Check the streets ahead and turn back if they are flooded.
         </p>
       </template>
       <p class="danger small">
@@ -296,6 +358,25 @@ h2 {
 }
 .warn {
   color: #ffcf5c;
+}
+.ok {
+  color: #5dff8a;
+}
+.legend i.ring {
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+:deep(.report-popup) {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  max-width: 240px;
+}
+:deep(.report-popup p) {
+  margin: 4px 0;
+}
+:deep(.report-popup .ex) {
+  color: #555;
+  font-size: 0.75rem;
 }
 .danger {
   color: #ff9a9c;

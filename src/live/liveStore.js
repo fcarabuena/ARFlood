@@ -11,9 +11,11 @@ import {
   mergeCenters,
   fetchRoute,
   fetchContacts,
+  fetchFloodReports,
 } from './api.js'
 import { assessRisk } from './risk.js'
 import { inBbox } from './osm.js'
+import { activeReports, nearbyReports, pickRoute } from './reports.js'
 
 // ---------------------------------------------------------------------------
 // Polite use of free public servers (Open-Meteo, Overpass, OSRM/FOSSGIS):
@@ -80,6 +82,9 @@ export const live = reactive({
   selected: null, // chosen evacuation center
   route: loadCache('route'),
   routeLoading: false,
+
+  floodReports: loadCache('flood-reports'), // { data: flood-reports.json, fetchedAt, stale }
+  showReports: true, // map layer toggle
 
   guideOpen: false,
   contacts: loadCache('contacts'),
@@ -171,8 +176,31 @@ export function currentRisk() {
   const w = live.weather?.data
   const r = live.river?.data
   const e = live.elevation?.data
-  if (!w && !r && !e) return null
-  return assessRisk({ weather: w, river: r, elevation: e })
+  const near = reportsNearMe()
+  if (!w && !r && !e && !near.length) return null
+  return assessRisk({ weather: w, river: r, elevation: e, reportsNearby: near })
+}
+
+// ---- Reported flooding ------------------------------------------------------
+
+/** Loads public/flood-reports.json (our own file; network first, offline from cache). */
+export async function refreshFloodReports() {
+  live.floodReports = await settle('flood-reports', fetchFloodReports)
+}
+
+/** Reports from the last 24 h. */
+export function currentReports() {
+  return activeReports(live.floodReports?.data)
+}
+
+/** Reports within 2 km of you (see reports.js for how areas are sized). */
+export function reportsNearMe() {
+  return nearbyReports(currentReports(), live.location)
+}
+
+/** The chosen route, re-evaluated against the current reports. */
+export function effectiveRoute() {
+  return pickRoute(live.route?.data ?? null, currentReports())
 }
 
 /** How far (m) the cached data's location is from where you are now. */

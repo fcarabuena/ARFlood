@@ -1,13 +1,17 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { live, locate, refreshConditions, refreshCenters, currentRisk } from '../liveStore.js'
+import { live, locate, refreshConditions, refreshCenters, currentRisk, currentReports, reportsNearMe, refreshFloodReports } from '../liveStore.js'
 import { ACTIONS } from '../risk.js'
-import { WEATHER_SOURCE, FLOOD_SOURCE, ELEVATION_SOURCE } from '../api.js'
-import { formatTime } from '../cache.js'
+import { WEATHER_SOURCE, FLOOD_SOURCE, ELEVATION_SOURCE, REPORTS_SOURCE } from '../api.js'
+import { formatTime, formatAge } from '../cache.js'
+import { formatDistance } from '../geo.js'
 import SafetyBanner from './SafetyBanner.vue'
 import DataStamp from './DataStamp.vue'
 
 const risk = computed(() => currentRisk())
+const allReports = computed(() => currentReports())
+const nearReports = computed(() => reportsNearMe())
+const reportsDoc = computed(() => live.floodReports?.data)
 const action = computed(() => (risk.value ? ACTIONS[risk.value.level] : null))
 const LEVELS = {
   low: { icon: '✓', label: 'Low' },
@@ -19,6 +23,7 @@ async function useMyLocation() {
   if (await locate()) {
     refreshConditions()
     refreshCenters()
+    refreshFloodReports()
   }
 }
 
@@ -66,6 +71,9 @@ const hovered = ref(null)
       <ol class="steps">
         <li v-for="s in action.steps" :key="s">{{ s }}</li>
       </ol>
+      <p v-if="risk.raised" class="small raised">
+        ⬆ Raised one level because flooding was reported within 2 km of you.
+      </p>
       <p class="small disclaimer">
         Automated estimate, not an official warning.
         <template v-if="risk.partial"> Some data is missing, so the real risk may be higher.</template>
@@ -78,6 +86,42 @@ const hovered = ref(null)
     <section v-else-if="live.location" class="card">
       <p>{{ live.conditionsLoading ? 'Checking rain, river and elevation…' : 'No data yet.' }}</p>
       <button v-if="!live.conditionsLoading" class="btn" @click="refreshConditions()">Load conditions</button>
+    </section>
+
+    <!-- Reported flooding (PAGASA advisories + news, updated every 30 min) -->
+    <section v-if="reportsDoc" class="card">
+      <div class="row">
+        <h2>Reported flooding (last 24 h)</h2>
+        <button class="btn small-btn" @click="live.tab = 'centers'">Map</button>
+      </div>
+      <p v-if="!live.location" class="small muted">Set your location to see reports near you.</p>
+      <ul v-if="nearReports.length" class="reports">
+        <li v-for="r in nearReports.slice(0, 5)" :key="r.id" :class="r.confidence">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <b>{{ r.place.name }}</b>
+            <span class="small muted">
+              · {{ r.confidence === 'high' ? 'Official advisory' : 'News' }} · reported {{ formatAge(Date.parse(r.publishedAt)) }}
+              · {{ r.distance > 0 ? formatDistance(r.distance) + ' away' : 'your area' }}
+            </span>
+            <div class="small">
+              <a :href="r.sourceUrl" target="_blank" rel="noopener">{{ r.headline }}</a> ({{ r.source }})
+            </div>
+          </div>
+        </li>
+      </ul>
+      <p v-else-if="live.location" class="small">
+        No flooding reported within 2 km of you in the last 24 h ({{ allReports.length }} report{{ allReports.length === 1 ? '' : 's' }} elsewhere).
+      </p>
+      <p class="small warn">
+        ⚠ Reports are collected automatically from PAGASA advisories and news headlines. They may be incomplete,
+        outdated or only roughly located, and no report does not mean no flooding. Always follow official advisories.
+      </p>
+      <p class="stamp">
+        Source: <a :href="REPORTS_SOURCE.url" target="_blank" rel="noopener">{{ REPORTS_SOURCE.name }}</a> ·
+        list checked {{ formatTime(Date.parse(reportsDoc.generatedAt)) }} ({{ formatAge(Date.parse(reportsDoc.generatedAt)) }})
+        <span v-if="live.floodReports?.stale" class="warn"> · could not refresh: showing saved list</span>
+      </p>
     </section>
 
     <!-- What the estimate is based on -->
@@ -206,6 +250,46 @@ h2 {
 .risk-title {
   font-size: 1.1rem;
   font-weight: 700;
+}
+.raised {
+  margin: 10px 0 0;
+  color: #ffb3b5;
+  font-weight: 600;
+}
+.reports {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.reports li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.reports .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex: none;
+  background: #f4a261;
+}
+.reports li.high .dot {
+  background: #e63946;
+}
+.reports a,
+.stamp a {
+  color: inherit;
+}
+.warn {
+  color: #ffcf5c;
+}
+.stamp {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  opacity: 0.8;
 }
 .steps {
   margin: 12px 0 0;

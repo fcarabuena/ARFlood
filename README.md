@@ -53,6 +53,8 @@ npm run dev          # HTTPS dev server, reachable on your local network (--host
 npm run build        # checks the data files, then builds into dist/
 npm run check-data   # only validate public/evac-centers.json and public/emergency-contacts.json
 npm run fetch-centers -- --area "Marikina"   # bundle an OpenStreetMap snapshot of evacuation places
+npm run scrape-floods -- --dry-run   # collect flood reports now and print them (normally done by GitHub Actions)
+npm test             # scraper and report-logic tests (saved sample pages, no network)
 npm run preview      # serve the production build (also HTTPS + --host)
 npm run preview:local  # production build over plain HTTP on localhost:4173 (to test offline/PWA)
 npm run deploy       # build for GitHub Pages and publish (see "Deploy to GitHub Pages")
@@ -282,6 +284,101 @@ more than 2 km from where you are now is labelled as such.
 - The arrow follows the route's next point about 20 m ahead, or points straight at the center when only a
   straight line is available. **It cannot see floodwater: always check the street ahead yourself.**
 
+## Reported flooding
+
+A GitHub Actions workflow (`.github/workflows/flood-reports.yml`) runs `scripts/scrape-floods.js` **every 30
+minutes** (and on demand). It collects recent flood reports, commits them to `public/flood-reports.json` when
+they changed, and redeploys GitHub Pages. In Live Mode:
+
+- **Map layer "Reported flooding"** (toggle at the top right of the map): red = official PAGASA advisory (high
+  confidence), amber = news report (medium confidence). Each popup shows the place, the source link and "reported X
+  min ago".
+- **Banner** on every tab when a report is within **2 km** of you, and the **risk card goes up one level**.
+- **Routes:** OSRM can't be told to avoid an area, so the app asks for up to 3 alternative walking routes and picks
+  the one crossing the fewest reported flood areas (a longer detour is used if it avoids them). If every route passes
+  near a report, the route turns red with a warning, also shown in the AR Guide.
+- Everywhere: *"Reports may be incomplete or outdated. Always follow official advisories."* No report does not mean
+  no flooding.
+
+### Sources
+
+Each source's robots.txt is checked every run (cached for that run). A source that disallows us is skipped.
+Every URL is requested **at most once per run**, requests to one site are spaced ≥ 1.5 s apart, and the bot
+identifies itself as `FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; …)`.
+
+| Source | Confidence | robots.txt / terms (checked 2026-10-29) | What is used |
+|---|---|---|---|
+| [PAGASA public alerts (CAP feed)](https://publicalert.pagasa.dost.gov.ph/feeds/) | high | No robots.txt (404 = no restrictions). Feed says **"Licensed under CC BY 4.0"**. | General Flood Advisories and rainfall warnings from the last 24 h that are still active (not "Final"/all clear, not expired). Each area comes with its **PSGC code** and polygon. |
+| [PAGASA river basin status](https://www.pagasa.dost.gov.ph/flood) | high | No robots.txt (404). Public government page. | Basins whose status is not "Non-Flood Watch". |
+| Google News RSS search ("flood", "baha", "pagbaha", "lubog") | — | **robots.txt: `Disallow: /` for all agents, no Allow for `/rss`. Skipped.** | Nothing. The check stays in the code, so it would be used automatically if Google allowed it. |
+| [Inquirer.net](https://newsinfo.inquirer.net/feed), [Rappler](https://www.rappler.com/feed/), [GMA News](https://data.gmanetwork.com/gno/rss/news/feed.xml), [Philstar](https://www.philstar.com/rss/nation) RSS | medium | robots.txt allows these feed paths (GMA's data host has no robots.txt). Articles are © the publishers. | Items from the last 24 h that mention flooding ("flood…", "baha", "binaha", "pagbaha", "lubog"…). Items only about "flood control" projects are ignored. Only the **headline, a ≤ 220-character excerpt and the link** are kept. |
+
+Google News was in the original plan, but its robots.txt forbids crawling `/rss`, so the four RSS feeds above
+replace it. Each is a publisher's own official feed. Remove any of them in `scripts/lib/sources.mjs` if you prefer.
+
+### Place names (no guessing)
+
+Places are matched against **`data/ph-places.json`**: the PSA's PSGC list (17 regions, 81 provinces, 1,634
+cities/municipalities, 42,046 barangays), with coordinates from Wikidata (CC0). It is rebuilt with
+`npm run build-places` when the PSGC changes. Rules:
+
+- PAGASA advisories carry PSGC codes, which are looked up directly.
+- In news, the longest name wins ("Quezon City" is not Quezon province, "Metro Manila" is not Manila), and only
+  capitalised mentions count.
+- Names shared by several towns (e.g. "San Jose") are used only if a province or region in the same text says which
+  one; otherwise they are skipped. Town names that are everyday words or famous people's names (Rizal, Bago,
+  Mabini…) need the same confirmation.
+- Barangays are only matched as "Barangay/Brgy. X" or "X, <City>" next to their own city. They use the barangay's
+  coordinates when Wikidata has them, otherwise the city's (marked as city-level precision).
+- Precision shown on the map: barangay (700 m area), city/municipality (3 km), PAGASA advisory (the province polygon).
+  Province- or region-only news is listed but not used for "near you" or routing.
+
+### Output: `public/flood-reports.json`
+
+```json
+{
+  "generatedAt": "2026-10-29T15:25:58.240Z",
+  "windowHours": 24,
+  "sources": [{ "id": "pagasa-cap", "status": "ok", "reports": 0, "note": "…" }, { "id": "google-news", "status": "skipped", "reason": "disallowed by robots.txt (Disallow: /)" }],
+  "reports": [{
+    "id": "0fce724a1566", "kind": "news", "confidence": "medium",
+    "place": { "psgc": "015518000", "name": "Dagupan City", "level": "city", "province": "Pangasinan", "region": "Ilocos Region", "precision": "city" },
+    "lat": 16.043, "lon": 120.334,
+    "source": "GMA News", "sourceUrl": "https://www.gmanetwork.com/news/…",
+    "headline": "Floodwaters persist in Dagupan cemetery as Undas nears",
+    "excerpt": "A cemetery in Dagupan City remains flooded…",
+    "publishedAt": "2026-10-29T13:26:44.000Z"
+  }],
+  "notices": []
+}
+```
+
+Official advisories also have `polygon` and `expiresAt`. Reports older than 24 h are dropped by the scraper, and
+again by the app. The file is fetched **network-first** (not frozen in the offline cache), with the last copy used
+offline.
+
+### Reliability and the workflow
+
+- A source that fails (timeout, HTTP error, page layout change) is logged as a warning in the Actions run and its
+  summary table. The other sources are still used, and the run doesn't fail.
+- If **every** source fails, the existing file is kept unchanged.
+- The tests (`npm test`, 23 tests on saved sample pages in `tests/fixtures/`) run before each scrape. If a parser
+  is broken, the workflow stops before publishing anything.
+- The file is only rewritten when the reports changed (or every 6 h as a heartbeat), so there is no commit every
+  30 minutes.
+- **Your local copy:** the workflow commits to `master`, so run `git pull --rebase` before you push your own changes.
+- **First run:** GitHub → repository → **Actions** → "Flood reports" → **Run workflow**. Scheduled runs then
+  start automatically, though GitHub may delay them by several minutes. GitHub pauses scheduled workflows in
+  repositories with no activity for 60 days, and the workflow's own commits count as activity.
+
+### Flood-prone areas (Project NOAH): not included
+
+Project NOAH's website ([noah.up.edu.ph](https://noah.up.edu.ph)) is a JavaScript-only app: its terms, licence and
+even robots.txt can't be read without running the site, and no open licence for reusing its hazard maps could be
+confirmed. So no NOAH layer was added. If you get written permission from the UP NOAH Center (with the tile/WMS URL
+and attribution text they want), it can be added as a second overlay next to "Reported flooding" in
+`CentersTab.vue`.
+
 ## Testing AR
 
 Test in this order: the emulator first (fast iteration), then a real phone (camera, tracking, touch, performance).
@@ -430,6 +527,11 @@ GLB files live in `public/models/` and are mapped to scene slots in **`public/mo
 ```
 scripts/check-data.mjs   # validates the data files before every build
 scripts/fetch-centers.mjs  # npm run fetch-centers: bundle an OpenStreetMap snapshot (or --import an overpass-turbo export)
+scripts/scrape-floods.js   # flood reports → public/flood-reports.json (run by .github/workflows/flood-reports.yml)
+scripts/lib/               # robots.txt, polite fetcher, PSGC place matcher, sources (PAGASA CAP/basins, news RSS)
+scripts/build-places.mjs   # rebuilds data/ph-places.json (PSGC + Wikidata coordinates)
+data/ph-places.json        # bundled PSGC place list for the scraper (not shipped to the app)
+tests/                     # npm test: scraper + report logic, with saved pages in tests/fixtures/
 src/
 ├── main.js / App.vue    # app entry; App creates the engine and switches screens
 ├── store.js             # shared reactive state + persisted settings
@@ -464,6 +566,7 @@ src/
 │   ├── compass.js       # iOS/Android compass heading + permission
 │   ├── validate.js      # checks evac-centers.json / emergency-contacts.json for mistakes
 │   ├── osm.js           # OpenStreetMap query + parsing, shared with fetch-centers
+│   ├── reports.js       # reported flooding: near-you areas, route hazards, route choice
 │   └── components/      # StatusTab, CentersTab (Leaflet), GuideView, SosTab, ChecklistTab, SafetyBanner, DataStamp
 └── components/
     ├── Tips.vue         # start screen: tips, difficulty, toggles, live weather

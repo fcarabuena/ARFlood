@@ -69,9 +69,17 @@ export default defineConfig(({ mode }) => ({
         // App shell, tips, quiz, checklist, models, evac-centers.json and
         // emergency-contacts.json are all precached, so the app opens offline.
         globPatterns: ['**/*.{js,css,html,svg,png,glb,json,webmanifest}'],
+        // Updated every 30 min by the flood-reports workflow: fetched network-first
+        // (see runtimeCaching) instead of being frozen into the precache.
+        globIgnores: ['**/flood-reports.json'],
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         navigateFallback: 'index.html',
         runtimeCaching: [
+          {
+            urlPattern: /flood-reports\.json$/,
+            handler: 'NetworkFirst',
+            options: { cacheName: 'flood-reports', networkTimeoutSeconds: 6, expiration: { maxEntries: 2 } },
+          },
           {
             // Map tiles you have already looked at stay available offline.
             urlPattern: /^https:\/\/tile\.openstreetmap\.org\//,

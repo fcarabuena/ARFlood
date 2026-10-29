@@ -1,0 +1,20 @@
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<h1>404 Not Found</h1>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: robots.txt</li>
+<li>RequestId: Z40M4YMWW0SVWX7B</li>
+<li>HostId: khcE7YSLco1x6kzzqIEPXnjA4YV1DqDYz15w9ZTE0InqAcMlTU0gQ2HS42oFhGFAszBUqxMpt7ec1ytqjL/wqZE10StFmV0D</li>
+</ul>
+<h3>An Error Occurred While Attempting to Retrieve a Custom Error Document</h3>
+<ul>
+<li>Code: NoSuchKey</li>
+<li>Message: The specified key does not exist.</li>
+<li>Key: error.html</li>
+</ul>
+<hr/>
+</body>
+</html>

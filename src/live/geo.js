@@ -88,3 +88,47 @@ function geoErrorMessage(err) {
   if (err?.code === 3) return 'Getting your location took too long. Move to an open area and try again.'
   return 'Your location could not be found. Check that location/GPS is turned on.'
 }
+
+// ---- Distances to lines and areas (equirectangular; fine below ~50 km) ----
+
+function toXY(p, lat0) {
+  return [rad(p.lon) * R * Math.cos(rad(lat0)), rad(p.lat) * R]
+}
+
+/** Metres from point p to the segment a-b. */
+export function distanceToSegment(p, a, b) {
+  const [px, py] = toXY(p, p.lat)
+  const [ax, ay] = toXY(a, p.lat)
+  const [bx, by] = toXY(b, p.lat)
+  const dx = bx - ax
+  const dy = by - ay
+  const t = dx || dy ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy))) : 0
+  return Math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+}
+
+/** Metres from p to the closest point of a path [{lat, lon}, ...]. */
+export function distanceToPath(p, path) {
+  if (!path?.length) return Infinity
+  if (path.length === 1) return distance(p, path[0])
+  let best = Infinity
+  for (let i = 0; i < path.length - 1; i++) best = Math.min(best, distanceToSegment(p, path[i], path[i + 1]))
+  return best
+}
+
+/** Ray casting; polygon as [[lat, lon], ...]. */
+export function pointInPolygon(p, poly) {
+  let inside = false
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [yi, xi] = poly[i]
+    const [yj, xj] = poly[j]
+    if (yi > p.lat !== yj > p.lat && p.lon < ((xj - xi) * (p.lat - yi)) / (yj - yi) + xi) inside = !inside
+  }
+  return inside
+}
+
+/** 0 inside the polygon, otherwise metres to its edge. */
+export function distanceToPolygon(p, poly) {
+  if (pointInPolygon(p, poly)) return 0
+  const ring = poly.map(([lat, lon]) => ({ lat, lon }))
+  return distanceToPath(p, [...ring, ring[0]])
+}

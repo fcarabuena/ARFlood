@@ -46,7 +46,7 @@ function rainPoints(mm) {
 }
 
 /** @returns {{ level, score, factors: {label, value, points, note}[], partial: boolean }} */
-export function assessRisk({ weather, river, elevation }) {
+export function assessRisk({ weather, river, elevation, reportsNearby = [] }) {
   const factors = []
 
   if (weather) {
@@ -123,5 +123,19 @@ export function assessRisk({ weather, river, elevation }) {
   if (score >= 4 || waterPts >= 3) level = 'high'
   else if (score >= 2) level = 'moderate'
 
-  return { level, score, factors, partial: !weather || !river || !elevation }
+  // Flooding reported within 2 km raises the estimate one level.
+  const raised = reportsNearby.length > 0
+  if (raised) {
+    level = level === 'low' ? 'moderate' : 'high'
+    const official = reportsNearby.filter((r) => r.confidence === 'high').length
+    factors.push({
+      key: 'reports',
+      label: 'Flooding reported nearby',
+      value: `${reportsNearby.length} report${reportsNearby.length > 1 ? 's' : ''}`,
+      points: 0,
+      note: `${official ? `${official} official PAGASA advisory, ` : ''}within 2 km. Raises the estimate one level.`,
+    })
+  }
+
+  return { level, score, factors, raised, partial: !weather || !river || !elevation }
 }

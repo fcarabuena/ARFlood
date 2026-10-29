@@ -269,13 +269,18 @@ export async function fetchRoute(from, to) {
   ]
   for (const s of servers) {
     try {
-      const j = await getJSON(`${s.url}?overview=full&geometries=geojson`, { timeout: 12000 })
-      const r = j.routes?.[0]
-      if (j.code !== 'Ok' || !r) continue
-      return {
+      // Ask for alternatives so the app can pick one that avoids reported flooding
+      // (OSRM has no "avoid this area" option; see pickRoute in reports.js).
+      const j = await getJSON(`${s.url}?overview=full&geometries=geojson&alternatives=3`, { timeout: 12000 })
+      if (j.code !== 'Ok' || !j.routes?.length) continue
+      const alternatives = j.routes.map((r) => ({
         coords: r.geometry.coordinates.map(([lon, lat]) => ({ lat, lon })),
         distance: r.distance,
         duration: s.walking ? r.duration : r.distance / WALK_SPEED,
+      }))
+      return {
+        ...alternatives[0],
+        alternatives,
         source: s.name,
         straight: false,
         to: { lat: to.lat, lon: to.lon },
@@ -293,6 +298,21 @@ export async function fetchRoute(from, to) {
     straight: true,
     to: { lat: to.lat, lon: to.lon },
   }
+}
+
+// ---------------------------------------------------------------------------
+// Reported flooding (public/flood-reports.json, updated by a GitHub Actions
+// workflow every 30 min; see scripts/scrape-floods.js)
+// ---------------------------------------------------------------------------
+
+export const REPORTS_SOURCE = { name: 'Flood reports: PAGASA advisories + news headlines (flood-reports.json)', url: `${BASE}flood-reports.json` }
+
+export async function fetchFloodReports() {
+  const res = await fetch(`${BASE}flood-reports.json`, { cache: 'no-cache' })
+  if (!res.ok) throw new Error(`flood-reports.json could not be loaded (${res.status})`)
+  const j = await res.json()
+  if (!Array.isArray(j.reports)) throw new Error('flood-reports.json has no "reports" list')
+  return j
 }
 
 // ---------------------------------------------------------------------------

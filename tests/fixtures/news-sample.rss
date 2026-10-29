@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HANDMADE TEST FIXTURE (not real news). Covers the extraction rules in tests/scraper.test.mjs. -->
+<rss version="2.0"><channel><title>Sample news</title>
+<item><title>Floodwaters rise in Marikina; residents of Brgy. Tumana evacuated</title><link>https://example.com/a</link><description>Heavy rain flooded low-lying streets.</description><pubDate>Thu, 29 Oct 2026 20:00:00 +0800</pubDate></item>
+<item><title>Lubog sa baha ang ilang kalye sa Malabon at Navotas</title><link>https://example.com/b</link><description><![CDATA[<p>Binaha ang <b>Malabon</b>.</p>]]></description><pubDate>Thu, 29 Oct 2026 21:00:00 +0800</pubDate></item>
+<item><title>Senate probes flood control project anomalies in Bulacan</title><link>https://example.com/c</link><description>The flood control scam hearing continues.</description><pubDate>Thu, 29 Oct 2026 19:00:00 +0800</pubDate></item>
+<item><title>Old flood report from Pasig</title><link>https://example.com/d</link><description>Flooding in Pasig City.</description><pubDate>Mon, 26 Oct 2026 08:00:00 +0800</pubDate></item>
+<item><title>Flooding in Valenzuela City</title><link>https://example.com/e</link><description>No date on this one.</description></item>
+<item><title>Bagong bahay sa Marikina</title><link>https://example.com/f</link><description>Housing project opens.</description><pubDate>Thu, 29 Oct 2026 18:00:00 +0800</pubDate></item>
+<item><title>Classes suspended in San Jose due to flooding</title><link>https://example.com/g</link><description>Which San Jose is not stated.</description><pubDate>Thu, 29 Oct 2026 18:30:00 +0800</pubDate></item>
+</channel></rss>
