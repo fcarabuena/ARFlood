@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-30T00:42:29.775Z",
+ "generatedAt": "2026-10-30T06:53:24.639Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 51,
    "reports": 0,
    "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 3921
+   "ms": 2330
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 3621
+   "ms": 2617
   },
   {
    "id": "google-news",
@@ -50,9 +50,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 0,
-   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1942
+   "reports": 2,
+   "note": "40 items, 1 about flooding in the last 24 h, 2 place match(es)",
+   "ms": 1808
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1519
+   "ms": 2261
   },
   {
    "id": "gma",
@@ -76,9 +76,9 @@
    "terms": "no robots.txt on data.gmanetwork.com (HTTP 404); headline + excerpt + link only",
    "status": "ok",
    "found": 15,
-   "reports": 1,
-   "note": "15 items, 1 about flooding in the last 24 h, 1 place match(es)",
-   "ms": 1978
+   "reports": 0,
+   "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 2059
   },
   {
    "id": "philstar",
@@ -91,29 +91,48 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1599
+   "ms": 1805
   }
  ],
  "reports": [
   {
-   "id": "4afaa6a89061",
+   "id": "9cdb633c594c",
    "kind": "news",
    "confidence": "medium",
    "place": {
-    "psgc": "015518000",
-    "name": "Dagupan City",
+    "psgc": "031410000",
+    "name": "Malolos City",
     "level": "city",
-    "province": "Pangasinan",
-    "region": "Ilocos Region",
+    "province": "Bulacan",
+    "region": "Central Luzon",
     "precision": "city"
    },
-   "lat": 16.043,
-   "lon": 120.334,
-   "source": "GMA News",
-   "sourceUrl": "https://www.gmanetwork.com/news/topstories/regions/1007654/floodwaters-persist-in-dagupan-cemetery-as-undas-nears/story/",
-   "headline": "Floodwaters persist in Dagupan cemetery as Undas nears",
-   "excerpt": "A cemetery in Dagupan City remains flooded from the past Southwest Monsoon or Habagat season, with only a few days left before Undas.",
-   "publishedAt": "2026-10-29T13:26:44.000Z"
+   "lat": 14.84361,
+   "lon": 120.81139,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2332671/bulacan-island-fights-rising-seas-with-nature-not-concrete",
+   "headline": "Bulacan island fights rising seas with nature, not concrete",
+   "excerpt": "MANILA, Philippines — For years, residents of a flood-prone Philippine island north of Manila have elevated their homes atop layer upon layer of concrete, only to see floodwaters threaten them again. Burdened by strong…",
+   "publishedAt": "2026-10-30T05:48:00.000Z"
+  },
+  {
+   "id": "ca08fa16f166",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "133900000",
+    "name": "Manila",
+    "level": "city",
+    "region": "NCR",
+    "precision": "city"
+   },
+   "lat": 14.59583,
+   "lon": 120.97722,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2332671/bulacan-island-fights-rising-seas-with-nature-not-concrete",
+   "headline": "Bulacan island fights rising seas with nature, not concrete",
+   "excerpt": "MANILA, Philippines — For years, residents of a flood-prone Philippine island north of Manila have elevated their homes atop layer upon layer of concrete, only to see floodwaters threaten them again. Burdened by strong…",
+   "publishedAt": "2026-10-30T05:48:00.000Z"
   }
  ],
  "notices": []
