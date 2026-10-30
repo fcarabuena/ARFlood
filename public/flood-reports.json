@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-29T15:25:58.240Z",
+ "generatedAt": "2026-10-30T00:42:29.775Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 51,
    "reports": 0,
    "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 1565
+   "ms": 3921
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 1981
+   "ms": 3621
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1733
+   "ms": 1942
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1572
+   "ms": 1519
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 1,
    "note": "15 items, 1 about flooding in the last 24 h, 1 place match(es)",
-   "ms": 1526
+   "ms": 1978
   },
   {
    "id": "philstar",
@@ -91,7 +91,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2234
+   "ms": 1599
   }
  ],
  "reports": [
