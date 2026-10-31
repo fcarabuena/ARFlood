@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-31T09:23:33.189Z",
+ "generatedAt": "2026-10-31T15:28:14.728Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -14,8 +14,8 @@
    "status": "ok",
    "found": 51,
    "reports": 0,
-   "note": "51 alerts in feed, 4 flood/rainfall alerts from the last 24 h, 0 still active area(s)",
-   "ms": 10963
+   "note": "51 alerts in feed, 2 flood/rainfall alerts from the last 24 h, 0 still active area(s)",
+   "ms": 6240
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2892
+   "ms": 2574
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1929
+   "ms": 1987
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 1,
    "note": "10 items, 1 about flooding in the last 24 h, 1 place match(es)",
-   "ms": 1546
+   "ms": 1545
   },
   {
    "id": "gma",
@@ -76,9 +76,9 @@
    "terms": "no robots.txt on data.gmanetwork.com (HTTP 404); headline + excerpt + link only",
    "status": "ok",
    "found": 15,
-   "reports": 0,
-   "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1803
+   "reports": 1,
+   "note": "15 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1509
   },
   {
    "id": "philstar",
@@ -91,10 +91,29 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1584
+   "ms": 1551
   }
  ],
  "reports": [
+  {
+   "id": "a1f73d0ee3fe",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "063000000",
+    "name": "Iloilo",
+    "level": "province",
+    "region": "Western Visayas",
+    "precision": "province"
+   },
+   "lat": 11,
+   "lon": 122.66667,
+   "source": "GMA News",
+   "sourceUrl": "https://www.gmanetwork.com/news/topstories/nation/1007854/undas-2026-flooding-hits-iloilo-cemetery-flower-prices-surge-in-cotabato/story/",
+   "headline": "Undas 2026: Flooding hits Iloilo cemetery; flower prices surge in Cotabato",
+   "excerpt": "A day before All Saints\" Day, Filipinos have begun visiting cemeteries across the country to pay their respects to departed loved ones, with some areas reporting flooding and higher flower prices.",
+   "publishedAt": "2026-10-31T11:44:14.000Z"
+  },
   {
    "id": "fc6891d5686d",
    "kind": "news",
