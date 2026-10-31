@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-31T02:39:29.595Z",
+ "generatedAt": "2026-10-31T09:23:33.189Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -13,9 +13,9 @@
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
    "found": 51,
-   "reports": 4,
-   "note": "51 alerts in feed, 3 flood/rainfall alerts from the last 24 h, 4 still active area(s)",
-   "ms": 10530
+   "reports": 0,
+   "note": "51 alerts in feed, 4 flood/rainfall alerts from the last 24 h, 0 still active area(s)",
+   "ms": 10963
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 4078
+   "ms": 2892
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1901
+   "ms": 1929
   },
   {
    "id": "rappler",
@@ -63,9 +63,9 @@
    "terms": "robots.txt allows /feed/ for general bots; headline + excerpt + link only",
    "status": "ok",
    "found": 10,
-   "reports": 0,
-   "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1518
+   "reports": 1,
+   "note": "10 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1546
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1509
+   "ms": 1803
   },
   {
    "id": "philstar",
@@ -91,337 +91,28 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1770
+   "ms": 1584
   }
  ],
  "reports": [
   {
-   "id": "3603db462276",
-   "kind": "official",
-   "confidence": "high",
+   "id": "fc6891d5686d",
+   "kind": "news",
+   "confidence": "medium",
    "place": {
-    "psgc": "112300000",
-    "name": "Davao Del Norte",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
+    "psgc": "137404000",
+    "name": "Quezon City",
+    "level": "city",
+    "region": "NCR",
+    "precision": "city"
    },
-   "lat": 7.35,
-   "lon": 125.7,
-   "polygon": [
-    [
-     7.9982,
-     125.67
-    ],
-    [
-     7.7868,
-     125.7084
-    ],
-    [
-     7.5427,
-     125.9216
-    ],
-    [
-     7.3654,
-     125.8329
-    ],
-    [
-     7.2522,
-     125.6806
-    ],
-    [
-     7.2251,
-     125.5523
-    ],
-    [
-     7.5934,
-     125.5538
-    ],
-    [
-     7.5934,
-     125.2904
-    ],
-    [
-     7.6637,
-     125.4318
-    ],
-    [
-     7.9981,
-     125.3986
-    ],
-    [
-     7.9982,
-     125.67
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/16fce3a2-607c-4033-9493-fca8e0c9945c.cap",
-   "headline": "General Flood Advisory (Moderate): Davao Del Norte",
-   "excerpt": "Davao Del Norte - Rivers and its tributaries particularly Tagum-Libuganon, Tuganay, and Saug.",
-   "publishedAt": "2026-10-30T21:15:35.000Z",
-   "expiresAt": "2026-10-31T09:15:35.000Z"
-  },
-  {
-   "id": "84971d7acd8f",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "112400000",
-    "name": "Davao Del Sur",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 6.33333,
-   "lon": 125.5,
-   "polygon": [
-    [
-     7.2522,
-     125.6806
-    ],
-    [
-     7.1183,
-     125.6634
-    ],
-    [
-     7.0428,
-     125.542
-    ],
-    [
-     6.8023,
-     125.3913
-    ],
-    [
-     6.6195,
-     125.3824
-    ],
-    [
-     6.4912,
-     125.5891
-    ],
-    [
-     6.1716,
-     125.7132
-    ],
-    [
-     5.9756,
-     125.6909
-    ],
-    [
-     5.5742,
-     125.4171
-    ],
-    [
-     5.5767,
-     125.3144
-    ],
-    [
-     5.6399,
-     125.3768
-    ],
-    [
-     6.0698,
-     125.5319
-    ],
-    [
-     6.2957,
-     125.4741
-    ],
-    [
-     6.3168,
-     125.271
-    ],
-    [
-     6.4377,
-     125.1364
-    ],
-    [
-     6.5365,
-     125.169
-    ],
-    [
-     6.7691,
-     125.0896
-    ],
-    [
-     6.9646,
-     125.2675
-    ],
-    [
-     7.4468,
-     125.2879
-    ],
-    [
-     7.5937,
-     125.2638
-    ],
-    [
-     7.5934,
-     125.2904
-    ],
-    [
-     7.5934,
-     125.5538
-    ],
-    [
-     7.2251,
-     125.5523
-    ],
-    [
-     7.2522,
-     125.6806
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/16fce3a2-607c-4033-9493-fca8e0c9945c.cap",
-   "headline": "General Flood Advisory (Moderate): Davao Del Sur",
-   "excerpt": "Davao Del Sur - Rivers and its tributaries particularly Davao, Lasang, Bunawan, Matina, Talomo, Lipadas, Tagulaya Sibulan, Digos, and Padada Mainit.",
-   "publishedAt": "2026-10-30T21:15:35.000Z",
-   "expiresAt": "2026-10-31T09:15:35.000Z"
-  },
-  {
-   "id": "911d63a81f41",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "118200000",
-    "name": "Davao De Oro",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 7.6,
-   "lon": 125.95,
-   "polygon": [
-    [
-     7.9939,
-     126.1681
-    ],
-    [
-     7.6227,
-     126.3064
-    ],
-    [
-     7.2656,
-     126.3228
-    ],
-    [
-     7.0838,
-     125.9354
-    ],
-    [
-     7.3654,
-     125.8329
-    ],
-    [
-     7.5427,
-     125.9216
-    ],
-    [
-     7.7868,
-     125.7084
-    ],
-    [
-     7.9982,
-     125.67
-    ],
-    [
-     7.9939,
-     126.1681
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/16fce3a2-607c-4033-9493-fca8e0c9945c.cap",
-   "headline": "General Flood Advisory (Moderate): Davao De Oro",
-   "excerpt": "Davao De Oro - Rivers and its tributaries particularly Matiao, Hijo, Agusan, and Manat.",
-   "publishedAt": "2026-10-30T21:15:35.000Z",
-   "expiresAt": "2026-10-31T09:15:35.000Z"
-  },
-  {
-   "id": "ec18e8f12ffa",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "112500000",
-    "name": "Davao Oriental",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 7.16667,
-   "lon": 126.33333,
-   "polygon": [
-    [
-     7.998,
-     126.3702
-    ],
-    [
-     7.9426,
-     126.3755
-    ],
-    [
-     7.8394,
-     126.3771
-    ],
-    [
-     7.7009,
-     126.5506
-    ],
-    [
-     7.2881,
-     126.6069
-    ],
-    [
-     7.0004,
-     126.4399
-    ],
-    [
-     7.0044,
-     126.339
-    ],
-    [
-     6.754,
-     126.2637
-    ],
-    [
-     6.4337,
-     126.229
-    ],
-    [
-     6.4946,
-     126.0984
-    ],
-    [
-     6.8522,
-     126.0817
-    ],
-    [
-     7.0838,
-     125.9354
-    ],
-    [
-     7.2656,
-     126.3228
-    ],
-    [
-     7.6227,
-     126.3064
-    ],
-    [
-     7.9939,
-     126.1681
-    ],
-    [
-     7.998,
-     126.3702
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/16fce3a2-607c-4033-9493-fca8e0c9945c.cap",
-   "headline": "General Flood Advisory (Moderate): Davao Oriental",
-   "excerpt": "Davao Oriental - Rivers and its tributaries particularly Cateel, Dapnan, Baganga Mahan-ub, Manorigao, Caraga, Casaunan, Quinonoan, Bagwan, Mayo, Bitanayan, Sumlog, Tangmoan, Dacongbonwa, Kabasagan, Manay, Maya and…",
-   "publishedAt": "2026-10-30T21:15:35.000Z",
-   "expiresAt": "2026-10-31T09:15:35.000Z"
+   "lat": 14.65,
+   "lon": 121.0475,
+   "source": "Rappler",
+   "sourceUrl": "https://www.rappler.com/philippines/metro-manila/rainwater-collection-system-quezon-city-el-nino/",
+   "headline": "El Niño-ready? These infrastructures in Quezon City collect rainwater",
+   "excerpt": "Underneath these basketball courts in Quezon City are water detention basins, which can address flooding and water supply problems",
+   "publishedAt": "2026-10-31T06:30:00.000Z"
   }
  ],
  "notices": []
