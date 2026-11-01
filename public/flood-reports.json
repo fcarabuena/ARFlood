@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T09:03:46.316Z",
+ "generatedAt": "2026-11-01T16:14:51.587Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 51,
    "reports": 0,
    "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 4567
+   "ms": 4110
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 3696
+   "ms": 3662
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1928
+   "ms": 1956
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1648
+   "ms": 1533
   },
   {
    "id": "gma",
@@ -76,9 +76,9 @@
    "terms": "no robots.txt on data.gmanetwork.com (HTTP 404); headline + excerpt + link only",
    "status": "ok",
    "found": 15,
-   "reports": 0,
-   "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1998
+   "reports": 2,
+   "note": "15 items, 1 about flooding in the last 24 h, 2 place match(es)",
+   "ms": 1750
   },
   {
    "id": "philstar",
@@ -91,9 +91,48 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1789
+   "ms": 1594
   }
  ],
- "reports": [],
+ "reports": [
+  {
+   "id": "2f55a4ac3673",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "031400000",
+    "name": "Bulacan",
+    "level": "province",
+    "region": "Central Luzon",
+    "precision": "province"
+   },
+   "lat": 15,
+   "lon": 121.08333,
+   "source": "GMA News",
+   "sourceUrl": "https://www.gmanetwork.com/news/topstories/nation/1007942/some-cemeteries-flooded-during-undas-2026/story/",
+   "headline": "Some cemeteries flooded during Undas 2026",
+   "excerpt": "Some cemeteries in Bulacan and Pampanga failed to escape the brunt of flooding, as parts of their grounds remain submerged during Undas this year.",
+   "publishedAt": "2026-11-01T15:51:57.000Z"
+  },
+  {
+   "id": "f628de483b81",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "035400000",
+    "name": "Pampanga",
+    "level": "province",
+    "region": "Central Luzon",
+    "precision": "province"
+   },
+   "lat": 15.06667,
+   "lon": 120.66667,
+   "source": "GMA News",
+   "sourceUrl": "https://www.gmanetwork.com/news/topstories/nation/1007942/some-cemeteries-flooded-during-undas-2026/story/",
+   "headline": "Some cemeteries flooded during Undas 2026",
+   "excerpt": "Some cemeteries in Bulacan and Pampanga failed to escape the brunt of flooding, as parts of their grounds remain submerged during Undas this year.",
+   "publishedAt": "2026-11-01T15:51:57.000Z"
+  }
+ ],
  "notices": []
 }
