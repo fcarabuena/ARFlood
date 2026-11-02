@@ -20,6 +20,9 @@ export function norm(s) {
 }
 const clean = (name) => name.replace(/\s*\([^)]*\)/g, '').trim() // "Santa Elena (Pob.)" -> "Santa Elena"
 
+// Words before a person's name (a following capitalised word is a name, not a place).
+const TITLES = /^(VP|Vice|President|Pres\.?|PBBM|Sen\.?|Senator|Rep\.?|Cong\.?|Congressman|Congresswoman|Mayor|Vice-Mayor|Gov\.?|Governor|Sec\.?|Secretary|Usec\.?|Asec\.?|Atty\.?|Dr\.?|Mr\.?|Mrs\.?|Ms\.?|Engr\.?|Fr\.?|Bishop|Cardinal|Kapitan|Kap\.?|Councilor|Gen\.?|Col\.?|Capt\.?|Maj\.?|PNP|Chief)$/i
+
 // Local-language names for a few cities (PSGC code -> extra names).
 const EXTRA_CITY_NAMES = { '133900000': ['Maynila'] }
 // Cities known simply by their name (no "City" suffix in everyday use).
@@ -37,6 +40,7 @@ const RISKY = new Set(
     'san jose', 'san isidro', 'alcala', 'asuncion', 'magallanes', 'jones', 'bato', 'ilog', 'bago', 'bula', 'pili',
     'bulan', 'baybay', 'tubod', 'pandan', 'dao', 'lupi', 'bayang', 'kalayaan', 'liberty', 'balete', 'manay', 'mati',
     'malay', 'sto nino', 'santo nino', 'santa maria', 'san miguel', 'san juan', 'santa rosa', 'san pedro',
+    'sara', // also a first name (e.g. Vice President Sara Duterte)
   ].map(norm)
 )
 
@@ -84,7 +88,11 @@ export class PlaceMatcher {
       }
       this.byCode.set(c.code, place)
       if (/ City$/.test(base)) {
-        add(base, place, true) // "Quezon City": never shorten to "Quezon"
+        add(base, place, true)
+        // "Ormoc City" is usually written just "Ormoc". The short form is a weak
+        // match, so a clash like "Quezon" (also a province and several towns)
+        // stays ambiguous and is skipped unless the text says which one.
+        add(base.replace(/ City$/, ''), place)
       } else {
         add(base, place)
         if (c.isCity) {
@@ -121,8 +129,9 @@ export class PlaceMatcher {
       for (let n = Math.min(this.maxWords, tokens.length - i); n >= 1 && !hit; n--) {
         const phrase = words.slice(i, i + n).join(' ')
         const entries = this.index.get(norm(phrase))
-        // Proper nouns only: the first letter in the text must be upper case.
-        if (entries && /^\p{Lu}/u.test(strip(words[i]))) hit = { phrase, n, entries, at: i }
+        // Proper nouns only: the first letter in the text must be upper case,
+        // and not a person's name after a title ("VP Sara", "Mayor Marcy", "Sen. Bong").
+        if (entries && /^\p{Lu}/u.test(strip(words[i])) && !(i > 0 && TITLES.test(words[i - 1]))) hit = { phrase, n, entries, at: i }
       }
       if (hit) {
         out.push(hit)
@@ -142,7 +151,8 @@ export class PlaceMatcher {
     const regions = new Set()
     for (const m of mentions) {
       for (const e of m.entries) {
-        if (m.entries.length === 1 && e.place.level === 'province' && !RISKY.has(norm(e.place.name))) provinces.add(e.place.code)
+        // Any mention that can be a province gives context ("Iloilo" = province or Iloilo City).
+        if (e.place.level === 'province' && !RISKY.has(norm(e.place.name))) provinces.add(e.place.code)
         if (e.place.level === 'region') regions.add(e.place.code)
       }
     }

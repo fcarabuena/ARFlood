@@ -218,10 +218,14 @@ export function parseRss(body) {
 const FLOOD_WORDS = /\b(flood(s|ed|ing|waters?)?|baha|binaha|bumaha|binabaha|pagbaha|lubog|nalubog|lumubog|inundat(ed|ion))\b/i
 // Mentions that are about projects/politics, not water on the ground.
 const NOT_FLOODING = /\bflood[\s-]*(control|mitigation|management|protection|projects?|funds?|scam|kickbacks?|anomal\w*|probe|insertions?)\b/gi
+// Stories looking back at past floods (anniversaries, memorials), not current flooding.
+const LOOKING_BACK = /\b(anniversary|anibersaryo|commemorat\w*|remembrance|memorial (service|mass|rites)|mass grave|\d+\s+years?\s+(ago|after|since)|(19|20)\d\d tragedy)\b/i
 
-/** True if the text talks about actual flooding (not only "flood control" projects etc.). */
+/** True if the text is about current flooding (not "flood control" projects or anniversaries). */
 export function isFloodNews(s) {
-  return FLOOD_WORDS.test(String(s).replace(NOT_FLOODING, ' '))
+  const text = String(s)
+  if (LOOKING_BACK.test(text)) return false
+  return FLOOD_WORDS.test(text.replace(NOT_FLOODING, ' '))
 }
 
 export function newsToReports(items, { matcher, now, source }) {

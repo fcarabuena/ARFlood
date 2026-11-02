@@ -6,6 +6,11 @@ on:
   schedule:
     - cron: '*/30 * * * *' # GitHub may start scheduled runs a few minutes late
   workflow_dispatch: # "Run workflow" button in the Actions tab
+    inputs:
+      deploy:
+        description: "Redeploy the site even if reports didn't change"
+        type: boolean
+        default: false
 
 permissions:
   contents: write # commit the data file and push the gh-pages branch
@@ -16,7 +21,7 @@ concurrency:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # pinned: avoids the ubuntu-latest → Ubuntu 26 migration
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
@@ -27,6 +32,13 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Identity for the data commit and the gh-pages deploy. gh-pages' -u option
+      # can't parse "github-actions[bot]" (the brackets), so it reads this instead.
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       # Parser tests run against saved sample pages; if they fail, the site is
       # left unchanged rather than publishing badly parsed data.
@@ -45,8 +57,6 @@ jobs:
             echo "No change in flood reports."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add public/flood-reports.json
             git commit -m "Update flood reports"
             git pull --rebase --autostash
@@ -55,11 +65,10 @@ jobs:
           fi
 
       - name: Redeploy GitHub Pages
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.commit.outputs.changed == 'true' || github.event.inputs.deploy == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm run build:pages
           npx gh-pages -d dist --nojekyll -m "Deploy (flood reports update)" \
-            -u "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
             -r "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"

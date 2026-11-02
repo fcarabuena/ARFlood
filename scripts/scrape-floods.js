@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, mkdirSync, appendFileSync } from 'node:fs'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { PoliteFetcher, USER_AGENT } from './lib/http.mjs'
 import { PlaceMatcher } from './lib/places.mjs'
-import { SOURCES } from './lib/sources.mjs'
+import { SOURCES, isFloodNews } from './lib/sources.mjs'
 
 const WINDOW_HOURS = 24
 const HEARTBEAT_HOURS = 6 // rewrite at least this often so the app can show "checked recently"
@@ -52,6 +52,27 @@ export async function scrape({ sources = SOURCES, fetcher, matcher, now = new Da
     notices: [...notices.values()].filter(keep).sort(byTime),
     sources: results,
   }
+}
+
+/**
+ * News feeds only list their latest items, so a story can drop out of a feed
+ * within hours. Keep earlier *news* reports until they are 24 h old, re-checked
+ * with today's rules (flood wording + place match), so a fixed false positive
+ * doesn't linger. Official PAGASA items are not carried over: they describe the
+ * current state, so an ended advisory must disappear at once.
+ */
+export function carryOverNews(previous, result, { matcher, now }) {
+  const cutoff = now.getTime() - WINDOW_HOURS * 3600 * 1000
+  const have = new Set(result.reports.map((r) => r.id))
+  const kept = []
+  for (const r of previous?.reports ?? []) {
+    if (r.kind !== 'news' || have.has(r.id) || !(Date.parse(r.publishedAt) >= cutoff)) continue
+    const text = `${r.headline}. ${r.excerpt ?? ''}`
+    if (!isFloodNews(text) || !matcher.match(text).some((p) => p.psgc === r.place?.psgc)) continue
+    kept.push(r)
+  }
+  const byTime = (a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt) || a.id.localeCompare(b.id)
+  return { ...result, reports: [...result.reports, ...kept].sort(byTime), carried: kept.length }
 }
 
 const comparable = (doc) => JSON.stringify({ r: doc?.reports ?? [], n: doc?.notices ?? [] })
@@ -94,7 +115,17 @@ async function main() {
 
   console.log(`Flood reports scrape at ${now.toISOString()} as "${USER_AGENT}"`)
   const fetcher = new PoliteFetcher({ fetchImpl })
-  const result = await scrape({ fetcher, matcher: new PlaceMatcher(), now })
+  const matcher = new PlaceMatcher()
+  let existing = null
+  try {
+    existing = JSON.parse(readFileSync(out, 'utf8'))
+  } catch {
+    // first run
+  }
+  const fresh = await scrape({ fetcher, matcher, now })
+  const result = carryOverNews(existing, fresh, { matcher, now })
+  const dropped = (existing?.reports ?? []).filter((r) => r.kind === 'news' && !result.reports.some((x) => x.id === r.id)).length
+  console.log(`Earlier news reports: ${result.carried} kept (still < ${WINDOW_HOURS} h old), ${dropped} dropped (too old, or no longer pass the checks).`)
   console.log(`\n${result.reports.length} report(s), ${result.notices.length} unlocated notice(s) within ${WINDOW_HOURS} h; ${fetcher.requested.length} HTTP requests:`)
   for (const u of fetcher.requested) console.log(`  GET ${u}`)
 
@@ -116,12 +147,6 @@ async function main() {
   if (errors.length === result.sources.length) {
     console.log('\nEvery source failed: keeping the existing file unchanged.')
     return
-  }
-  let existing = null
-  try {
-    existing = JSON.parse(readFileSync(out, 'utf8'))
-  } catch {
-    // first run
   }
   const doc = buildDocument(result, now)
   const stale = !existing?.generatedAt || now - new Date(existing.generatedAt) > HEARTBEAT_HOURS * 3600 * 1000

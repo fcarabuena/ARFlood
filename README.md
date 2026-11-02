@@ -361,7 +361,17 @@ offline.
 
 - A source that fails (timeout, HTTP error, page layout change) is logged as a warning in the Actions run and its
   summary table. The other sources are still used, and the run doesn't fail.
-- If **every** source fails, the existing file is kept unchanged.
+- If **every** source fails, the existing file is kept unchanged. A skipped source (robots.txt) or "no change in
+  reports" never fails the job.
+- News feeds only list their latest items, so earlier **news** reports are kept until they are 24 h old, re-checked
+  each run against the current rules (flood wording, place match). Official PAGASA items always reflect the latest
+  feed, so an ended advisory disappears at once.
+- Stories looking back at past floods (anniversaries, memorials, "years ago") are not counted as current flooding,
+  and a capitalised word after a title ("VP Sara", "Mayor …") is treated as a person, not a place.
+- Runs on `ubuntu-24.04` (pinned). The deploy uses the `github-actions[bot]` identity from `git config`.
+  `gh-pages`' `-u` option can't parse the `[bot]` brackets, which made every deploy fail until 2026-11-02.
+- **Manual run:** Actions → Flood reports → **Run workflow**. Tick *"Redeploy the site even if reports didn't
+  change"* to republish the site.
 - The tests (`npm test`, 23 tests on saved sample pages in `tests/fixtures/`) run before each scrape. If a parser
   is broken, the workflow stops before publishing anything.
 - The file is only rewritten when the reports changed (or every 6 h as a heartbeat), so there is no commit every

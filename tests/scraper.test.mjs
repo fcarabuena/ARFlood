@@ -192,3 +192,47 @@ describe('whole run', () => {
     assert.ok(res.reports.some((r) => r.place.name === 'Dagupan City' && r.source === 'GMA News'))
   })
 })
+
+describe('false positives found in production (Philstar, 2026-11-02)', () => {
+  const head = 'VP Sara visits mass grave of Ormoc flash flood victims'
+  const ex = 'As the 35th anniversary of the Ormoc flash floods nears, Vice President Sara Duterte yesterday visited the city public cemetery mass grave memorial in Leyte where the victims of the 1991 tragedy were buried.'
+  test('anniversary / memorial stories are not current flooding', () => {
+    assert.equal(isFloodNews(`${head}. ${ex}`), false)
+    assert.equal(isFloodNews('Flash flood hits Ormoc'), true)
+  })
+  test('"VP Sara" is a person, not Sara (Iloilo); "Ormoc" alone is Ormoc City', () => {
+    const names = (s) => matcher.match(s).map((p) => p.name)
+    assert.deepEqual(names(head), ['Ormoc City'])
+    assert.deepEqual(names('Floods in Sara, Iloilo'), ['Sara'])
+    assert.deepEqual(names('Mayor Marcy Teodoro inspects flooded Marikina'), ['Marikina City'])
+    assert.deepEqual(names('Floods hit Quezon'), []) // province, city or towns: still ambiguous
+  })
+})
+
+describe('carrying news reports over between runs', async () => {
+  const { carryOverNews } = await import('../scripts/scrape-floods.js')
+  const now = new Date('2026-11-02T14:00:00Z')
+  const news = (id, headline, psgc, hoursAgo) => ({
+    id, kind: 'news', confidence: 'medium', headline, excerpt: '',
+    place: { psgc, name: id }, publishedAt: new Date(now - hoursAgo * 3600e3).toISOString(),
+  })
+  test('the real false reports from production are dropped on the next run', () => {
+    const previous = JSON.parse(fx('flood-reports-philstar-2026-11-02.json'))
+    assert.equal(previous.reports.length, 2) // "Leyte" and "Sara"
+    const r = carryOverNews(previous, { reports: [], notices: [], sources: [] }, { matcher, now: new Date('2026-11-02T06:40:00Z') })
+    assert.equal(r.reports.length, 0)
+  })
+  test('valid news under 24 h is kept after leaving the feed; old, official and invalid items are not', () => {
+    const previous = {
+      reports: [
+        news('kept', 'Floodwaters rise in Marikina', '137402000', 3),
+        news('old', 'Floodwaters rise in Marikina', '137402000', 30),
+        news('wrong-place', 'Floodwaters rise in Marikina', '082600000', 3),
+        { ...news('official', 'General Flood Advisory: Leyte', '083700000', 1), kind: 'official' },
+      ],
+    }
+    const current = { reports: [news('new', 'Baha sa Malabon', '137501000', 1)], notices: [], sources: [] }
+    const r = carryOverNews(previous, current, { matcher, now })
+    assert.deepEqual(r.reports.map((x) => x.id), ['new', 'kept'])
+  })
+})
