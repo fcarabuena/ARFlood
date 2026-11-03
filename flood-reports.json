@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-03T13:50:22.126Z",
+ "generatedAt": "2026-11-03T20:27:20.395Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 51,
    "reports": 0,
    "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 2321
+   "ms": 5915
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2602
+   "ms": 2633
   },
   {
    "id": "google-news",
@@ -50,9 +50,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 0,
-   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1944
+   "reports": 2,
+   "note": "40 items, 1 about flooding in the last 24 h, 2 place match(es)",
+   "ms": 2050
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1538
+   "ms": 2682
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1506
+   "ms": 1552
   },
   {
    "id": "philstar",
@@ -91,9 +91,49 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1623
+   "ms": 1569
   }
  ],
- "reports": [],
+ "reports": [
+  {
+   "id": "172c8ed2c82b",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "030803000",
+    "name": "Balanga City",
+    "level": "city",
+    "province": "Bataan",
+    "region": "Central Luzon",
+    "precision": "city"
+   },
+   "lat": 14.68333,
+   "lon": 120.53333,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2335580/mangroves-now-shield-balanga-from-floods-serve-as-fishing-lifeline",
+   "headline": "Mangroves now shield Balanga from floods, serve as fishing lifeline",
+   "excerpt": "MANILA, Philippines — For years, Balanga City’s degraded coastlines exposed its communities to flooding, and fish catches declined, especially during storms. Among those who witnessed those times was Jaime…",
+   "publishedAt": "2026-11-03T20:18:15.000Z"
+  },
+  {
+   "id": "8210d695343f",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "133900000",
+    "name": "Manila",
+    "level": "city",
+    "region": "NCR",
+    "precision": "city"
+   },
+   "lat": 14.59583,
+   "lon": 120.97722,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2335580/mangroves-now-shield-balanga-from-floods-serve-as-fishing-lifeline",
+   "headline": "Mangroves now shield Balanga from floods, serve as fishing lifeline",
+   "excerpt": "MANILA, Philippines — For years, Balanga City’s degraded coastlines exposed its communities to flooding, and fish catches declined, especially during storms. Among those who witnessed those times was Jaime…",
+   "publishedAt": "2026-11-03T20:18:15.000Z"
+  }
+ ],
  "notices": []
 }
