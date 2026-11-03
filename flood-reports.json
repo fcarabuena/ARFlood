@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-02T23:48:44.314Z",
+ "generatedAt": "2026-11-03T05:49:42.900Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 51,
    "reports": 0,
    "note": "51 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 5684
+   "ms": 8319
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 3841
+   "ms": 4906
   },
   {
    "id": "google-news",
@@ -50,9 +50,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 2,
-   "note": "40 items, 1 about flooding in the last 24 h, 2 place match(es)",
-   "ms": 1935
+   "reports": 0,
+   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 1916
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1520
+   "ms": 3125
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1920
+   "ms": 1523
   },
   {
    "id": "philstar",
@@ -91,50 +91,9 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1774
+   "ms": 1718
   }
  ],
- "reports": [
-  {
-   "id": "200e463e8805",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "160308000",
-    "name": "San Francisco",
-    "level": "municipality",
-    "province": "Agusan Del Sur",
-    "region": "Caraga",
-    "precision": "city"
-   },
-   "lat": 8.505,
-   "lon": 125.9771,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2334951/family-friends-fans-pay-tribute-to-rene-baterbonia-on-undas",
-   "headline": "Family, friends, fans pay tribute to Rene Baterbonia on Undas",
-   "excerpt": "SAN FRANCISCO, Agusan del Sur—Months after his untimely demise, outpourings of grief, love, and demands for justice continue to trail the late Agusan del Sur basketball standout Rene “Bobet” Baterbonia, as floral…",
-   "publishedAt": "2026-11-02T19:42:00.000Z"
-  },
-  {
-   "id": "f27a1d258fc5",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "160311000",
-    "name": "Talacogon",
-    "level": "municipality",
-    "province": "Agusan Del Sur",
-    "region": "Caraga",
-    "precision": "city"
-   },
-   "lat": 8.4488,
-   "lon": 125.7869,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2334951/family-friends-fans-pay-tribute-to-rene-baterbonia-on-undas",
-   "headline": "Family, friends, fans pay tribute to Rene Baterbonia on Undas",
-   "excerpt": "SAN FRANCISCO, Agusan del Sur—Months after his untimely demise, outpourings of grief, love, and demands for justice continue to trail the late Agusan del Sur basketball standout Rene “Bobet” Baterbonia, as floral…",
-   "publishedAt": "2026-11-02T19:42:00.000Z"
-  }
- ],
+ "reports": [],
  "notices": []
 }
