@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06T19:02:21.817Z",
+ "generatedAt": "2026-11-06T23:46:47.116Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -12,10 +12,10 @@
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
-   "found": 30,
+   "found": 24,
    "reports": 0,
-   "note": "30 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 4013
+   "note": "24 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
+   "ms": 7691
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2741
+   "ms": 5072
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1959
+   "ms": 2682
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2679
+   "ms": 1563
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1525
+   "ms": 1513
   },
   {
    "id": "philstar",
@@ -91,49 +91,9 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1602
+   "ms": 1729
   }
  ],
- "reports": [
-  {
-   "id": "30c283d466fa",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "133900000",
-    "name": "Manila",
-    "level": "city",
-    "region": "NCR",
-    "precision": "city"
-   },
-   "lat": 14.59583,
-   "lon": 120.97722,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2336869/balangas-mangroves-natural-shield-vs-floods-lifeline-for-fisherfolks",
-   "headline": "Balanga’s mangroves natural shield vs floods, lifeline for fisherfolks",
-   "excerpt": "MANILA, Philippines — For years, coastal communities in Balanga City lived with a growing sense of uncertainty. Floodwaters regularly threatened homes and fishponds during high tide, especially when accompanied by…",
-   "publishedAt": "2026-11-05T23:36:36.000Z"
-  },
-  {
-   "id": "8ddea8856db2",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "030803000",
-    "name": "Balanga City",
-    "level": "city",
-    "province": "Bataan",
-    "region": "Central Luzon",
-    "precision": "city"
-   },
-   "lat": 14.68333,
-   "lon": 120.53333,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2336869/balangas-mangroves-natural-shield-vs-floods-lifeline-for-fisherfolks",
-   "headline": "Balanga’s mangroves natural shield vs floods, lifeline for fisherfolks",
-   "excerpt": "MANILA, Philippines — For years, coastal communities in Balanga City lived with a growing sense of uncertainty. Floodwaters regularly threatened homes and fishponds during high tide, especially when accompanied by…",
-   "publishedAt": "2026-11-05T23:36:36.000Z"
-  }
- ],
+ "reports": [],
  "notices": []
 }
