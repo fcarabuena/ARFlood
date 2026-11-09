@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T11:03:50.746Z",
+ "generatedAt": "2026-11-09T21:35:09.211Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -15,7 +15,7 @@
    "found": 6,
    "reports": 0,
    "note": "6 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 3423
+   "ms": 5965
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 3473
+   "ms": 2599
   },
   {
    "id": "google-news",
@@ -50,9 +50,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 0,
-   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 3307
+   "reports": 1,
+   "note": "40 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1815
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1520
+   "ms": 3093
   },
   {
    "id": "gma",
@@ -77,8 +77,8 @@
    "status": "ok",
    "found": 15,
    "reports": 0,
-   "note": "15 items, 1 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1511
+   "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 1884
   },
   {
    "id": "philstar",
@@ -91,9 +91,29 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1746
+   "ms": 1783
   }
  ],
- "reports": [],
+ "reports": [
+  {
+   "id": "2f45e88388ee",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "133900000",
+    "name": "Manila",
+    "level": "city",
+    "region": "NCR",
+    "precision": "city"
+   },
+   "lat": 14.59583,
+   "lon": 120.97722,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2338552/adu-legal-aid-office-hails-acquittal-of-2-clients-arrested-over-protests",
+   "headline": "AdU legal aid office hails acquittal of 2 clients arrested over protests",
+   "excerpt": "MANILA, Philippines — The Legal Aid Office of the Adamson University College of Law on Monday welcomed the acquittal of two of its clients who were arrested on Sept. 21 last year, in connection with the Baha Sa Luneta…",
+   "publishedAt": "2026-11-09T19:39:00.000Z"
+  }
+ ],
  "notices": []
 }
