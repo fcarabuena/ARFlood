@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-10T12:29:03.283Z",
+ "generatedAt": "2026-11-10T19:57:56.876Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -26,7 +26,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 3381
+   "ms": 3378
   },
   {
    "id": "google-news",
@@ -48,9 +48,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 0,
-   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1958
+   "reports": 2,
+   "note": "40 items, 1 about flooding in the last 24 h, 2 place match(es)",
+   "ms": 2030
   },
   {
    "id": "rappler",
@@ -63,7 +63,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2645
+   "ms": 2213
   },
   {
    "id": "gma",
@@ -76,7 +76,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1728
+   "ms": 1957
   },
   {
    "id": "philstar",
@@ -89,28 +89,49 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1584
+   "ms": 1601
   }
  ],
  "reports": [
   {
-   "id": "2f45e88388ee",
+   "id": "80321aec4043",
    "kind": "news",
    "confidence": "medium",
    "place": {
-    "psgc": "133900000",
-    "name": "Manila",
-    "level": "city",
-    "region": "NCR",
+    "psgc": "160308000",
+    "name": "San Francisco",
+    "level": "municipality",
+    "province": "Agusan Del Sur",
+    "region": "Caraga",
     "precision": "city"
    },
-   "lat": 14.59583,
-   "lon": 120.97722,
+   "lat": 8.505,
+   "lon": 125.9771,
    "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2338552/adu-legal-aid-office-hails-acquittal-of-2-clients-arrested-over-protests",
-   "headline": "AdU legal aid office hails acquittal of 2 clients arrested over protests",
-   "excerpt": "MANILA, Philippines — The Legal Aid Office of the Adamson University College of Law on Monday welcomed the acquittal of two of its clients who were arrested on Sept. 21 last year, in connection with the Baha Sa Luneta…",
-   "publishedAt": "2026-11-09T19:39:00.000Z"
+   "sourceUrl": "https://newsinfo.inquirer.net/2339308/tandag-city-suspends-in-person-classes-due-to-heavy-rains",
+   "headline": "Tandag City suspends in-person classes due to heavy rains",
+   "excerpt": "SAN FRANCISCO, Agusan del Sur — The local government of Tandag City, Surigao del Sur, suspended face-to-face classes across all levels in both public and private schools on Tuesday due to heavy downpours that triggered…",
+   "publishedAt": "2026-11-10T18:59:35.000Z"
+  },
+  {
+   "id": "df7b18126827",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "166819000",
+    "name": "Tandag City",
+    "level": "city",
+    "province": "Surigao Del Sur",
+    "region": "Caraga",
+    "precision": "city"
+   },
+   "lat": 9.07889,
+   "lon": 126.19861,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2339308/tandag-city-suspends-in-person-classes-due-to-heavy-rains",
+   "headline": "Tandag City suspends in-person classes due to heavy rains",
+   "excerpt": "SAN FRANCISCO, Agusan del Sur — The local government of Tandag City, Surigao del Sur, suspended face-to-face classes across all levels in both public and private schools on Tuesday due to heavy downpours that triggered…",
+   "publishedAt": "2026-11-10T18:59:35.000Z"
   }
  ],
  "notices": []
