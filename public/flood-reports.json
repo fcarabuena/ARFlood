@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-11T00:33:37.368Z",
+ "generatedAt": "2026-11-11T07:34:42.251Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -26,7 +26,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2768
+   "ms": 2618
   },
   {
    "id": "google-news",
@@ -48,9 +48,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 7,
-   "note": "40 items, 3 about flooding in the last 24 h, 7 place match(es)",
-   "ms": 1941
+   "reports": 0,
+   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 2033
   },
   {
    "id": "rappler",
@@ -63,7 +63,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1584
+   "ms": 2189
   },
   {
    "id": "gma",
@@ -75,8 +75,8 @@
    "status": "ok",
    "found": 15,
    "reports": 0,
-   "note": "15 items, 1 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1509
+   "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
+   "ms": 1540
   },
   {
    "id": "philstar",
@@ -89,7 +89,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1716
+   "ms": 1683
   }
  ],
  "reports": [
@@ -112,126 +112,6 @@
    "headline": "La Union town breaks ground on 1st Ligtas Pinoy Center in Ilocos Region",
    "excerpt": "CALASIAO, Pangasinan — Residents of Bagulin, La Union, who are forced to flee rising floodwaters and landslides during the rainy and typhoon seasons, will soon have a safer refuge as the municipality broke ground on…",
    "publishedAt": "2026-11-10T21:24:34.000Z"
-  },
-  {
-   "id": "350058bc60a6",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "013304007",
-    "name": "Suyo, Bagulin",
-    "level": "barangay",
-    "city": "Bagulin",
-    "province": "La Union",
-    "region": "Ilocos Region",
-    "precision": "city"
-   },
-   "lat": 16.6079,
-   "lon": 120.43783,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339378/la-union-town-breaks-ground-on-1st-ligtas-pinoy-center-in-ilocos-region",
-   "headline": "La Union town breaks ground on 1st Ligtas Pinoy Center in Ilocos Region",
-   "excerpt": "CALASIAO, Pangasinan — Residents of Bagulin, La Union, who are forced to flee rising floodwaters and landslides during the rainy and typhoon seasons, will soon have a safer refuge as the municipality broke ground on…",
-   "publishedAt": "2026-11-10T21:24:34.000Z"
-  },
-  {
-   "id": "b8241f02342d",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "012932000",
-    "name": "Suyo",
-    "level": "municipality",
-    "province": "Ilocos Sur",
-    "region": "Ilocos Region",
-    "precision": "city"
-   },
-   "lat": 16.98389,
-   "lon": 120.51389,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339378/la-union-town-breaks-ground-on-1st-ligtas-pinoy-center-in-ilocos-region",
-   "headline": "La Union town breaks ground on 1st Ligtas Pinoy Center in Ilocos Region",
-   "excerpt": "CALASIAO, Pangasinan — Residents of Bagulin, La Union, who are forced to flee rising floodwaters and landslides during the rainy and typhoon seasons, will soon have a safer refuge as the municipality broke ground on…",
-   "publishedAt": "2026-11-10T21:24:34.000Z"
-  },
-  {
-   "id": "bb8242c715fd",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "013300000",
-    "name": "La Union",
-    "level": "province",
-    "region": "Ilocos Region",
-    "precision": "province"
-   },
-   "lat": 16.5,
-   "lon": 120.41667,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339378/la-union-town-breaks-ground-on-1st-ligtas-pinoy-center-in-ilocos-region",
-   "headline": "La Union town breaks ground on 1st Ligtas Pinoy Center in Ilocos Region",
-   "excerpt": "CALASIAO, Pangasinan — Residents of Bagulin, La Union, who are forced to flee rising floodwaters and landslides during the rainy and typhoon seasons, will soon have a safer refuge as the municipality broke ground on…",
-   "publishedAt": "2026-11-10T21:24:34.000Z"
-  },
-  {
-   "id": "17768ec78bcd",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "036918000",
-    "name": "San Jose",
-    "level": "municipality",
-    "province": "Tarlac",
-    "region": "Central Luzon",
-    "precision": "city"
-   },
-   "lat": 15.47806,
-   "lon": 120.46389,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339367/dbp-extends-p5-39m-for-tarlac-reforestation-flood-mitigation-projects",
-   "headline": "DBP extends P5.39M for Tarlac reforestation, flood mitigation projects",
-   "excerpt": "SAN JOSE, Tarlac—State-owned Development Bank of the Philippines (DBP) and the Provincial Government of Tarlac recently signed a memorandum of agreement with the former donating P5.39 million to jump-start…",
-   "publishedAt": "2026-11-10T21:05:01.000Z"
-  },
-  {
-   "id": "80321aec4043",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "160308000",
-    "name": "San Francisco",
-    "level": "municipality",
-    "province": "Agusan Del Sur",
-    "region": "Caraga",
-    "precision": "city"
-   },
-   "lat": 8.505,
-   "lon": 125.9771,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339308/tandag-city-suspends-in-person-classes-due-to-heavy-rains",
-   "headline": "Tandag City suspends in-person classes due to heavy rains",
-   "excerpt": "SAN FRANCISCO, Agusan del Sur — The local government of Tandag City, Surigao del Sur, suspended face-to-face classes across all levels in both public and private schools on Tuesday due to heavy downpours that triggered…",
-   "publishedAt": "2026-11-10T18:59:35.000Z"
-  },
-  {
-   "id": "df7b18126827",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "166819000",
-    "name": "Tandag City",
-    "level": "city",
-    "province": "Surigao Del Sur",
-    "region": "Caraga",
-    "precision": "city"
-   },
-   "lat": 9.07889,
-   "lon": 126.19861,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339308/tandag-city-suspends-in-person-classes-due-to-heavy-rains",
-   "headline": "Tandag City suspends in-person classes due to heavy rains",
-   "excerpt": "SAN FRANCISCO, Agusan del Sur — The local government of Tandag City, Surigao del Sur, suspended face-to-face classes across all levels in both public and private schools on Tuesday due to heavy downpours that triggered…",
-   "publishedAt": "2026-11-10T18:59:35.000Z"
   }
  ],
  "notices": []
