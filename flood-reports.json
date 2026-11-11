@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-11T15:56:55.641Z",
+ "generatedAt": "2026-11-11T22:36:03.001Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -26,7 +26,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2604
+   "ms": 2751
   },
   {
    "id": "google-news",
@@ -50,7 +50,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1811
+   "ms": 1997
   },
   {
    "id": "rappler",
@@ -63,7 +63,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1552
+   "ms": 1556
   },
   {
    "id": "gma",
@@ -76,7 +76,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1878
+   "ms": 1873
   },
   {
    "id": "philstar",
@@ -89,30 +89,9 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1715
+   "ms": 1649
   }
  ],
- "reports": [
-  {
-   "id": "0a7873f487fe",
-   "kind": "news",
-   "confidence": "medium",
-   "place": {
-    "psgc": "015517000",
-    "name": "Calasiao",
-    "level": "municipality",
-    "province": "Pangasinan",
-    "region": "Ilocos Region",
-    "precision": "city"
-   },
-   "lat": 16.01667,
-   "lon": 120.36667,
-   "source": "Inquirer.net",
-   "sourceUrl": "https://newsinfo.inquirer.net/2339378/la-union-town-breaks-ground-on-1st-ligtas-pinoy-center-in-ilocos-region",
-   "headline": "La Union town breaks ground on 1st Ligtas Pinoy Center in Ilocos Region",
-   "excerpt": "CALASIAO, Pangasinan — Residents of Bagulin, La Union, who are forced to flee rising floodwaters and landslides during the rainy and typhoon seasons, will soon have a safer refuge as the municipality broke ground on…",
-   "publishedAt": "2026-11-10T21:24:34.000Z"
-  }
- ],
+ "reports": [],
  "notices": []
 }
