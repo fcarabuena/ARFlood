@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-13T17:00:13.122Z",
+ "generatedAt": "2026-11-13T22:30:58.590Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -12,10 +12,10 @@
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
-   "found": 15,
-   "reports": 6,
-   "note": "15 alerts in feed, 4 flood/rainfall alerts from the last 24 h, 6 still active area(s)",
-   "ms": 10029
+   "found": 16,
+   "reports": 0,
+   "note": "16 alerts in feed, 4 flood/rainfall alerts from the last 24 h, 0 still active area(s)",
+   "ms": 9084
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 4054
+   "ms": 2598
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1974
+   "ms": 1981
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1551
+   "ms": 2763
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2061
+   "ms": 1528
   },
   {
    "id": "philstar",
@@ -91,498 +91,9 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1752
+   "ms": 1607
   }
  ],
- "reports": [
-  {
-   "id": "24830d3b9a9f",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "112500000",
-    "name": "Davao Oriental",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 7.16667,
-   "lon": 126.33333,
-   "polygon": [
-    [
-     7.998,
-     126.3702
-    ],
-    [
-     7.9426,
-     126.3755
-    ],
-    [
-     7.8394,
-     126.3771
-    ],
-    [
-     7.7009,
-     126.5506
-    ],
-    [
-     7.2881,
-     126.6069
-    ],
-    [
-     7.0004,
-     126.4399
-    ],
-    [
-     7.0044,
-     126.339
-    ],
-    [
-     6.754,
-     126.2637
-    ],
-    [
-     6.4337,
-     126.229
-    ],
-    [
-     6.4946,
-     126.0984
-    ],
-    [
-     6.8522,
-     126.0817
-    ],
-    [
-     7.0838,
-     125.9354
-    ],
-    [
-     7.2656,
-     126.3228
-    ],
-    [
-     7.6227,
-     126.3064
-    ],
-    [
-     7.9939,
-     126.1681
-    ],
-    [
-     7.998,
-     126.3702
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/0d3dec69-26b3-4b48-97b7-6179681d4b35.cap",
-   "headline": "General Flood Advisory (Moderate): Davao Oriental",
-   "excerpt": "Davao Oriental - Rivers and its tributaries particularly Cateel, Dapnan, Baganga Mahan-ub, Manorigao, Caraga, Casaunan, Quinonoan, Bagwan, Mayo, Bitanayan, Sumlog, Tangmoan, Dacongbonwa, Kabasagan, Manay, Maya and…",
-   "publishedAt": "2026-11-13T09:11:02.000Z",
-   "expiresAt": "2026-11-13T21:11:02.000Z"
-  },
-  {
-   "id": "2d9b91542b38",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "118200000",
-    "name": "Davao De Oro",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 7.6,
-   "lon": 125.95,
-   "polygon": [
-    [
-     7.9939,
-     126.1681
-    ],
-    [
-     7.6227,
-     126.3064
-    ],
-    [
-     7.2656,
-     126.3228
-    ],
-    [
-     7.0838,
-     125.9354
-    ],
-    [
-     7.3654,
-     125.8329
-    ],
-    [
-     7.5427,
-     125.9216
-    ],
-    [
-     7.7868,
-     125.7084
-    ],
-    [
-     7.9982,
-     125.67
-    ],
-    [
-     7.9939,
-     126.1681
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/0d3dec69-26b3-4b48-97b7-6179681d4b35.cap",
-   "headline": "General Flood Advisory (Moderate): Davao De Oro",
-   "excerpt": "Davao De Oro - Rivers and its tributaries particularly Matiao, Hijo, Agusan, and Manat.",
-   "publishedAt": "2026-11-13T09:11:02.000Z",
-   "expiresAt": "2026-11-13T21:11:02.000Z"
-  },
-  {
-   "id": "4bdfb1913785",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "112400000",
-    "name": "Davao Del Sur",
-    "level": "province",
-    "region": "Davao Region",
-    "precision": "province"
-   },
-   "lat": 6.33333,
-   "lon": 125.5,
-   "polygon": [
-    [
-     7.2522,
-     125.6806
-    ],
-    [
-     7.1183,
-     125.6634
-    ],
-    [
-     7.0428,
-     125.542
-    ],
-    [
-     6.8023,
-     125.3913
-    ],
-    [
-     6.6195,
-     125.3824
-    ],
-    [
-     6.4912,
-     125.5891
-    ],
-    [
-     6.1716,
-     125.7132
-    ],
-    [
-     5.9756,
-     125.6909
-    ],
-    [
-     5.5742,
-     125.4171
-    ],
-    [
-     5.5767,
-     125.3144
-    ],
-    [
-     5.6399,
-     125.3768
-    ],
-    [
-     6.0698,
-     125.5319
-    ],
-    [
-     6.2957,
-     125.4741
-    ],
-    [
-     6.3168,
-     125.271
-    ],
-    [
-     6.4377,
-     125.1364
-    ],
-    [
-     6.5365,
-     125.169
-    ],
-    [
-     6.7691,
-     125.0896
-    ],
-    [
-     6.9646,
-     125.2675
-    ],
-    [
-     7.4468,
-     125.2879
-    ],
-    [
-     7.5937,
-     125.2638
-    ],
-    [
-     7.5934,
-     125.2904
-    ],
-    [
-     7.5934,
-     125.5538
-    ],
-    [
-     7.2251,
-     125.5523
-    ],
-    [
-     7.2522,
-     125.6806
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/0d3dec69-26b3-4b48-97b7-6179681d4b35.cap",
-   "headline": "General Flood Advisory (Moderate): Davao Del Sur",
-   "excerpt": "Davao Del Sur - Rivers and its tributaries particularly Davao, Lasang, Bunawan, Matina, Talomo, Lipadas, Tagulaya Sibulan, Digos, and Padada Mainit.",
-   "publishedAt": "2026-11-13T09:11:02.000Z",
-   "expiresAt": "2026-11-13T21:11:02.000Z"
-  },
-  {
-   "id": "1c5e7b6f6408",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "126300000",
-    "name": "South Cotabato",
-    "level": "province",
-    "region": "SOCCSKSARGEN",
-    "precision": "province"
-   },
-   "lat": 6.16667,
-   "lon": 125,
-   "polygon": [
-    [
-     6.5365,
-     125.169
-    ],
-    [
-     6.4377,
-     125.1364
-    ],
-    [
-     6.34,
-     125.0739
-    ],
-    [
-     6.2681,
-     125.2705
-    ],
-    [
-     6.0939,
-     125.2392
-    ],
-    [
-     5.9578,
-     125.1073
-    ],
-    [
-     6.0042,
-     124.791
-    ],
-    [
-     6.1986,
-     124.3991
-    ],
-    [
-     6.3432,
-     124.2458
-    ],
-    [
-     6.3485,
-     124.7185
-    ],
-    [
-     6.5257,
-     124.6059
-    ],
-    [
-     6.659,
-     124.7301
-    ],
-    [
-     6.5365,
-     124.833
-    ],
-    [
-     6.5365,
-     125.169
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/655b90b5-931f-4979-be92-7317a73e97d6.cap",
-   "headline": "General Flood Advisory (Moderate): South Cotabato",
-   "excerpt": "South Cotabato - Rivers and its tributaries particularly Siquil, Makar and Banga.",
-   "publishedAt": "2026-11-13T09:09:19.000Z",
-   "expiresAt": "2026-11-13T21:09:19.000Z"
-  },
-  {
-   "id": "b978430851c0",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "126500000",
-    "name": "Sultan Kudarat",
-    "level": "province",
-    "region": "SOCCSKSARGEN",
-    "precision": "province"
-   },
-   "lat": 6.55,
-   "lon": 124.28333,
-   "polygon": [
-    [
-     6.6426,
-     124.8625
-    ],
-    [
-     6.6413,
-     124.8617
-    ],
-    [
-     6.7332,
-     124.9945
-    ],
-    [
-     6.7691,
-     125.0896
-    ],
-    [
-     6.5365,
-     125.169
-    ],
-    [
-     6.5365,
-     124.833
-    ],
-    [
-     6.659,
-     124.7301
-    ],
-    [
-     6.5257,
-     124.6059
-    ],
-    [
-     6.3485,
-     124.7185
-    ],
-    [
-     6.3432,
-     124.2458
-    ],
-    [
-     6.1986,
-     124.3991
-    ],
-    [
-     6.1139,
-     124.365
-    ],
-    [
-     6.2127,
-     124.185
-    ],
-    [
-     6.429,
-     124.0379
-    ],
-    [
-     6.746,
-     124.0418
-    ],
-    [
-     6.7278,
-     124.5048
-    ],
-    [
-     6.8546,
-     124.5612
-    ],
-    [
-     6.7557,
-     124.757
-    ],
-    [
-     6.6426,
-     124.8625
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/655b90b5-931f-4979-be92-7317a73e97d6.cap",
-   "headline": "General Flood Advisory (Moderate): Sultan Kudarat",
-   "excerpt": "Sultan Kudarat - Rivers and its tributaries particularly Tian and Kraan.",
-   "publishedAt": "2026-11-13T09:09:19.000Z",
-   "expiresAt": "2026-11-13T21:09:19.000Z"
-  },
-  {
-   "id": "be48a2951f4d",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "128000000",
-    "name": "Sarangani",
-    "level": "province",
-    "region": "SOCCSKSARGEN",
-    "precision": "province"
-   },
-   "lat": 5.86667,
-   "lon": 125.28333,
-   "polygon": [
-    [
-     5.9578,
-     125.1073
-    ],
-    [
-     5.8583,
-     124.9245
-    ],
-    [
-     6.0136,
-     124.5362
-    ],
-    [
-     6.1139,
-     124.365
-    ],
-    [
-     6.1986,
-     124.3991
-    ],
-    [
-     6.0042,
-     124.791
-    ],
-    [
-     5.9578,
-     125.1073
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/655b90b5-931f-4979-be92-7317a73e97d6.cap",
-   "headline": "General Flood Advisory (Moderate): Sarangani",
-   "excerpt": "Sarangani - Rivers and its tributaries particularly Kalaong, Buayan-Malungon, Lun Padido, Lun Masla and Glan.",
-   "publishedAt": "2026-11-13T09:09:19.000Z",
-   "expiresAt": "2026-11-13T21:09:19.000Z"
-  }
- ],
+ "reports": [],
  "notices": []
 }
