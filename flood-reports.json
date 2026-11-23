@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-22T22:23:11.824Z",
+ "generatedAt": "2026-11-23T02:59:26.913Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -12,10 +12,10 @@
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
-   "found": 23,
+   "found": 22,
    "reports": 7,
-   "note": "23 alerts in feed, 5 flood/rainfall alerts from the last 24 h, 7 still active area(s)",
-   "ms": 9736
+   "note": "22 alerts in feed, 5 flood/rainfall alerts from the last 24 h, 7 still active area(s)",
+   "ms": 9850
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 1,
    "note": "22 basins, 1 not at \"Non-Flood Watch\"",
-   "ms": 2575
+   "ms": 2666
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1888
+   "ms": 1911
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2660
+   "ms": 2527
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1877
+   "ms": 1883
   },
   {
    "id": "philstar",
@@ -91,7 +91,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1671
+   "ms": 1704
   }
  ],
  "reports": [
@@ -103,7 +103,7 @@
    "sourceUrl": "https://pubfiles.pagasa.dost.gov.ph/pagasaweb/files/hmd/riverbasin/cagayan.pdf",
    "headline": "Cagayan river basin: Flood Watch",
    "excerpt": "PAGASA basin hydrological forecast status for the Cagayan river basin is \"Flood Watch\".",
-   "publishedAt": "2026-11-22T22:23:11.824Z",
+   "publishedAt": "2026-11-23T02:59:26.913Z",
    "place": {
     "psgc": "021500000",
     "name": "Cagayan",
