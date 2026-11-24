@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-24T00:12:38.208Z",
+ "generatedAt": "2026-11-24T10:16:55.933Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -12,10 +12,10 @@
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
-   "found": 33,
+   "found": 35,
    "reports": 3,
-   "note": "33 alerts in feed, 12 flood/rainfall alerts from the last 24 h, 3 still active area(s)",
-   "ms": 21278
+   "note": "35 alerts in feed, 9 flood/rainfall alerts from the last 24 h, 3 still active area(s)",
+   "ms": 15715
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 1,
    "note": "22 basins, 1 not at \"Non-Flood Watch\"",
-   "ms": 2969
+   "ms": 2563
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1939
+   "ms": 2066
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1519
+   "ms": 1542
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1506
+   "ms": 2051
   },
   {
    "id": "philstar",
@@ -91,7 +91,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1755
+   "ms": 1682
   }
  ],
  "reports": [
@@ -103,7 +103,7 @@
    "sourceUrl": "https://pubfiles.pagasa.dost.gov.ph/pagasaweb/files/hmd/riverbasin/cagayan.pdf",
    "headline": "Cagayan river basin: Flood Watch",
    "excerpt": "PAGASA basin hydrological forecast status for the Cagayan river basin is \"Flood Watch\".",
-   "publishedAt": "2026-11-24T00:12:38.208Z",
+   "publishedAt": "2026-11-24T10:16:55.933Z",
    "place": {
     "psgc": "021500000",
     "name": "Cagayan",
@@ -115,199 +115,7 @@
    "lon": 121.8
   },
   {
-   "id": "f20d428076e0",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "037700000",
-    "name": "Aurora",
-    "level": "province",
-    "region": "Central Luzon",
-    "precision": "province"
-   },
-   "lat": 15.88333,
-   "lon": 121.55,
-   "polygon": [
-    [
-     16.5087,
-     122.2501
-    ],
-    [
-     16.2336,
-     122.137
-    ],
-    [
-     16.0707,
-     121.7444
-    ],
-    [
-     15.8977,
-     121.5543
-    ],
-    [
-     15.7057,
-     121.6117
-    ],
-    [
-     15.3707,
-     121.4319
-    ],
-    [
-     15.2075,
-     121.4297
-    ],
-    [
-     15.1305,
-     121.312
-    ],
-    [
-     15.1875,
-     121.301
-    ],
-    [
-     15.4906,
-     121.3676
-    ],
-    [
-     15.7552,
-     121.276
-    ],
-    [
-     15.9249,
-     121.4678
-    ],
-    [
-     16.2491,
-     121.8535
-    ],
-    [
-     16.5082,
-     122.0407
-    ],
-    [
-     16.5084,
-     122.0409
-    ],
-    [
-     16.5093,
-     122.0672
-    ],
-    [
-     16.5093,
-     122.0717
-    ],
-    [
-     16.5087,
-     122.2501
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/146b9b82-d226-41bd-a9c2-7660847a2b9a.cap",
-   "headline": "General Flood Advisory (Severe): Aurora",
-   "excerpt": "Aurora - Rivers and its tributaries particularly Casiguran, Aguang and Lower Umiray.",
-   "publishedAt": "2026-11-23T21:49:10.000Z",
-   "expiresAt": "2026-11-24T09:49:10.000Z"
-  },
-  {
-   "id": "5ba650259910",
-   "kind": "official",
-   "confidence": "high",
-   "place": {
-    "psgc": "021500000",
-    "name": "Cagayan",
-    "level": "province",
-    "region": "Cagayan Valley",
-    "precision": "province"
-   },
-   "lat": 18,
-   "lon": 121.8,
-   "polygon": [
-    [
-     17.5444,
-     122.1938
-    ],
-    [
-     17.5171,
-     121.653
-    ],
-    [
-     17.6914,
-     121.4392
-    ],
-    [
-     17.842,
-     121.3112
-    ],
-    [
-     18.1198,
-     121.4717
-    ],
-    [
-     18.3131,
-     121.4523
-    ],
-    [
-     18.531,
-     121.0522
-    ],
-    [
-     18.4473,
-     120.9609
-    ],
-    [
-     18.5796,
-     120.9724
-    ],
-    [
-     18.6248,
-     121.1559
-    ],
-    [
-     18.3636,
-     121.6308
-    ],
-    [
-     18.2845,
-     121.8546
-    ],
-    [
-     18.2893,
-     122.0117
-    ],
-    [
-     18.3872,
-     122.1336
-    ],
-    [
-     18.3807,
-     122.3219
-    ],
-    [
-     18.2196,
-     122.3057
-    ],
-    [
-     18.1145,
-     122.1821
-    ],
-    [
-     17.7938,
-     122.1426
-    ],
-    [
-     17.5444,
-     122.1938
-    ]
-   ],
-   "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/1561fd03-1260-44f6-8b19-afcbcbef3773.cap",
-   "headline": "General Flood Advisory (Moderate): Cagayan",
-   "excerpt": "Cagayan - Rivers and its tributaries particularly Linao, Lower Abulug, Lower Pamplona, Cabicungan, Aunugay, Baua, Palawig and Taboan.",
-   "publishedAt": "2026-11-23T21:32:53.000Z",
-   "expiresAt": "2026-11-24T09:32:53.000Z"
-  },
-  {
-   "id": "a57700c71728",
+   "id": "b112ec217cb2",
    "kind": "official",
    "confidence": "high",
    "place": {
@@ -406,11 +214,203 @@
     ]
    ],
    "source": "PAGASA",
-   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/1561fd03-1260-44f6-8b19-afcbcbef3773.cap",
+   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/ec736dc7-bfe0-47ef-b990-0d5611e0be94.cap",
    "headline": "General Flood Advisory (Moderate): Isabela",
    "excerpt": "Isabela - Rivers and its tributaries particularly Dikatayan, Divilacan and Palanan-Pinacanauan.",
-   "publishedAt": "2026-11-23T21:32:53.000Z",
-   "expiresAt": "2026-11-24T09:32:53.000Z"
+   "publishedAt": "2026-11-24T09:05:23.000Z",
+   "expiresAt": "2026-11-24T21:05:23.000Z"
+  },
+  {
+   "id": "fa15c0581992",
+   "kind": "official",
+   "confidence": "high",
+   "place": {
+    "psgc": "021500000",
+    "name": "Cagayan",
+    "level": "province",
+    "region": "Cagayan Valley",
+    "precision": "province"
+   },
+   "lat": 18,
+   "lon": 121.8,
+   "polygon": [
+    [
+     17.5444,
+     122.1938
+    ],
+    [
+     17.5171,
+     121.653
+    ],
+    [
+     17.6914,
+     121.4392
+    ],
+    [
+     17.842,
+     121.3112
+    ],
+    [
+     18.1198,
+     121.4717
+    ],
+    [
+     18.3131,
+     121.4523
+    ],
+    [
+     18.531,
+     121.0522
+    ],
+    [
+     18.4473,
+     120.9609
+    ],
+    [
+     18.5796,
+     120.9724
+    ],
+    [
+     18.6248,
+     121.1559
+    ],
+    [
+     18.3636,
+     121.6308
+    ],
+    [
+     18.2845,
+     121.8546
+    ],
+    [
+     18.2893,
+     122.0117
+    ],
+    [
+     18.3872,
+     122.1336
+    ],
+    [
+     18.3807,
+     122.3219
+    ],
+    [
+     18.2196,
+     122.3057
+    ],
+    [
+     18.1145,
+     122.1821
+    ],
+    [
+     17.7938,
+     122.1426
+    ],
+    [
+     17.5444,
+     122.1938
+    ]
+   ],
+   "source": "PAGASA",
+   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/ec736dc7-bfe0-47ef-b990-0d5611e0be94.cap",
+   "headline": "General Flood Advisory (Moderate): Cagayan",
+   "excerpt": "Cagayan - Rivers and its tributaries particularly Linao, Lower Abulug, Lower Pamplona, Cabicungan, Aunugay, Baua, Palawig and Taboan.",
+   "publishedAt": "2026-11-24T09:05:23.000Z",
+   "expiresAt": "2026-11-24T21:05:23.000Z"
+  },
+  {
+   "id": "81afff375e12",
+   "kind": "official",
+   "confidence": "high",
+   "place": {
+    "psgc": "037700000",
+    "name": "Aurora",
+    "level": "province",
+    "region": "Central Luzon",
+    "precision": "province"
+   },
+   "lat": 15.88333,
+   "lon": 121.55,
+   "polygon": [
+    [
+     16.5087,
+     122.2501
+    ],
+    [
+     16.2336,
+     122.137
+    ],
+    [
+     16.0707,
+     121.7444
+    ],
+    [
+     15.8977,
+     121.5543
+    ],
+    [
+     15.7057,
+     121.6117
+    ],
+    [
+     15.3707,
+     121.4319
+    ],
+    [
+     15.2075,
+     121.4297
+    ],
+    [
+     15.1305,
+     121.312
+    ],
+    [
+     15.1875,
+     121.301
+    ],
+    [
+     15.4906,
+     121.3676
+    ],
+    [
+     15.7552,
+     121.276
+    ],
+    [
+     15.9249,
+     121.4678
+    ],
+    [
+     16.2491,
+     121.8535
+    ],
+    [
+     16.5082,
+     122.0407
+    ],
+    [
+     16.5084,
+     122.0409
+    ],
+    [
+     16.5093,
+     122.0672
+    ],
+    [
+     16.5093,
+     122.0717
+    ],
+    [
+     16.5087,
+     122.2501
+    ]
+   ],
+   "source": "PAGASA",
+   "sourceUrl": "https://publicalert.pagasa.dost.gov.ph/output/gfa/71b6dfe6-3f7d-4996-9219-349a0940d842.cap",
+   "headline": "General Flood Advisory (Moderate): Aurora",
+   "excerpt": "Aurora - Rivers and its tributaries particularly Casiguran, Aguang and Lower Umiray.",
+   "publishedAt": "2026-11-24T09:02:07.000Z",
+   "expiresAt": "2026-11-24T21:02:07.000Z"
   }
  ],
  "notices": []
