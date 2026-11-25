@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-25T14:09:03.984Z",
+ "generatedAt": "2026-11-25T23:13:46.982Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -12,10 +12,10 @@
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
    "status": "ok",
-   "found": 35,
+   "found": 33,
    "reports": 0,
-   "note": "35 alerts in feed, 2 flood/rainfall alerts from the last 24 h, 0 still active area(s)",
-   "ms": 5380
+   "note": "33 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
+   "ms": 2171
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +28,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2889
+   "ms": 2879
   },
   {
    "id": "google-news",
@@ -52,7 +52,7 @@
    "found": 40,
    "reports": 0,
    "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1964
+   "ms": 2329
   },
   {
    "id": "rappler",
@@ -65,7 +65,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1513
+   "ms": 1520
   },
   {
    "id": "gma",
@@ -78,7 +78,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1505
+   "ms": 1507
   },
   {
    "id": "philstar",
@@ -89,11 +89,31 @@
    "terms": "robots.txt allows /rss/; headline + excerpt + link only",
    "status": "ok",
    "found": 10,
-   "reports": 0,
-   "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1751
+   "reports": 1,
+   "note": "10 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1756
   }
  ],
- "reports": [],
+ "reports": [
+  {
+   "id": "bd590885fd87",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "023100000",
+    "name": "Isabela",
+    "level": "province",
+    "region": "Cagayan Valley",
+    "precision": "province"
+   },
+   "lat": 17,
+   "lon": 122,
+   "source": "Philstar",
+   "sourceUrl": "https://www.philstar.com/nation/2026/11/26/2572660/isabelagets-advanced-hazard-maps",
+   "headline": "Isabela gets advanced hazard maps",
+   "excerpt": "Isabela has become the first province in the country to receive advanced hazard maps powered by the Light Detection and Ranging technology, which gives local governments more precise data to identify communities at…",
+   "publishedAt": "2026-11-25T16:00:00.000Z"
+  }
+ ],
  "notices": []
 }
