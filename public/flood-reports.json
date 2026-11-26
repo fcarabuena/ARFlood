@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-25T23:13:46.982Z",
+ "generatedAt": "2026-11-26T05:19:27.758Z",
  "windowHours": 24,
  "disclaimer": "Automatically collected from PAGASA advisories and news headlines. Reports may be incomplete, outdated or imprecisely located. Always follow official advisories from PAGASA, NDRRMC and your LGU.",
  "userAgent": "FloodReadyBot/1.0 (+https://fcarabuena.github.io/ARFlood/; public flood-safety app, runs every 30 min)",
@@ -11,11 +11,9 @@
    "confidence": "high",
    "url": "https://publicalert.pagasa.dost.gov.ph/feeds/",
    "terms": "Feed states \"Licensed under CC BY 4.0\"; no robots.txt (HTTP 404 = no restrictions)",
-   "status": "ok",
-   "found": 33,
-   "reports": 0,
-   "note": "33 alerts in feed, 0 flood/rainfall alerts from the last 24 h",
-   "ms": 2171
+   "status": "skipped",
+   "reason": "robots.txt unreachable (publicalert.pagasa.dost.gov.ph: fetch failed): treated as disallowed",
+   "reports": 0
   },
   {
    "id": "pagasa-basins",
@@ -28,7 +26,7 @@
    "found": 22,
    "reports": 0,
    "note": "22 basins, 0 not at \"Non-Flood Watch\"",
-   "ms": 2879
+   "ms": 3536
   },
   {
    "id": "google-news",
@@ -50,9 +48,9 @@
    "terms": "robots.txt allows /feed; headline + excerpt + link only",
    "status": "ok",
    "found": 40,
-   "reports": 0,
-   "note": "40 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 2329
+   "reports": 1,
+   "note": "40 items, 1 about flooding in the last 24 h, 1 place match(es)",
+   "ms": 1930
   },
   {
    "id": "rappler",
@@ -65,7 +63,7 @@
    "found": 10,
    "reports": 0,
    "note": "10 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1520
+   "ms": 1596
   },
   {
    "id": "gma",
@@ -78,7 +76,7 @@
    "found": 15,
    "reports": 0,
    "note": "15 items, 0 about flooding in the last 24 h, 0 place match(es)",
-   "ms": 1507
+   "ms": 1956
   },
   {
    "id": "philstar",
@@ -91,10 +89,30 @@
    "found": 10,
    "reports": 1,
    "note": "10 items, 1 about flooding in the last 24 h, 1 place match(es)",
-   "ms": 1756
+   "ms": 1788
   }
  ],
  "reports": [
+  {
+   "id": "6ca3225ef692",
+   "kind": "news",
+   "confidence": "medium",
+   "place": {
+    "psgc": "083747000",
+    "name": "Tacloban City",
+    "level": "city",
+    "province": "Leyte",
+    "region": "Eastern Visayas",
+    "precision": "city"
+   },
+   "lat": 11.24444,
+   "lon": 125.00389,
+   "source": "Inquirer.net",
+   "sourceUrl": "https://newsinfo.inquirer.net/2347148/ex-doe-chief-tap-flood-infra-funds-for-visayas-power",
+   "headline": "Ex-DOE chief: Tap flood infra funds for Visayas power",
+   "excerpt": "TACLOBAN CITY, Leyte, Philippines — Leyte Gov. Carlos Jericho Petilla has urged the national government to consider redirecting part of its flood control budget to the energy sector, warning that the Visayas could face…",
+   "publishedAt": "2026-11-26T05:06:00.000Z"
+  },
   {
    "id": "bd590885fd87",
    "kind": "news",
